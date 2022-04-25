@@ -21,7 +21,7 @@ import {OrderModule} from "./component/order/order.module";
     OrderModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

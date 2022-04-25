@@ -1,25 +1,29 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { HomeRoutingModule } from '../../routing/home-routing.module';
-import { LoginUserComponent } from './login-user/login-user.component';
-import { LoginManagementComponent } from './login-management/login-management.component';
-import { RegisterComponent } from './register/register.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
+import {HomeRoutingModule} from '../../routing/home-routing.module';
+import {FooterComponent} from './management/footer/footer.component';
+import {HeaderComponent} from './management/header/header.component';
+import {LoginManagementComponent} from "./management/login-management/login-management.component";
+import { LoginUserComponent } from './users/login-user/login-user.component';
 
 
 @NgModule({
-  declarations: [
-    LoginUserComponent,
-    LoginManagementComponent,
-    RegisterComponent,
-    FooterComponent,
-    HeaderComponent
-  ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule
-  ]
+    declarations: [
+        LoginUserComponent,
+        LoginManagementComponent,
+        FooterComponent,
+        HeaderComponent,
+        LoginUserComponent,
+    ],
+    exports: [
+        HeaderComponent,
+        FooterComponent,
+    ],
+    imports: [
+        CommonModule,
+        HomeRoutingModule
+    ]
 })
-export class HomeModule { }
+export class HomeModule {
+}
