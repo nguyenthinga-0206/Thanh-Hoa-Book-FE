@@ -1779,7 +1779,7 @@ span.right {
   padding: 7px 10px;
 }
 
-.dashboard_graph .col-md-9, .dashboard_graph .col-md-3 {
+.dashboard_graph .col-md-9, .dashboard_graph .col-md-2 {
   padding: 0;
 }
 
@@ -4151,7 +4151,7 @@ fieldset {
 }
 
 .cropper .img-container {
-  min-height: 200px;
+  min-height: 230px;
   max-height: 516px;
   margin-bottom: 20px;
 }
@@ -4602,7 +4602,7 @@ ul.verticle_bars {
 
 ul.verticle_bars li {
   width: 23%;
-  height: 200px;
+  height: 230px;
   margin: 0;
 }
 
@@ -4954,4 +4954,9 @@ ul.notifications {
 
 .calendar-exibit .calendar-table {
   padding: 0 0 4px 0;
+}
+.footer-bottom{
+  position: absolute;
+  bottom: 0;
+  font-family: 'Poppins-Regular';
 }

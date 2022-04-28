@@ -6,6 +6,7 @@ import {FooterComponent} from './management/footer/footer.component';
 import {HeaderComponent} from './management/header/header.component';
 import {LoginManagementComponent} from "./management/login-management/login-management.component";
 import { LoginUserComponent } from './users/login-user/login-user.component';
+import { MenuComponent } from './management/menu/menu.component';
 
 
 @NgModule({
@@ -15,10 +16,12 @@ import { LoginUserComponent } from './users/login-user/login-user.component';
         FooterComponent,
         HeaderComponent,
         LoginUserComponent,
+        MenuComponent,
     ],
     exports: [
         HeaderComponent,
         FooterComponent,
+        MenuComponent,
     ],
     imports: [
         CommonModule,

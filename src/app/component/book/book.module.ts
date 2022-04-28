@@ -7,6 +7,7 @@ import { UpdateBookComponent } from './management/update-book/update-book.compon
 import { DeleteBookComponent } from './management/delete-book/delete-book.component';
 import { TableListBookComponent } from './management/table-list-book/table-list-book.component';
 import { ListBookComponent } from './users/list-book/list-book.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -17,9 +18,10 @@ import { ListBookComponent } from './users/list-book/list-book.component';
     TableListBookComponent,
     ListBookComponent
   ],
-  imports: [
-    CommonModule,
-    BookRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        BookRoutingModule,
+        FormsModule
+    ]
 })
 export class BookModule { }
