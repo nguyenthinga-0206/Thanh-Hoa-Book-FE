@@ -15,19 +15,28 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
+    <tr *ngFor="let book of bookList | paginate :{itemsPerPage:10 ,currentPage : p}">
       <td>
         <input type="checkbox" id="check-all">
       </td>
-      <td>S0192201</td>
-      <td>Tiger Nixon</td>
-      <td>Viễn tưởng</td>
-      <td>Alex</td>
-      <td>NXB Giáo Dục</td>
-      <td>61</td>
-      <td>$320,800</td>
+      <td>{{book.code}}</td>
+      <td class="text-title">{{book.name}}</td>
+<!--      <td>{{book.categoryList}}</td>-->
+<!--      <td>{{book.authorList}}</td>-->
+<!--      <td>N{{book.producerList}}</td>-->
+      <td>ad</td>
+      <td>ada</td>
+      <td>adaff</td>
+      <td class="text-right">{{book.quantity}}</td>
+      <td class="text-right">{{book.price}}</td>
     </tr>
     </tbody>
   </table>
 </div>
+<!--        Pagination-->
+<pagination-controls class="text-right text" (pageChange)="p = $event"
+                     previousLabel="Trước"
+                     nextLabel="Sau"
+                     [autoHide]="true">
+</pagination-controls>
 

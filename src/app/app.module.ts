@@ -7,6 +7,8 @@ import {HomeModule} from "./component/home/home.module";
 import {UserModule} from "./component/user/user.module";
 import {BookModule} from "./component/book/book.module";
 import {OrderModule} from "./component/order/order.module";
+import {NgxPaginationModule} from "ngx-pagination";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -15,10 +17,12 @@ import {OrderModule} from "./component/order/order.module";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     HomeModule,
     UserModule,
     BookModule,
-    OrderModule
+    OrderModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent],

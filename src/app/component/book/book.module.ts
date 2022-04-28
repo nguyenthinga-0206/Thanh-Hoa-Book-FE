@@ -8,6 +8,7 @@ import { DeleteBookComponent } from './management/delete-book/delete-book.compon
 import { TableListBookComponent } from './management/table-list-book/table-list-book.component';
 import { ListBookComponent } from './users/list-book/list-book.component';
 import {FormsModule} from "@angular/forms";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {FormsModule} from "@angular/forms";
     imports: [
         CommonModule,
         BookRoutingModule,
-        FormsModule
+        FormsModule,
+        NgxPaginationModule,
     ]
 })
 export class BookModule { }
