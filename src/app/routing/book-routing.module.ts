@@ -4,7 +4,7 @@ import {TableListBookComponent} from "../component/book/management/table-list-bo
 import {CreateBookComponent} from "../component/book/management/create-book/create-book.component";
 
 const routes: Routes = [
-  {path: "management/book/list", component: TableListBookComponent},
+  {path: "management/book", component: TableListBookComponent},
   {path: "management/book/create", component: CreateBookComponent}
 ];
 

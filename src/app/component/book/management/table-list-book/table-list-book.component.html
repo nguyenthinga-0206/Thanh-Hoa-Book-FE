@@ -3,30 +3,21 @@
 <div class="card-box table-responsive">
   <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action" style="width:100%">
     <thead>
-    <tr>
+    <tr class="text-center">
       <th>Chọn</th>
       <th>Mã sách</th>
       <th>Tên sách</th>
-      <th>Thể loại</th>
-      <th>Tác giả</th>
-      <th>Nhà xuất bản</th>
       <th>Số lượng</th>
       <th>Giá</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let book of bookList | paginate :{itemsPerPage:10 ,currentPage : p}">
-      <td>
+    <tr *ngFor="let book of bookList | paginate :{itemsPerPage:5 ,currentPage : p}">
+      <td class="text-center">
         <input type="checkbox" id="check-all">
       </td>
       <td>{{book.code}}</td>
       <td class="text-title">{{book.name}}</td>
-<!--      <td>{{book.categoryList}}</td>-->
-<!--      <td>{{book.authorList}}</td>-->
-<!--      <td>N{{book.producerList}}</td>-->
-      <td>ad</td>
-      <td>ada</td>
-      <td>adaff</td>
       <td class="text-right">{{book.quantity}}</td>
       <td class="text-right">{{book.price}}</td>
     </tr>
