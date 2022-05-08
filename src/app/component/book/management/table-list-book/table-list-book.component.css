@@ -1,0 +1,6 @@
+.text-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 50px;
+  overflow: hidden;
+}
