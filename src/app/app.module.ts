@@ -9,6 +9,9 @@ import {BookModule} from "./component/book/book.module";
 import {OrderModule} from "./component/order/order.module";
 import {NgxPaginationModule} from "ngx-pagination";
 import {HttpClientModule} from "@angular/common/http";
+import {MatDialogModule} from "@angular/material/dialog";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import {HttpClientModule} from "@angular/common/http";
     UserModule,
     BookModule,
     OrderModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

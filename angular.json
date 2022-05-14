@@ -37,6 +37,7 @@
             "scripts": [
               "src/assets/js/jquery/jquery.js",
               "src/assets/js/boostrap/bootstrap.bundle.js",
+              "node_modules/moment/dist/moment.js",
               "src/assets/js/custom.js"
             ]
           },

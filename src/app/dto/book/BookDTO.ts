@@ -1,12 +1,11 @@
-import {ELanguage} from "./ELanguage";
-import {ECover} from "./ECover";
-import {Image} from "./Image";
-import {Author} from "./Author";
-import {Producer} from "./Producer";
-import {Category} from "./Category";
-import {OrderDetails} from "../order/OrderDetails";
+import {ELanguage} from "../../model/book/ELanguage";
+import {ECover} from "../../model/book/ECover";
+import {Image} from "../../model/book/Image";
+import {Author} from "../../model/book/Author";
+import {Producer} from "../../model/book/Producer";
+import {Category} from "../../model/book/Category";
 
-export interface Book {
+export interface BookDTO {
   id: number,
   name: string,
   code: string,
@@ -25,5 +24,4 @@ export interface Book {
   authorList: Array<Author>,
   producer: Producer,
   categoryList: Array<Category>,
-  orderDetailsList: Array<OrderDetails>
 }
