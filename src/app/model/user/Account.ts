@@ -4,6 +4,7 @@ import {Orders} from "../order/Orders";
 
 export interface Account {
   id: string,
+  username: string,
   password: string,
   role: ERole
   user: User,
