@@ -4,44 +4,21 @@ import {BookService} from "../../../../service/book.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {BookDTO} from "../../../../dto/book/BookDTO";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
-import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter} from "@angular/material-moment-adapter";
-import {MatDatepicker} from "@angular/material/datepicker";
-import * as _moment from 'moment';
-// @ts-ignore
-import {default as _rollupMoment, Moment} from 'moment';
-
-const moment = _rollupMoment || _moment;
-
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'YYYY',
-  },
-  display: {
-    dateInput: 'YYYY',
-    yearLabel: 'YYYY',
-    dateA11yLabel: 'LL',
-    yearA11yLabel: 'YYYY',
-  },
-};
-
+import {Producer} from "../../../../model/book/Producer";
+import {Author} from "../../../../model/book/Author";
+import {Category} from "../../../../model/book/Category";
 
 @Component({
   selector: 'app-create-book',
   templateUrl: './create-book.component.html',
   styleUrls: ['./create-book.component.css'],
-  providers: [
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-    },
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-  ]
 })
+
 export class CreateBookComponent implements OnInit {
   book!: BookDTO;
-  private yearPublishing: any;
+  producerList!: Array<Producer>;
+  authorList!: Array<Author>;
+  categoryList!: Array<Category>;
 
   constructor(private bookService: BookService,
               dialogRef: MatDialogRef<CreateBookComponent>,
@@ -49,29 +26,40 @@ export class CreateBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.bookService.getAllProducer().subscribe(data => {
+      this.producerList = data;
+    })
+    this.bookService.getAllAuthor().subscribe(data => {
+      this.authorList = data;
+    })
+    this.bookService.getAllCategory().subscribe(data => {
+      this.categoryList = data;
+    })
   }
 
   formCreateBook = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.maxLength(45)]),
-    code: new FormControl('', [Validators.required, Validators.pattern("^\d{8}$")]),
-    yearPublishing: new FormControl(moment()),
-    quantity: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][\d]{0,6})$")]),
-    weight: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)(([1-9][\d]{0,6})|([0]))\.[\d]{2}$")]),
-    width: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)(([1-9][\d]{0,6})|([0]))\.[\d]{2}$")]),
-    lenght: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)(([1-9][\d]{0,6})|([0]))\.[\d]{2}$")]),
-    height: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)(([1-9][\d]{0,6})|([0]))\.[\d]{2}$")]),
-    pageNumber: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][\d]{0,6})$")]),
+    name: new FormControl('', [Validators.required]),
+    code: new FormControl('', [Validators.required]),
+    yearPublishing: new FormControl('', [Validators.required]),
+    quantity: new FormControl('', [Validators.required]),
+    weight: new FormControl('', [Validators.required,]),
+    width: new FormControl('', [Validators.required,]),
+    lenght: new FormControl('', [Validators.required,]),
+    height: new FormControl('', [Validators.required,]),
+    pageNumber: new FormControl('', [Validators.required]),
     language: new FormControl('', [Validators.required]),
     formCover: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)(([1-9][\d]{0,6})|([0]))\.[\d]{2}$")]),
-    imageList: new FormArray([], [Validators.required]),
-    authorList: new FormArray([], [Validators.required]),
-    producerList: new FormArray([], [Validators.required]),
-    categoryList: new FormArray([], [Validators.required]),
+    price: new FormControl('', [Validators.required]),
+    description: new FormControl(''),
+    imageList: new FormArray([]),
+    authorList: new FormArray([]),
+    producer: new FormControl([], [Validators.required]),
+    categoryList: new FormArray([])
   });
 
   createBook() {
     if (!this.formCreateBook.invalid) {
+      console.log(this.formCreateBook.value);
       this.bookService.createBook(this.formCreateBook.value).subscribe(
         (data) => {
           this.snackBar.open("Thêm mới thành công", "Đóng", {
@@ -83,12 +71,5 @@ export class CreateBookComponent implements OnInit {
       this.ngOnInit();
       this.formCreateBook.reset();
     }
-  }
-
-  chosenYearHandler(normalizedYear: Moment, datepicker: MatDatepicker<Moment>) {
-    const ctrlValue = this.yearPublishing.value;
-    ctrlValue.year(normalizedYear.year());
-    this.yearPublishing.setValue(ctrlValue);
-    datepicker.close();
   }
 }

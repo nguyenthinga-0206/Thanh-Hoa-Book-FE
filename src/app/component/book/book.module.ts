@@ -14,6 +14,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {AddDetailBookComponent} from './management/add-detail-book/add-detail-book.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -32,8 +33,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatDialogModule,
     MatGridListModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
     MatFormFieldModule,
+    MatSelectModule,
   ]
 })
 export class BookModule {
