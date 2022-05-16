@@ -44,6 +44,18 @@ export class BookService {
     return this.httpClient.put<boolean>(this.URL_BOOK + "/add-book", addBookDTO);
   }
 
+  createCategory(category: Category) {
+    return this.httpClient.post<boolean>(this.URL_CATEGORY, category);
+  }
+
+  createAuthor(author: Author) {
+    return this.httpClient.post<boolean>(this.URL_AUTHOR, author);
+  }
+
+  createProducer(producer: Producer) {
+    return this.httpClient.post<boolean>(this.URL_PRODUCER, producer);
+  }
+
   editBook(bookDTO: BookDTO) {
     return this.httpClient.put<boolean>(this.URL_BOOK, bookDTO);
   }

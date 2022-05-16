@@ -5,14 +5,15 @@
     <div class="form-group row">
       <label class="col-sm-4 col-form-label">Số lượng</label>
       <input type="number" formControlName="quantity" class="col-sm-8 form-control" placeholder="0">
-      <div class="alert alert-danger"
+      <p class="col-4"></p>
+      <mat-error
            *ngIf="formAddBook.get('quantity')?.hasError('required') && formAddBook.get('quantity')?.touched">
         Số lượng sách không được để trống!
-      </div>
-      <div class="alert alert-danger"
+      </mat-error>
+      <mat-error
            *ngIf="formAddBook.get('quantity')?.hasError('pattern') && formAddBook.get('quantity')?.touched">
         Số lượng sách phải là số dương!
-      </div>
+      </mat-error>
     </div>
     <div mat-dialog-actions class="justify-content-center">
       <button mat-button mat-dialog-close class="btn btn-secondary">Thoát</button>

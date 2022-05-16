@@ -12,9 +12,9 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {AddDetailBookComponent} from './management/add-detail-book/add-detail-book.component';
-import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
+import { CreateCategoryComponent } from './management/create-category/create-category.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import {MatSelectModule} from "@angular/material/select";
     DeleteBookComponent,
     TableListBookComponent,
     ListBookComponent,
-    AddDetailBookComponent
+    AddDetailBookComponent,
+    CreateCategoryComponent
   ],
   imports: [
     CommonModule,

@@ -15,26 +15,22 @@ import {UpdateBookComponent} from "../update-book/update-book.component";
 export class TableListBookComponent implements OnInit {
   bookList!: Array<Book>;
   p: number | any;
-  checkPagination = true;
 
   constructor(private bookService: BookService,
-              public dialog: MatDialog) {
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.bookService.getAll().subscribe(data => {
         this.bookList = data
         this.p = 1;
-      },
-      (error) => {
-        console.log("Error No Data Book!")
       }
     );
   }
 
   openDialogCreate() {
     const dialogRef = this.dialog.open(CreateBookComponent, {
-      width: '500px',
+      width: '700px',
       height: '700px',
     });
 

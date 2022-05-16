@@ -1,0 +1,20 @@
+<h5 mat-dialog-title class="text-center text-uppercase">Thêm thể loại mới</h5>
+<hr>
+<div mat-dialog-content>
+  <form class="form-group" [formGroup]="formAddCategory" (ngSubmit)="addCategory()">
+    <div class="form-group row">
+      <label class="col-sm-4 col-form-label">Tên thể loại</label>
+      <input type="text" formControlName="name" class="col-sm-8 form-control" placeholder="Thể loại">
+      <p class="col-4"></p>
+      <mat-error
+           *ngIf="formAddCategory.get('name')?.hasError('required') && formAddCategory.get('name')?.touched">
+        Tên không được để trống!
+      </mat-error>
+    </div>
+    <div mat-dialog-actions class="justify-content-center">
+      <button mat-button mat-dialog-close class="btn btn-secondary">Thoát</button>
+      <button mat-button class="btn btn-danger" type="submit">Thêm</button>
+    </div>
+  </form>
+  <hr>
+</div>
