@@ -15,6 +15,8 @@ import {AddDetailBookComponent} from './management/add-detail-book/add-detail-bo
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import { CreateCategoryComponent } from './management/create-category/create-category.component';
+import { CreateAuthorComponent } from './management/create-author/create-author.component';
+import { CreateProducerComponent } from './management/create-producer/create-producer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { CreateCategoryComponent } from './management/create-category/create-cat
     TableListBookComponent,
     ListBookComponent,
     AddDetailBookComponent,
-    CreateCategoryComponent
+    CreateCategoryComponent,
+    CreateAuthorComponent,
+    CreateProducerComponent
   ],
   imports: [
     CommonModule,

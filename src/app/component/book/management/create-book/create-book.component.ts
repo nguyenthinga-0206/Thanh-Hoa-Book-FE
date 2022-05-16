@@ -8,6 +8,8 @@ import {Producer} from "../../../../model/book/Producer";
 import {Author} from "../../../../model/book/Author";
 import {Category} from "../../../../model/book/Category";
 import {CreateCategoryComponent} from "../create-category/create-category.component";
+import {CreateAuthorComponent} from "../create-author/create-author.component";
+import {CreateProducerComponent} from "../create-producer/create-producer.component";
 
 @Component({
   selector: 'app-create-book',
@@ -91,10 +93,24 @@ export class CreateBookComponent implements OnInit {
   }
 
   openDialogAddAuthor() {
+    const dialogRef = this.dialog.open(CreateAuthorComponent, {
+      width: '400px',
+      height: '300px',
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ngOnInit();
+    });
   }
 
   openDialogAddProducer() {
+    const dialogRef = this.dialog.open(CreateProducerComponent, {
+      width: '400px',
+      height: '300px',
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      this.ngOnInit();
+    });
   }
 }
