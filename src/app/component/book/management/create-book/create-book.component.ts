@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {BookService} from "../../../../service/book.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {BookDTO} from "../../../../dto/book/BookDTO";
-import {FormArray, FormControl, FormGroup, FormGroupName, Validators} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Producer} from "../../../../model/book/Producer";
 import {Author} from "../../../../model/book/Author";
 import {Category} from "../../../../model/book/Category";
@@ -18,7 +17,6 @@ import {CreateProducerComponent} from "../create-producer/create-producer.compon
 })
 
 export class CreateBookComponent implements OnInit {
-  book!: BookDTO;
   producerList!: Array<Producer>;
   authorList!: Array<Author>;
   categoryList!: Array<Category>;
@@ -32,10 +30,10 @@ export class CreateBookComponent implements OnInit {
   ngOnInit(): void {
     this.bookService.getAllProducer().subscribe(data => {
       this.producerList = data;
-    })
+    });
     this.bookService.getAllAuthor().subscribe(data => {
       this.authorList = data;
-    })
+    });
     this.bookService.getAllCategory().subscribe(data => {
       this.categoryList = data;
     })
@@ -56,13 +54,9 @@ export class CreateBookComponent implements OnInit {
     price: new FormControl('', [Validators.required]),
     description: new FormControl(''),
     imageList: new FormControl(),
-    authorList: new FormGroup({
-      id: new FormControl(),
-    }),
+    authorList: new FormArray([]),
     producer: new FormControl([], [Validators.required]),
-    categoryList: new FormGroup({
-      id: new FormControl()
-    })
+    categoryList: new FormArray([])
   });
 
   createBook() {

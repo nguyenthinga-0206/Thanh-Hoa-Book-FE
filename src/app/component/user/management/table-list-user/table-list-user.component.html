@@ -1,10 +1,9 @@
 <h3 class="text-center">DANH SÁCH THÀNH VIÊN</h3>
-<button type="button" class="btn btn-primary float-right"><i class="fa fa-plus"></i></button>
+<button type="button" class="btn btn-primary float-right" (click)="openDialogCreate()"><i class="fa fa-plus"></i></button>
 <div class="card-box table-responsive">
-  <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action" style="width:100%">
+  <table class="table table-striped table-bordered" style="width:100%">
     <thead>
     <tr class="text-center">
-      <th>Chọn</th>
       <th>Tên tài khoản</th>
       <th>Họ và tên</th>
       <th>Giới tính</th>
@@ -15,9 +14,6 @@
     </thead>
     <tbody>
     <tr class="text-td" *ngFor="let user of userList | paginate :{itemsPerPage:5 ,currentPage : p}">
-      <td class="text-center">
-        <input type="checkbox" id="check-all">
-      </td>
       <td><img class="user-image" src="assets/images/avatar.jpg" alt=""> {{user.account.username}}</td>
       <td>{{user.fullName}}</td>
       <td>{{user.gender}}</td>

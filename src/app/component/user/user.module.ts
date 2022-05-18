@@ -6,6 +6,8 @@ import { CreateManagementComponent } from './management/create-management/create
 import { UpdateProfileComponent } from './users/update-profile/update-profile.component';
 import { TableListUserComponent } from './management/table-list-user/table-list-user.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import {NgxPaginationModule} from "ngx-pagination";
   imports: [
     CommonModule,
     UserRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ]
 })
 export class UserModule { }

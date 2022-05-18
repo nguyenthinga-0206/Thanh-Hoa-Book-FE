@@ -1,0 +1,17 @@
+<h5 mat-dialog-title class="text-center text-uppercase">Cập nhật trạng thái</h5>
+<p class="text-center">Đơn hàng: {{order.code}}</p>
+<hr>
+<div mat-dialog-content>
+  <div class="form-group row">
+    <label class="col-sm-5 col-form-label">Trạng thái cập nhật</label>
+    <select class="col-sm-7 form-control" #element (change)="changeStatus(element.value)">
+      <option *ngFor="let status of statusArr" [value]="status"
+              [selected]="status[0] === order.status">{{status[1]}}</option>
+    </select>
+  </div>
+</div>
+<hr>
+<div mat-dialog-actions class="justify-content-center">
+  <button mat-button mat-dialog-close class="btn btn-secondary">Thoát</button>
+  <button mat-button class="btn btn-danger" type="submit" (click)="editStatus()">Cập nhật</button>
+</div>

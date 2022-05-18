@@ -1,1 +1,111 @@
-<p>create-management works!</p>
+<form class="form-group form-label-left input_mask" [formGroup]="formCreateManagement" (ngSubmit)="createManagement()">
+  <h1 class="text-center text-uppercase" mat-dialog-title>Thêm nhân viên</h1>
+  <hr>
+  <div mat-dialog-content>
+    <div class="form-group">
+      <label>Họ và tên</label>
+      <input type="text" class="form-control" formControlName="fullName" placeholder="Nguyễn Văn A">
+      <mat-error
+        *ngIf="formCreateManagement.get('fullName')?.hasError('required') && formCreateManagement.get('fullName')?.touched">
+        Tên không được để trống!
+      </mat-error>
+      <mat-error
+        *ngIf="formCreateManagement.get('fullName')?.hasError('maxLength') && formCreateManagement.get('fullName')?.touched">
+        Tên không vượt qua 45 ký tự!
+      </mat-error>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" formControlName="email" placeholder="anv12@gmail.com">
+      <mat-error
+        *ngIf="formCreateManagement.get('email')?.hasError('required') && formCreateManagement.get('email')?.touched">
+        Email không được để trống!
+      </mat-error>
+      <mat-error
+        *ngIf="formCreateManagement.get('email')?.hasError('email') && formCreateManagement.get('email')?.touched">
+        Email sai định dạng!
+      </mat-error>
+    </div>
+    <div class="form-group">
+      <label>Số điện thoại</label>
+      <input type="text" class="form-control" formControlName="phone" placeholder="092*****12">
+      <mat-error
+        *ngIf="formCreateManagement.get('phone')?.hasError('required') && formCreateManagement.get('phone')?.touched">
+        Số điện thoại không được để trống!
+      </mat-error>
+      <!--      <mat-error-->
+      <!--        *ngIf="formCreateManagement.get('phone')?.hasError('parent') && formCreateManagement.get('phone')?.touched">-->
+      <!--        Số điện thoại sai định dạng!-->
+      <!--      </mat-error>-->
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label>Ngày sinh</label>
+        <input type="date" class="form-control" formControlName="birthday">
+      </div>
+      <div class="form-group col-md-6">
+        <label>Giới tính</label>
+        <select formControlName="gender" class="form-control" selected="MALE">
+          <option class="form-check-input" value="MALE">Nam
+          <option class="form-check-input" value="FEMALE">Nữ
+          <option class="form-check-input" value="OTHER">Khác
+        </select>
+        <mat-error
+          *ngIf="formCreateManagement.get('gender')?.hasError('required') && formCreateManagement.get('gender')?.touched">
+          Giới tính không được để trống!
+        </mat-error>
+      </div>
+    </div>
+    <div formGroupName="account">
+      <div class="form-group">
+        <label>Tên tài khoản</label>
+        <input type="text" class="form-control" formControlName="username" placeholder="ntna123">
+        <mat-error
+          *ngIf="formCreateManagement.get('username')?.hasError('required') && formCreateManagement.get('username')?.touched">
+          Tên tài khoản không được để trống!
+        </mat-error>
+        <mat-error
+          *ngIf="formCreateManagement.get('username')?.hasError('maxLength') && formCreateManagement.get('username')?.touched">
+          Tên tài khoản không vượt qua 45 ký tự!
+        </mat-error>
+      </div>
+      <div class="form-group" formGroupName="password">
+        <label>Mật khẩu</label>
+        <input type="text" class="form-control" formControlName="password1" placeholder="********">
+        <mat-error
+          *ngIf="formCreateManagement.get('password1')?.hasError('required') && formCreateManagement.get('password1')?.touched">
+          Mật khẩu không được để trống!
+        </mat-error>
+        <mat-error
+          *ngIf="formCreateManagement.get('password1')?.hasError('minLength') && formCreateManagement.get('password1')?.touched">
+          Mật khẩu phải lớn hơn 8 kí tự!
+        </mat-error>
+      </div>
+      <div class="form-group">
+        <label>Xác nhận mật khẩu</label>
+        <input type="text" class="form-control" formControlName="confirmPassword" placeholder="********">
+        <mat-error
+          *ngIf="formCreateManagement.get('confirmPassword')?.hasError('required') && formCreateManagement.get('confirmPassword')?.touched">
+          Mật khẩu không được để trống!
+        </mat-error>
+        <mat-error
+          *ngIf="formCreateManagement.get('confirmPassword')?.hasError('minLength') && formCreateManagement.get('confirmPassword')?.touched">
+          Mật khẩu phải lớn hơn 8 kí tự!
+        </mat-error>
+      </div>
+      <mat-error
+        *ngIf="formCreateManagement.hasError('passwordnotmatch', ['password']) && formCreateManagement.get('password')?.touched">
+        >
+        Mật khẩu không trùng khớp!
+      </mat-error>
+    </div>
+  </div>
+  <hr>
+  <div class="form-group row" mat-dialog-actions>
+    <div class="col-md-9 col-sm-9  offset-md-3">
+      <button mat-button mat-dialog-close class="btn btn-secondary">Thoát</button>
+      <button mat-button class="btn btn-info" type="reset">Đặt lại</button>
+      <button mat-button class="btn btn-success" type="submit">Thêm</button>
+    </div>
+  </div>
+</form>

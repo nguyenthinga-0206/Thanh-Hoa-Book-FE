@@ -14,9 +14,9 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {AddDetailBookComponent} from './management/add-detail-book/add-detail-book.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
-import { CreateCategoryComponent } from './management/create-category/create-category.component';
-import { CreateAuthorComponent } from './management/create-author/create-author.component';
-import { CreateProducerComponent } from './management/create-producer/create-producer.component';
+import {CreateCategoryComponent} from './management/create-category/create-category.component';
+import {CreateAuthorComponent} from './management/create-author/create-author.component';
+import {CreateProducerComponent} from './management/create-producer/create-producer.component';
 
 @NgModule({
   declarations: [

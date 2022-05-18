@@ -72,7 +72,7 @@ export class TableListBookComponent implements OnInit {
   openDialogDelete(book: Book) {
     const dialogRef = this.dialog.open(DeleteBookComponent, {
       width: '400px',
-      height: '400px',
+      height: '350px',
       data: book
     });
 

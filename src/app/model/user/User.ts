@@ -4,10 +4,10 @@ import {Account} from "./Account";
 export interface User {
   id: number,
   fullName: string,
-  birthday: Date,
+  birthday?: Date,
   email: string,
-  phone: string,
+  phone?: string,
   gender: EGender,
-  image: string,
+  image?: string,
   account: Account
 }
