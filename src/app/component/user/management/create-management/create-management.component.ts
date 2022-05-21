@@ -1,15 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../../../service/users.service";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-
-function checkpassword(c: AbstractControl) {
-  const v = c.value;
-  return (v.password1 === v.password2) ? null : {
-    passwordnotmatch: true
-  };
-}
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-management',
@@ -27,32 +20,28 @@ export class CreateManagementComponent implements OnInit {
   }
 
   formCreateManagement = new FormGroup({
-    fullName: new FormControl('', [Validators.required, Validators.maxLength(45)]),
-    birthday: new FormControl(),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl(),
-    gender: new FormControl('', [Validators.required]),
-    image: new FormControl(),
     account: new FormGroup({
       username: new FormControl('', [Validators.required, Validators.maxLength(45)]),
-      password: new FormGroup({
-        password1: new FormControl('', [Validators.required, Validators.minLength(8)]),
-        confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
-      }, {validators: checkpassword})
-    })
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      role: new FormControl('', [Validators.required])
+    }),
+    fullName: new FormControl('', [Validators.required, Validators.maxLength(45)]),
+    birthday: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.pattern("^[0][0-9]{9}$")]),
+    gender: new FormControl('', [Validators.required]),
+    image: new FormControl()
   });
 
   createManagement() {
     if (!this.formCreateManagement.invalid) {
-      console.log(this.formCreateManagement.value);
-      // this.userService.createManagement(this.formCreateManagement.value).subscribe(
-      //   (data) => {
-      //     this.snackBar.open("Thêm mới thành công", "Đóng", {
-      //       panelClass: ['mat-toolbar', 'mat-primary'],
-      //       duration: 3000
-      //     });
-      //   },
-      // );
+      this.userService.createManagement(this.formCreateManagement.value).subscribe(() => {
+          this.snackBar.open("Thêm mới thành công", "Đóng", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 3000
+          });
+        },
+      );
       this.ngOnInit();
       this.formCreateManagement.reset();
     }

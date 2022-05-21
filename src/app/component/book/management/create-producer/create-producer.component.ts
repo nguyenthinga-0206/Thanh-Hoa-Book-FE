@@ -25,7 +25,7 @@ export class CreateProducerComponent implements OnInit {
 
   addProducer() {
     if (!this.formAddProducer.invalid) {
-      this.bookService.createProducer(this.formAddProducer.value).subscribe(data => {
+      this.bookService.createProducer(this.formAddProducer.value).subscribe(() => {
         this.dialogRef.close();
         this.snackBar.open("Thêm thành công !!!", "OK", {
           duration: 3000

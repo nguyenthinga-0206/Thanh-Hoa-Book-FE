@@ -1,4 +1,4 @@
 export enum ECover {
-  HARD,
-  SOFT
+  HARD = 'HARD',
+  SOFT = 'SOFT'
 }

@@ -44,34 +44,41 @@ export class CreateBookComponent implements OnInit {
     code: new FormControl('', [Validators.required]),
     yearPublishing: new FormControl('', [Validators.required]),
     quantity: new FormControl('', [Validators.required]),
-    weight: new FormControl('', [Validators.required,]),
-    width: new FormControl('', [Validators.required,]),
-    lenght: new FormControl('', [Validators.required,]),
-    height: new FormControl('', [Validators.required,]),
+    weight: new FormControl('', [Validators.required]),
+    width: new FormControl('', [Validators.required]),
+    lenght: new FormControl('', [Validators.required]),
+    height: new FormControl('', [Validators.required]),
     pageNumber: new FormControl('', [Validators.required]),
     language: new FormControl('', [Validators.required]),
     formCover: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required]),
-    description: new FormControl(''),
-    imageList: new FormControl(),
-    authorList: new FormArray([]),
-    producer: new FormControl([], [Validators.required]),
-    categoryList: new FormArray([])
+    imageList: new FormGroup({
+    }, [Validators.required]),
+    authorList: new FormGroup({
+      id: new FormArray([])
+    }, [Validators.required]),
+    producer: new FormGroup({
+      id: new FormControl()
+    }, [Validators.required]),
+    categoryList: new FormGroup({
+      id: new FormArray([])
+    }, [Validators.required]),
+    description: new FormControl()
   });
 
   createBook() {
     if (!this.formCreateBook.invalid) {
       console.log(this.formCreateBook.value);
-      this.bookService.createBook(this.formCreateBook.value).subscribe(
-        (data) => {
-          this.snackBar.open("Thêm mới thành công", "Đóng", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
-            duration: 3000
-          });
-        },
-      );
-      this.ngOnInit();
-      this.formCreateBook.reset();
+      // this.bookService.createBook(this.formCreateBook.value).subscribe(
+      //   (data) => {
+      //     this.snackBar.open("Thêm mới thành công", "Đóng", {
+      //       panelClass: ['mat-toolbar', 'mat-primary'],
+      //       duration: 3000
+      //     });
+      //   },
+      // );
+      // this.ngOnInit();
+      // this.formCreateBook.reset();
     }
   }
 

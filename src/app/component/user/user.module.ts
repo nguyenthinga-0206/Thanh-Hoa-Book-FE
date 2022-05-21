@@ -8,17 +8,21 @@ import { TableListUserComponent } from './management/table-list-user/table-list-
 import {NgxPaginationModule} from "ngx-pagination";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import { ChangePasswordComponent } from './users/change-password/change-password.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
   declarations: [
     CreateManagementComponent,
     UpdateProfileComponent,
-    TableListUserComponent
+    TableListUserComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
+    MatDialogModule,
     NgxPaginationModule,
     ReactiveFormsModule,
     MatFormFieldModule

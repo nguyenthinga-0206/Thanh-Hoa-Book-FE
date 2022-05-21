@@ -34,7 +34,7 @@ export class TableListBookComponent implements OnInit {
       height: '700px',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });
   }

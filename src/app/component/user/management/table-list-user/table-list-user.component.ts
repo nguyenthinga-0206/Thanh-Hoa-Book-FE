@@ -5,6 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {Orders} from "../../../../model/order/Orders";
 import {OrderStatusComponent} from "../../../order/management/order-status/order-status.component";
 import {CreateManagementComponent} from "../create-management/create-management.component";
+import {EGender} from "../../../../model/user/EGender";
 
 @Component({
   selector: 'app-table-list-user',
@@ -13,6 +14,7 @@ import {CreateManagementComponent} from "../create-management/create-management.
 })
 export class TableListUserComponent implements OnInit {
   userList!: Array<User>;
+  genderEnum = EGender;
   p: number | any;
 
   constructor(private usersService: UsersService,
@@ -33,8 +35,8 @@ export class TableListUserComponent implements OnInit {
 
   openDialogCreate() {
     const dialogRef = this.dialog.open(CreateManagementComponent, {
-      width: '400px',
-      height: '500px'
+      width: '500px',
+      height: '600px'
     });
 
     dialogRef.afterClosed().subscribe(() => {
@@ -42,4 +44,11 @@ export class TableListUserComponent implements OnInit {
     });
   }
 
+  openDialogEdit(user: User) {
+
+  }
+
+  openDialogDetail(id: number) {
+
+  }
 }
