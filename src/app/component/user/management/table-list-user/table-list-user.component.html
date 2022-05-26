@@ -7,17 +7,26 @@
     <tr class="text-center">
       <th>Tên tài khoản</th>
       <th>Họ và tên</th>
+      <th>Quyền hạn</th>
       <th>Giới tính</th>
       <th>Ngày sinh</th>
       <th>Email</th>
-      <th>Số điện thoại</th>
       <th>Hành động</th>
     </tr>
     </thead>
     <tbody>
     <tr class="text-td" *ngFor="let user of userList | paginate :{itemsPerPage:5 ,currentPage : p}">
-      <td><img class="user-image" src="assets/images/avatar.jpg" alt=""> {{user.account.username}}</td>
+      <td>
+        <img class="user-image" *ngIf="user.image" src="{{user.image}}" alt="">
+        <img class="user-image" *ngIf="!user.image" src="assets/images/avatar.jpg" alt="">
+        {{user.account.username}}
+      </td>
       <td>{{user.fullName}}</td>
+      <td>
+        <p *ngIf="user.account.role == role.ROLE_ADMIN">Quản lý</p>
+        <p *ngIf="user.account.role == role.ROLE_MANAGEMENT">Nhân viên</p>
+        <p *ngIf="user.account.role == role.ROLE_USER">Khách hàng</p>
+      </td>
       <td>
         <p *ngIf="user.gender == genderEnum.MALE">Nam</p>
         <p *ngIf="user.gender == genderEnum.FEMALE">Nữ</p>
@@ -25,11 +34,9 @@
       </td>
       <td class="text-right">{{user.birthday | date: "dd/MM/yyy"}}</td>
       <td>{{user.email}}</td>
-      <td class="text-right">{{user.phone}}</td>
       <td>
-        <button mat-button (click)="openDialogDetail(user.id)" type="button" class="btn btn-outline-secondary"><i
-          class="fa fa-eye"></i></button>
-        <button mat-button (click)="openDialogEdit(user)" type="button" class="btn btn-outline-warning"><i
+        <button [disabled]="user.account.role == role.ROLE_USER" mat-button (click)="openDialogEdit(user)" type="button"
+                class="btn btn-outline-warning"><i
           class="fa fa-edit"></i></button>
       </td>
     </tr>

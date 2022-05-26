@@ -10,6 +10,7 @@ import {CreateCategoryComponent} from "../create-category/create-category.compon
 import {CreateAuthorComponent} from "../create-author/create-author.component";
 import {CreateProducerComponent} from "../create-producer/create-producer.component";
 import {Book} from "../../../../model/book/Book";
+import {MatOptionSelectionChange} from "@angular/material/core";
 
 @Component({
   selector: 'app-update-book',
@@ -20,7 +21,9 @@ export class UpdateBookComponent implements OnInit {
 
   producerList!: Array<Producer>;
   authorList!: Array<Author>;
+  authorListError: Boolean = false;
   categoryList!: Array<Category>;
+  categoryListError: Boolean = false;
 
   constructor(private bookService: BookService,
               private dialog: MatDialog,
@@ -55,9 +58,9 @@ export class UpdateBookComponent implements OnInit {
       price: this.data.price,
       description: this.data.description ?? null,
       imageList: this.data.imageList ?? null,
-      authorList: this.data.authorList.value ?? null,
+      authorList: this.data.authorList,
       producer: this.data.producer,
-      categoryList: this.data.categoryList ?? null
+      categoryList: this.data.categoryList
     });
   }
 
@@ -78,7 +81,9 @@ export class UpdateBookComponent implements OnInit {
     description: new FormControl(''),
     imageList: new FormControl(),
     authorList: new FormArray([]),
-    producer: new FormControl([], [Validators.required]),
+    producer: new FormGroup({
+      id: new FormControl()
+    }, [Validators.required]),
     categoryList: new FormArray([])
   });
 
@@ -129,5 +134,39 @@ export class UpdateBookComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
     });
+  }
+
+  onCheckboxChangeAuthor(event: MatOptionSelectionChange, author: Author) {
+    const authorList = (this.formUpdateBook.controls.authorList as FormArray);
+    if (event.source.selected) {
+      {
+        authorList.push(new FormControl(author));
+      }
+      this.authorListError = authorList.value.length > 0 ? false : true;
+    } else {
+      {
+        const index = authorList.controls
+          .findIndex(x => x.value === author);
+        authorList.removeAt(index);
+      }
+      this.authorListError = authorList.value.length == 0 ? true : false;
+    }
+  }
+
+  onCheckboxChangeCategory(event: MatOptionSelectionChange, category: Category) {
+    const categoryList = (this.formUpdateBook.controls.categoryList as FormArray);
+    if (event.source.selected) {
+      {
+        categoryList.push(new FormControl(category));
+      }
+      this.categoryListError = categoryList.value.length > 0 ? false : true;
+    } else {
+      {
+        const index = categoryList.controls
+          .findIndex(x => x.value === category);
+        categoryList.removeAt(index);
+      }
+      this.categoryListError = categoryList.value.length == 0 ? true : false;
+    }
   }
 }

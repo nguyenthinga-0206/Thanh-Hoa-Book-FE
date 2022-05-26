@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../../../model/user/User";
 import {UsersService} from "../../../../service/users.service";
 import {MatDialog} from "@angular/material/dialog";
-import {Orders} from "../../../../model/order/Orders";
-import {OrderStatusComponent} from "../../../order/management/order-status/order-status.component";
 import {CreateManagementComponent} from "../create-management/create-management.component";
 import {EGender} from "../../../../model/user/EGender";
+import {UpdateManagementComponent} from "../update-management/update-management.component";
+import {ERole} from "../../../../model/user/ERole";
 
 @Component({
   selector: 'app-table-list-user',
@@ -15,6 +15,7 @@ import {EGender} from "../../../../model/user/EGender";
 export class TableListUserComponent implements OnInit {
   userList!: Array<User>;
   genderEnum = EGender;
+  role = ERole;
   p: number | any;
 
   constructor(private usersService: UsersService,
@@ -45,10 +46,14 @@ export class TableListUserComponent implements OnInit {
   }
 
   openDialogEdit(user: User) {
+    const dialogRef = this.dialog.open(UpdateManagementComponent, {
+      width: '500px',
+      height: '600px',
+      data: user
+    });
 
-  }
-
-  openDialogDetail(id: number) {
-
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 }

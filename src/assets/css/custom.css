@@ -7,6 +7,7 @@
 
 .left_col {
   background: #2A3F54;
+  width: 200px;
 }
 
 .container {
@@ -177,7 +178,7 @@
   float: left;
   background: #2A3F54;
   border-bottom: 1px solid #D9DEE4;
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
   width: 100%;
   position: relative;
 }
@@ -3557,7 +3558,7 @@ ul.project_files li a i {
 
 /* *********  /media gallery  **************************** */
 /* *********  verticle tabs  **************************** */
-/*!
+/*/
  * bootstrap-vertical-tabs - v1.2.1
  * https://dbtek.github.io/bootstrap-vertical-tabs
  * 2014-11-07

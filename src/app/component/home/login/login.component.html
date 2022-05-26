@@ -1,0 +1,57 @@
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-form-title" style="background-image: url(assets/images/bg_01.jpg);">
+					<span class="login100-form-title-1">
+						ĐĂNG NHẬP
+					</span>
+      </div>
+
+      <form class="login100-form" [formGroup]="formLogin" (ngSubmit)="login()">
+        <div class="wrap-input100 m-b-26">
+          <span class="label-input100">Email</span>
+          <input class="input100" type="text" formControlName="email" placeholder="your-email@gmail.com">
+          <span class="focus-input100"></span>
+        </div>
+        <mat-error *ngIf="formLogin.get('email')?.hasError('required') && formLogin.get('email')?.touched">
+          Email không được để trống!
+        </mat-error>
+        <mat-error *ngIf="formLogin.get('email')?.hasError('email') && formLogin.get('email')?.touched">
+          Email không đúng định dạng!
+        </mat-error>
+
+        <div class="wrap-input100 m-b-18">
+          <span class="label-input100">Mật khẩu</span>
+          <input class="input100" type="password" formControlName="password" placeholder="********">
+          <span class="focus-input100"></span>
+        </div>
+        <mat-error *ngIf="formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched">
+          Mật khẩu không được để trống!
+        </mat-error>
+        <mat-error *ngIf="formLogin.get('password')?.hasError('minLength') && formLogin.get('password')?.touched">
+          Mật khẩu phải lớn hơn 8 ký tự!
+        </mat-error>
+
+        <div class="flex-sb-m w-full p-b-30">
+<!--          <div>-->
+<!--            <input class="" id="ckb1" type="checkbox" name="remember-me">-->
+<!--            <label class="label-checkbox100" for="ckb1">-->
+<!--              Nhớ mật khẩu-->
+<!--            </label>-->
+<!--          </div>-->
+          <div class="m-b-8">
+            <a href="#" class="txt1">
+              Quên mật khẩu?
+            </a>
+          </div>
+        </div>
+
+        <div class="container-login100-form-btn">
+          <button class="login100-form-btn" type="submit">
+            Đăng Nhập
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -10,6 +10,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { ChangePasswordComponent } from './users/change-password/change-password.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { UpdateManagementComponent } from './management/update-management/update-management.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     CreateManagementComponent,
     UpdateProfileComponent,
     TableListUserComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    UpdateManagementComponent,
   ],
   imports: [
     CommonModule,

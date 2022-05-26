@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Orders} from "../model/order/Orders";
 import {OrderDetails} from "../model/order/OrderDetails";
@@ -11,6 +11,10 @@ import {StatusDTO} from "../dto/order/StatusDTO";
 export class OrdersService {
 
   readonly URL_ORDERS = "http://localhost:8080/api/orders";
+
+  requestHeader = new HttpHeaders(
+    {"No-Auth": "True"}
+  );
 
   constructor(private httpClient: HttpClient) {
   }

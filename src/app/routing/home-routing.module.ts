@@ -1,11 +1,19 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginManagementComponent} from "../component/home/management/login-management/login-management.component";
+import {LoginComponent} from "../component/home/login/login.component";
+import {AuthGuard} from "../guard/auth.guard";
+import {ForbiddenComponent} from "../component/home/forbidden/forbidden.component";
 
 
 const routes: Routes = [
-  {path: "login", component: LoginManagementComponent},
-  {path: "management", component: LoginManagementComponent},
+  {path: "login", component: LoginComponent},
+  {
+    path: "management",
+    component: LoginComponent,
+    canActivate: [AuthGuard],
+    data: {role: ['ROLE_ADMIN', 'ROLE_MANAGEMENT']}
+  },
+  {path: "forbidden", component: ForbiddenComponent}
 ];
 
 @NgModule({

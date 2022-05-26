@@ -1,34 +1,51 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {UsersService} from "../../../../service/users.service";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {finalize} from "rxjs/operators";
-import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 @Component({
-  selector: 'app-create-management',
-  templateUrl: './create-management.component.html',
-  styleUrls: ['./create-management.component.css']
+  selector: 'app-update-management',
+  templateUrl: './update-management.component.html',
+  styleUrls: ['./update-management.component.css']
 })
-export class CreateManagementComponent implements OnInit {
+export class UpdateManagementComponent implements OnInit {
 
   selectedFile: File | any;
   url: string = "";
 
   constructor(private userService: UsersService,
-              private dialogRef: MatDialogRef<CreateManagementComponent>,
+              private dialogRef: MatDialogRef<UpdateManagementComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any,
               private snackBar: MatSnackBar,
               private angularFireStorage: AngularFireStorage) {
   }
 
   ngOnInit(): void {
+    this.formUpdateManagement.setValue({
+      id: this.data.id,
+      account: {
+        username: this.data.account.username,
+        password: this.data.account.password,
+        role: this.data.account.role
+      },
+      fullName: this.data.fullName,
+      birthday: this.data.birthday,
+      email: this.data.email,
+      phone: this.data.phone,
+      gender: this.data.gender,
+      image: null
+    });
+    this.url = this.data.image;
   }
 
-  formCreateManagement = new FormGroup({
+  formUpdateManagement = new FormGroup({
+    id: new FormControl(),
     account: new FormGroup({
       username: new FormControl('', [Validators.required, Validators.maxLength(45)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      password: new FormControl(),
       role: new FormControl('', [Validators.required])
     }),
     fullName: new FormControl('', [Validators.required, Validators.maxLength(45)]),
@@ -39,18 +56,23 @@ export class CreateManagementComponent implements OnInit {
     image: new FormControl()
   });
 
-  createManagement() {
-    this.formCreateManagement.value.image = this.url;
-    if (!this.formCreateManagement.invalid) {
-      this.userService.createManagement(this.formCreateManagement.value).subscribe(() => {
-          this.snackBar.open("Thêm mới thành công", "Đóng", {
+  editManagement() {
+    this.formUpdateManagement.setValue({
+      id: this.data.id,
+      // account: {password: this.data.account.password},
+      image: this.url
+    });
+    console.log(this.formUpdateManagement.value);
+    if (!this.formUpdateManagement.invalid) {
+      this.userService.createManagement(this.formUpdateManagement.value).subscribe(() => {
+          this.snackBar.open("Cập nhật thành công", "Đóng", {
             panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 3000
           });
         },
       );
       this.ngOnInit();
-      this.formCreateManagement.reset();
+      this.formUpdateManagement.reset();
     }
   }
 
@@ -65,5 +87,4 @@ export class CreateManagementComponent implements OnInit {
       })
     ).subscribe();
   }
-
 }

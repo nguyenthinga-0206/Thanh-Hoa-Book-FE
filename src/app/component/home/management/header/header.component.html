@@ -1,22 +1,100 @@
-<div class="top_nav">
-  <div class="nav_menu">
-    <div class="nav toggle">
-      <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+<div class="container body">
+  <div class="top_nav">
+    <div class="nav_menu">
+      <div class="nav toggle">
+        <a id="menu_toggle" (click)="drawer.toggle()"><i class="fa fa-bars"></i></a>
+      </div>
+      <nav class="nav navbar-nav">
+        <ul class=" navbar-right">
+          <li class="nav-item dropdown open" style="padding-left: 15px;">
+            <a href="#" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
+               data-toggle="dropdown" aria-expanded="false">
+              <img *ngIf="!authService.getImage()" src="assets/images/avatar.jpg" alt="">
+              <img *ngIf="authService.getImage()" src="{{authService.getImage()}}"
+                   alt="">{{authService.getUsername()}}
+            </a>
+            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+              <button class="dropdown-item" [routerLink]="['profile']"> Thông tin cá nhân</button>
+              <button class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out pull-right"></i> Đăng xuất
+              </button>
+            </div>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <nav class="nav navbar-nav">
-      <ul class=" navbar-right">
-        <li class="nav-item dropdown open" style="padding-left: 15px;">
-          <a href="#" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
-             data-toggle="dropdown" aria-expanded="false">
-            <img src="assets/images/avatar.jpg" alt="">ngant
-          </a>
-          <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#"> Thông tin cá nhân</a>
-            <a class="dropdown-item" href="login.html"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a>
+
+    <mat-drawer-container class="example-container">
+      <mat-drawer #drawer class="example-sidenav" mode="side" style="height: 100%; width: 200px">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title site_title" style="border: 0;">
+            <i class="fa fa-book"></i> <span> HonnYa!</span>
           </div>
-        </li>
-      </ul>
-    </nav>
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img *ngIf="!authService.getImage()" src="assets/images/avatar.jpg" alt="..."
+                   class="img-circle profile_img">
+              <img *ngIf="authService.getImage()" src="{{authService.getImage()}}" alt="..."
+                   class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Xin chào,</span>
+              <h2>{{authService.getFullName()}}</h2>
+            </div>
+          </div>
+
+          <hr/>
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <ul class="list-sidebars side-menu">
+                <li>
+                  <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title class="fa fa-home">
+                          Trang chủ<span class="fa fa-chevron-down"></span>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <button mat-button><a [routerLink]="['management/']">#</a></button>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </li>
+                <li>
+                  <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title class="fa fa-database">
+                          Dữ liệu <span class="fa fa-chevron-down"></span>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <button mat-button><a [routerLink]="['management/book']">Sách</a></button>
+                      <br>
+                      <button mat-button><a [routerLink]="['management/order']">Đơn hàng</a></button>
+                      <br>
+                      <button mat-button><a [routerLink]="['management/user']">Người dùng</a></button>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </li>
+                <li>
+                  <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title class="fa fa-bar-chart-o">
+                          Thống kê <span class="fa fa-chevron-down"></span>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <button mat-button><a [routerLink]="['management/static']">Doanh số</a></button>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </mat-drawer>
+
+      <mat-drawer-content>
+        <router-outlet></router-outlet>
+      </mat-drawer-content>
+    </mat-drawer-container>
   </div>
 </div>
-

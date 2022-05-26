@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../model/user/User";
 import {BookDTO} from "../dto/book/BookDTO";
@@ -10,6 +10,10 @@ import {ChangePassword} from "../dto/user/ChangePassword";
 })
 export class UsersService {
   readonly URL_USERS = "http://localhost:8080/api/users";
+
+  requestHeader = new HttpHeaders(
+    {"No-Auth": "True"}
+  );
 
   constructor(private httpClient: HttpClient) {
   }

@@ -1,42 +1,30 @@
-<h1 mat-dialog-title class="text-center text-uppercase">Thêm nhân viên</h1>
+<h1 mat-dialog-title class="text-center text-uppercase">Sửa thông tin nhân viên</h1>
 <hr>
 <div mat-dialog-content>
-  <form class="form-group form-label-left input_mask" [formGroup]="formCreateManagement"
-        (ngSubmit)="createManagement()">
+  <form class="form-group form-label-left input_mask" [formGroup]="formUpdateManagement"
+        (ngSubmit)="editManagement()">
     <div formGroupName="account">
       <div class="form-group">
         <label>Tên tài khoản</label>
         <input type="text" class="form-control" formControlName="username" placeholder="ntna123">
         <mat-error
-          *ngIf="formCreateManagement.get('account.username')?.hasError('required') && formCreateManagement.get('account.username')?.touched">
+          *ngIf="formUpdateManagement.get('account.username')?.hasError('required') && formUpdateManagement.get('account.username')?.touched">
           Tên tài khoản không được để trống!
         </mat-error>
         <mat-error
-          *ngIf="formCreateManagement.get('account.username')?.hasError('maxLength') && formCreateManagement.get('account.username')?.touched">
+          *ngIf="formUpdateManagement.get('account.username')?.hasError('maxLength') && formUpdateManagement.get('account.username')?.touched">
           Tên tài khoản không vượt qua 45 ký tự!
         </mat-error>
       </div>
       <div class="form-group">
         <label>Quyền hạn</label>
-        <select formControlName="role" class="form-control">
+        <select formControlName="role" class="form-control" >
           <option class="form-check-input" value="ROLE_MANAGEMENT">Nhân viên
           <option class="form-check-input" value="ROLE_ADMIN">Quản lý
         </select>
         <mat-error
-          *ngIf="formCreateManagement.get('role')?.hasError('required') && formCreateManagement.get('role')?.touched">
+          *ngIf="formUpdateManagement.get('role')?.hasError('required') && formUpdateManagement.get('role')?.touched">
           Quyền hạn không được để trống!
-        </mat-error>
-      </div>
-      <div class="form-group">
-        <label>Mật khẩu</label>
-        <input type="password " class="form-control" formControlName="password" placeholder="********">
-        <mat-error
-          *ngIf="formCreateManagement.get('account.password')?.hasError('required') && formCreateManagement.get('account.password')?.touched">
-          Mật khẩu không được để trống!
-        </mat-error>
-        <mat-error
-          *ngIf="formCreateManagement.get('account.password')?.hasError('minLength') && formCreateManagement.get('account.password')?.touched">
-          Mật khẩu phải lớn hơn 8 kí tự!
         </mat-error>
       </div>
     </div>
@@ -44,11 +32,11 @@
       <label>Họ và tên</label>
       <input type="text" class="form-control" formControlName="fullName" placeholder="Nguyễn Văn A">
       <mat-error
-        *ngIf="formCreateManagement.get('fullName')?.hasError('required') && formCreateManagement.get('fullName')?.touched">
+        *ngIf="formUpdateManagement.get('fullName')?.hasError('required') && formUpdateManagement.get('fullName')?.touched">
         Tên không được để trống!
       </mat-error>
       <mat-error
-        *ngIf="formCreateManagement.get('fullName')?.hasError('maxLength') && formCreateManagement.get('fullName')?.touched">
+        *ngIf="formUpdateManagement.get('fullName')?.hasError('maxLength') && formUpdateManagement.get('fullName')?.touched">
         Tên không vượt qua 45 ký tự!
       </mat-error>
     </div>
@@ -56,11 +44,11 @@
       <label>Email</label>
       <input type="text" class="form-control" formControlName="email" placeholder="anv12@gmail.com">
       <mat-error
-        *ngIf="formCreateManagement.get('email')?.hasError('required') && formCreateManagement.get('email')?.touched">
+        *ngIf="formUpdateManagement.get('email')?.hasError('required') && formUpdateManagement.get('email')?.touched">
         Email không được để trống!
       </mat-error>
       <mat-error
-        *ngIf="formCreateManagement.get('email')?.hasError('email') && formCreateManagement.get('email')?.touched">
+        *ngIf="formUpdateManagement.get('email')?.hasError('email') && formUpdateManagement.get('email')?.touched">
         Email sai định dạng!
       </mat-error>
     </div>
@@ -68,11 +56,11 @@
       <label>Số điện thoại</label>
       <input type="text" class="form-control" formControlName="phone" placeholder="092*****12">
       <mat-error
-        *ngIf="formCreateManagement.get('phone')?.hasError('required') && formCreateManagement.get('phone')?.touched">
+        *ngIf="formUpdateManagement.get('phone')?.hasError('required') && formUpdateManagement.get('phone')?.touched">
         Số điện thoại không được để trống!
       </mat-error>
       <mat-error
-        *ngIf="formCreateManagement.get('phone')?.hasError('pattern') && formCreateManagement.get('phone')?.touched">
+        *ngIf="formUpdateManagement.get('phone')?.hasError('pattern') && formUpdateManagement.get('phone')?.touched">
         Số điện thoại sai định dạng!
       </mat-error>
     </div>
@@ -89,7 +77,7 @@
           <option class="form-check-input" value="OTHER">Khác
         </select>
         <mat-error
-          *ngIf="formCreateManagement.get('gender')?.hasError('required') && formCreateManagement.get('gender')?.touched">
+          *ngIf="formUpdateManagement.get('gender')?.hasError('required') && formUpdateManagement.get('gender')?.touched">
           Giới tính không được để trống!
         </mat-error>
       </div>
@@ -100,7 +88,7 @@
         <input type="file" class="form-control" (change)="selectFile($event)" formControlName="image">
       </div>
       <div class="form-group col-md-6">
-        <img *ngIf="url" [src]="url" style="height: 60px">
+        <img *ngIf="url" [src]="url" id="image" style="height: 60px">
       </div>
     </div>
 
@@ -109,8 +97,9 @@
       <div class="col-md-9 col-sm-9  offset-md-3">
         <button mat-button mat-dialog-close class="btn btn-secondary">Thoát</button>
         <button mat-button class="btn btn-info" type="reset">Đặt lại</button>
-        <button mat-button class="btn btn-success" type="submit">Thêm</button>
+        <button mat-button class="btn btn-success" type="submit">Cập nhật</button>
       </div>
     </div>
   </form>
 </div>
+
