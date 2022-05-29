@@ -15,28 +15,36 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
-import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import {environment} from "../environments/environment";
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    HomeModule,
-    UserModule,
-    BookModule,
-    OrderModule,
-    NgxPaginationModule,
-    MatDialogModule,
-    BrowserAnimationsModule,
-    MatSnackBarModule,
-    MatSidenavModule,
-    MatFormFieldModule,
-    MatSelectModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        HomeModule,
+        UserModule,
+        BookModule,
+        OrderModule,
+        NgxPaginationModule,
+        MatDialogModule,
+        BrowserAnimationsModule,
+        MatSnackBarModule,
+        MatSidenavModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireStorageModule,
+        AngularFireDatabaseModule,
+        MatExpansionModule
+    ],
   providers: [],
   bootstrap: [AppComponent],
 })

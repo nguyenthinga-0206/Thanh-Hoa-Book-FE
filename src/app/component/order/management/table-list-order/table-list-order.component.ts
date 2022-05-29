@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Orders} from "../../../../model/order/Orders";
+import {OrdersService} from "../../../../service/orders.service";
+import {MatDialog} from "@angular/material/dialog";
+import {EStatus} from "../../../../model/order/EStatus";
+import {OrderDetailsComponent} from "../order-details/order-details.component";
+import {OrderStatusComponent} from "../order-status/order-status.component";
 
 @Component({
   selector: 'app-table-list-order',
@@ -7,9 +13,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableListOrderComponent implements OnInit {
 
-  constructor() { }
+  oderList!: Array<Orders>;
+  statusEnum = EStatus;
+  p: number | any;
 
-  ngOnInit(): void {
+  constructor(private ordersService: OrdersService,
+              private dialog: MatDialog) {
   }
 
+  ngOnInit(): void {
+    this.ordersService.getAll().subscribe(data => {
+      this.oderList = data;
+      this.p = 1;
+    })
+  }
+
+  openDialogEdit(order: Orders) {
+    const dialogRef = this.dialog.open(OrderStatusComponent, {
+      width: '400px',
+      height: '300px',
+      data: order
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
+  }
+
+  openDialogDetail(id: number) {
+    this.ordersService.getById(id).subscribe(data => {
+        const dialogRef = this.dialog.open(OrderDetailsComponent, {
+          width: '500px',
+          height: '800px',
+          data: data
+        });
+
+        dialogRef.afterClosed().subscribe(() => {
+          this.ngOnInit();
+        });
+      }
+    )
+  }
 }

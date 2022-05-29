@@ -13,7 +13,6 @@ import {AddBookDTO} from "../../../../dto/book/AddBookDTO";
 })
 export class AddDetailBookComponent implements OnInit {
   book!: Book;
-  addBookDTO!: AddBookDTO;
 
   constructor(private bookService: BookService,
               private dialogRef: MatDialogRef<AddDetailBookComponent>,
@@ -26,13 +25,14 @@ export class AddDetailBookComponent implements OnInit {
   }
 
   formAddBook = new FormGroup({
-    id: new FormControl('', Validators.required),
+    id: new FormControl(),
     quantity: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][0-9]{0,6})$")]),
   });
 
   addBook() {
     this.formAddBook.value.id = this.book.id;
-    if (this.formAddBook.invalid) {
+    if (!this.formAddBook.invalid) {
+      console.log(this.formAddBook.value);
       this.bookService.addBookById(this.formAddBook.value).subscribe(() => {
         this.dialogRef.close();
         this.snackBar.open("Thêm thành công !!!", "OK", {

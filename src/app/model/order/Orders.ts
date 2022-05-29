@@ -1,6 +1,6 @@
 import {OrderDetails} from "./OrderDetails";
-import {TimeStatus} from "./TimeStatus";
 import {Account} from "../user/Account";
+import {EStatus} from "./EStatus";
 
 export interface Orders {
   id: number,
@@ -9,6 +9,6 @@ export interface Orders {
   phone: string,
   address: string,
   orderDetails: Array<OrderDetails>,
-  timeStatus: Array<TimeStatus>,
+  status: EStatus,
   account: Account
 }

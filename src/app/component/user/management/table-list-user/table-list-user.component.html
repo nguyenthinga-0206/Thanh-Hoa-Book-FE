@@ -1,29 +1,44 @@
 <h3 class="text-center">DANH SÁCH THÀNH VIÊN</h3>
-<button type="button" class="btn btn-primary float-right"><i class="fa fa-plus"></i></button>
+<button type="button" class="btn btn-primary float-right" (click)="openDialogCreate()"><i class="fa fa-plus"></i>
+</button>
 <div class="card-box table-responsive">
-  <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action" style="width:100%">
+  <table class="table table-striped table-bordered" style="width:100%">
     <thead>
     <tr class="text-center">
-      <th>Chọn</th>
       <th>Tên tài khoản</th>
       <th>Họ và tên</th>
+      <th>Quyền hạn</th>
       <th>Giới tính</th>
       <th>Ngày sinh</th>
       <th>Email</th>
-      <th>Số điện thoại</th>
+      <th>Hành động</th>
     </tr>
     </thead>
     <tbody>
     <tr class="text-td" *ngFor="let user of userList | paginate :{itemsPerPage:5 ,currentPage : p}">
-      <td class="text-center">
-        <input type="checkbox" id="check-all">
+      <td>
+        <img class="user-image" *ngIf="user.image" src="{{user.image}}" alt="">
+        <img class="user-image" *ngIf="!user.image" src="assets/images/avatar.jpg" alt="">
+        {{user.account.username}}
       </td>
-      <td><img class="user-image" src="assets/images/avatar.jpg" alt=""> {{user.account.username}}</td>
       <td>{{user.fullName}}</td>
-      <td>{{user.gender}}</td>
+      <td>
+        <p *ngIf="user.account.role == role.ROLE_ADMIN">Quản lý</p>
+        <p *ngIf="user.account.role == role.ROLE_MANAGEMENT">Nhân viên</p>
+        <p *ngIf="user.account.role == role.ROLE_USER">Khách hàng</p>
+      </td>
+      <td>
+        <p *ngIf="user.gender == genderEnum.MALE">Nam</p>
+        <p *ngIf="user.gender == genderEnum.FEMALE">Nữ</p>
+        <p *ngIf="user.gender == genderEnum.OTHER">Khác</p>
+      </td>
       <td class="text-right">{{user.birthday | date: "dd/MM/yyy"}}</td>
       <td>{{user.email}}</td>
-      <td class="text-right">{{user.phone}}</td>
+      <td>
+        <button [disabled]="user.account.role == role.ROLE_USER" mat-button (click)="openDialogEdit(user)" type="button"
+                class="btn btn-outline-warning"><i
+          class="fa fa-edit"></i></button>
+      </td>
     </tr>
     </tbody>
   </table>

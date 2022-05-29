@@ -1,11 +1,13 @@
-<h1 mat-dialog-title class="text-center">Xác nhận xóa</h1><hr>
+<h1 mat-dialog-title class="text-center">Xác nhận xóa</h1>
+<hr>
 <div mat-dialog-content>
   <b>Tên sách:&ensp;</b><span>{{book.name}}</span><br>
   <b>Tác giả:&ensp;</b><span *ngFor="let author of book.authorList">{{author.name}}</span><br>
-  <b>Nhà xuất bản:&ensp;</b><span>{{book.producer}}</span><hr>
+  <b>Nhà xuất bản:&ensp;</b><span>{{book.producer.name}}</span>
+  <hr>
   <h5 class="text-center">Bạn có chắc chắn xóa?</h5>
 </div>
 <div mat-dialog-actions class="justify-content-center">
   <button mat-button mat-dialog-close class="btn btn-secondary">Thoát</button>
-  <button mat-button cdkFocusInitial class="btn btn-danger" (click)="deleteConfirm()">Xóa</button>
+  <button mat-button class="btn btn-danger" (click)="deleteConfirm()">Xóa</button>
 </div>

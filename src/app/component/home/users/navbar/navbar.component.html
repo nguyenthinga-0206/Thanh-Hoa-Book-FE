@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+  <a class="navbar-brand" (click)="home()"><i class="fa fa-book"> HONNYA</i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <a class="ml-4 text-uppercase text-light"><span>Danh Mục</span></a>
+
+    <ul class="navbar-nav mr-auto mt-2 ml-auto mt-lg-0">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-success-new my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </ul>
+    <ul class="mt-3">
+      <a class="fa fa-shopping-cart text-light" style="font-size: 25px"></a>
+    </ul>
+
+    <div *ngIf="isLoggedIn()" class="mr-2 mt-3">
+      <ul class="nav-item dropdown open" style="padding-left: 60px;">
+        <a href="#" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
+           data-toggle="dropdown" aria-expanded="false">
+          <img *ngIf="!authService.getImage()" src="assets/images/avatar.jpg">
+          <img *ngIf="authService.getImage()" src="{{authService.getImage()}}">
+          <span data-toggle="tooltip" data-placement="bottom">
+          {{authService.getUsername()}}
+        </span>
+        </a>
+        <div class="dropdown-menu dropdown-usermenu pull-right mr-6" aria-labelledby="navbarDropdown">
+          <button class="dropdown-item" [routerLink]="['profile']"> Thông tin cá nhân</button>
+          <button class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out pull-right"></i> Đăng xuất
+          </button>
+        </div>
+      </ul>
+    </div>
+    <button class="btn btn-success-new" *ngIf="!isLoggedIn()" [routerLink]="['/login']">Đăng nhập</button>
+  </div>
+</nav>
+<div class="m-4">
+  <router-outlet></router-outlet>
+</div>
