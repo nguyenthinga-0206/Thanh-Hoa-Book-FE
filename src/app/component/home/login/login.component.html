@@ -32,23 +32,29 @@
           Mật khẩu phải lớn hơn 8 ký tự!
         </mat-error>
 
-        <div class="flex-sb-m w-full p-b-30">
-<!--          <div>-->
-<!--            <input class="" id="ckb1" type="checkbox" name="remember-me">-->
-<!--            <label class="label-checkbox100" for="ckb1">-->
-<!--              Nhớ mật khẩu-->
-<!--            </label>-->
-<!--          </div>-->
-          <div class="m-b-8">
-            <a href="#" class="txt1">
-              Quên mật khẩu?
-            </a>
-          </div>
-        </div>
+        <!--        <div class="flex-sb-m w-full p-b-30">-->
+        <!--          <div>-->
+        <!--            <input class="" id="ckb1" type="checkbox" name="remember-me">-->
+        <!--            <label class="label-checkbox100" for="ckb1">-->
+        <!--              Nhớ mật khẩu-->
+        <!--            </label>-->
+        <!--          </div>-->
+        <!--          <div class="m-b-8">-->
+        <!--            <a href="#" class="txt1">-->
+        <!--              Quên mật khẩu?-->
+        <!--            </a>-->
+        <!--          </div>-->
+        <!--        </div>-->
 
         <div class="container-login100-form-btn">
           <button class="login100-form-btn" type="submit">
             Đăng Nhập
+          </button>
+        </div>
+
+        <div class="container-login100-form-btn">
+          <button class="register100-form-btn" [routerLink]="['/register']">
+            Đăng Ký
           </button>
         </div>
       </form>

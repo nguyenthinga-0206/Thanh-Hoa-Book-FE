@@ -11,6 +11,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSidenavModule} from "@angular/material/sidenav";
+import { NavbarComponent } from './users/navbar/navbar.component';
+import { RegisterComponent } from './users/register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +20,13 @@ import {MatSidenavModule} from "@angular/material/sidenav";
     FooterComponent,
     HeaderComponent,
     ForbiddenComponent,
+    NavbarComponent,
+    RegisterComponent,
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
+    NavbarComponent,
   ],
     imports: [
         CommonModule,

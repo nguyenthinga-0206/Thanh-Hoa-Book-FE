@@ -1,0 +1,12 @@
+mat-card {
+  margin: 10px 10px;
+}
+
+.mat-card>.mat-card-actions:last-child {
+  margin-bottom: -24px;
+  margin-top: -20px;
+}
+
+.mat-card-actions {
+  padding: revert;
+}

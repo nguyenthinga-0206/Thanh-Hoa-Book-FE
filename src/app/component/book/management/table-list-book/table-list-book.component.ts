@@ -22,7 +22,7 @@ export class TableListBookComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookService.getAll().subscribe(data => {
-        this.bookList = data
+        this.bookList = data;
         this.p = 1;
       }
     );

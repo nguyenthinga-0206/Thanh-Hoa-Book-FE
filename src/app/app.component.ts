@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "./service/auth.service";
 
 @Component({
@@ -22,14 +22,5 @@ export class AppComponent {
 
   isMember() {
     return !this.isAdmin() && !this.isManagement();
-  }
-
-  //sidebar
-  public isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-//sidebar
-  public logout() {
-    this.authService.clear();
   }
 }

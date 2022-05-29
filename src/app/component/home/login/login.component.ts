@@ -46,19 +46,15 @@ export class LoginComponent implements OnInit {
     const role = loginResponse.role;
     switch (role) {
       case "ROLE_USER":
-        console.log('user');
-        this.router.navigate(['/home']).then(() => window.location.reload());
+        this.router.navigate(['/']).then(() => window.location.reload());
         break;
       case "ROLE_MANAGEMENT":
-        console.log('management');
         this.router.navigate(['/management/book']);
         break;
       case "ROLE_ADMIN":
-        console.log('admin');
         this.router.navigate(['/management/book']);
         break;
       default:
-        console.log('other')
         this.router.navigate(['/forbidden'])
     }
   }
