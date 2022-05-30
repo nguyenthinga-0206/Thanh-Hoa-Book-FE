@@ -1,0 +1,105 @@
+<!--<div class="d-flex justify-content-center">-->
+<!--  <mat-spinner *ngIf="cartList==null"></mat-spinner>-->
+<!--</div>-->
+<div class="container-fluid padding-y" style="min-width: 1000px; margin-bottom: 20px">
+  <div class="container">
+    <div class="row">
+      <main class="col-md-9">
+        <div class="card">
+          <table class="table table-borderless table-shopping-cart">
+            <thead class="text-light bg-cart">
+            <tr class="text-uppercase text-center">
+              <th>Sản phẩm</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+              <th>Tổng</th>
+              <th>Xóa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>
+                <figure class="itemside">
+                  <div class="aside"><img src="assets/images/avatar.jpg" class="img-sm"></div>
+                  <figcaption class="info">
+                    <a [routerLink]="['book']" class="title text-dark">Some name of item goes here nice</a>
+                  </figcaption>
+                </figure>
+              </td>
+              <td>
+                <div class="buttons_added ml-3">
+                  <button class="minus is-form" (click)="minusQuantity()"><i class="fa fa-minus"></i></button>
+                  <input class="input-qty" type="number"
+                         [value]="quantity" disabled>
+                  <button class="plus is-form" (click)="plusQuantity()"><i class="fa fa-plus"></i></button>
+                </div>
+              </td>
+              <td class="text-right">
+                $1156.00
+              </td>
+              <td class="text-right">
+                $1156.00
+              </td>
+              <td class="text-right">
+                <a class="btn"><i class="fa fa-trash text-trash"></i></a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="card-body border-top">
+            <a [routerLink]="['order/pay']" class="btn btn-primary float-md-right">Thanh toán <i
+              class="fa fa-chevron-right"></i> </a>
+            <a [routerLink]="['']" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Tiếp tục mua hàng</a>
+          </div>
+        </div>
+      </main>
+      <aside class="col-md-3 mt-3">
+        <div class="card">
+          <div class="card-body">
+            <dl class="dlist-align">
+              <dt>Tổng tiền:</dt>
+              <dd class="text-right">USD 568</dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt>Phí vận chuyển:</dt>
+              <dd class="text-right">USD 658</dd>
+            </dl>
+            <hr>
+            <dl class="dlist-align" style="font-size: 25px">
+              <dt>Tổng:</dt>
+              <dd class="text-right text-danger">$1,650</dd>
+            </dl>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="card mt-5">
+      <div class="card-body">
+        <div class="row">
+          <div class="w_20">
+            <!--          <mat-card>-->
+            <!--            <div style="height: 200px" [routerLink]="['book/', book.id]">-->
+            <!--              <img style="height: 200px; width: 150px; padding-left: 10px" [src]="book.imageList[0].path"-->
+            <!--                   [alt]="book.imageList[0].name">-->
+            <!--            </div>-->
+            <!--            <mat-card-content class="mt-2">-->
+            <!--              <p style="margin-bottom: 5px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"-->
+            <!--                 [routerLink]="['book/', book.id]">-->
+            <!--                {{book.name}}-->
+            <!--              </p>-->
+            <!--              <p>-->
+            <!--                <span class="text-danger font-weight-bold">{{book.price | currency: 'VND'}}</span>-->
+            <!--                <span class="right"><i class="fa fa-shopping-cart" style="font-size: 15px"-->
+            <!--                                       (click)="addCart(book.id)"></i></span>-->
+            <!--              </p>-->
+            <!--            </mat-card-content>-->
+            <!--          </mat-card>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

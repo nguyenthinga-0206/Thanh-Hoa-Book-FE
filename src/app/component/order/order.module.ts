@@ -11,6 +11,9 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
 import { CartComponent } from './users/cart/cart.component';
+import { OrderPayComponent } from './users/order-pay/order-pay.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -18,7 +21,8 @@ import { CartComponent } from './users/cart/cart.component';
     TableListOrderComponent,
     OrderDetailsComponent,
     OrderStatusComponent,
-    CartComponent
+    CartComponent,
+    OrderPayComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import { CartComponent } from './users/cart/cart.component';
     MatDialogModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatCardModule
   ]
 })
 export class OrderModule {

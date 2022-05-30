@@ -1629,4 +1629,16 @@ a[class*=card]:hover .title {
   display: block;
 }
 
+.bg-cart {
+  background-color: #6c757d;;
+}
+
+.text-trash {
+  color: #6c757d;
+}
+
+.text-trash:hover {
+  color: red;
+}
+
 /*# sourceMappingURL=ui.css.map */
