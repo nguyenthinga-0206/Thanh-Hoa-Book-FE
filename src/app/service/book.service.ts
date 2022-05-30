@@ -64,8 +64,8 @@ export class BookService {
     return this.httpClient.put<boolean>(this.URL_BOOK, bookDTO);
   }
 
-  getBookById(id: number) {
-    return this.httpClient.get(this.URL_BOOK + "/" + id)
+  getBookById(id: number): Observable<Book> {
+    return this.httpClient.get<Book>(this.URL_BOOK + "/" + id)
   }
 
   deleteBookById(id: number) {

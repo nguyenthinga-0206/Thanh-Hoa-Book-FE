@@ -6,7 +6,9 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <a class="ml-4 text-uppercase text-light"><span>Danh Mục</span></a>
+    <button type="button" class="ml-4 text-uppercase text-light" data-toggle="tooltip" data-html="true" [title]="titleCategory">
+      Danh Mục
+    </button>
 
     <ul class="navbar-nav mr-auto mt-2 ml-auto mt-lg-0">
       <form class="form-inline my-2 my-lg-0">
@@ -20,7 +22,7 @@
 
     <div *ngIf="isLoggedIn()" class="mr-2 mt-3">
       <ul class="nav-item dropdown open" style="padding-left: 60px;">
-        <a href="#" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
+        <a class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
            data-toggle="dropdown" aria-expanded="false">
           <img *ngIf="!authService.getImage()" src="assets/images/avatar.jpg">
           <img *ngIf="authService.getImage()" src="{{authService.getImage()}}">
