@@ -10,13 +10,15 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
+import { CartComponent } from './users/cart/cart.component';
 
 
 @NgModule({
   declarations: [
     TableListOrderComponent,
     OrderDetailsComponent,
-    OrderStatusComponent
+    OrderStatusComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,

@@ -1384,6 +1384,7 @@ a[class*=card]:hover .title {
 .menu-category {
   margin: 0;
   padding: 0;
+  width: 200px;
 }
 
 .menu-category li {
