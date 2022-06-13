@@ -715,10 +715,6 @@ p:last-child {
   border-color: #ed1c24;
 }
 
-.btn-order i {
-  color: #ffffff;
-}
-
 .btn-order:hover {
   color: #ffffff;
   background-color: red;

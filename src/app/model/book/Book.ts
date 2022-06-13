@@ -5,6 +5,7 @@ import {Author} from "./Author";
 import {Producer} from "./Producer";
 import {Category} from "./Category";
 import {OrderDetails} from "../order/OrderDetails";
+import {Cart} from "../order/Cart";
 
 export interface Book {
   id: number,
@@ -25,5 +26,6 @@ export interface Book {
   authorList: Array<Author>,
   producer: Producer,
   categoryList: Array<Category>,
+  cartList: Array<Cart>,
   orderDetailsList: Array<OrderDetails>
 }

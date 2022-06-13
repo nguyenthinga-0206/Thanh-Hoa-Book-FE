@@ -55,10 +55,10 @@
             </div>
 
             <div class="mb-3">
-              <a (click)="addCart(book.id)" class="btn btn-cart text-capitalize mr-4">
+              <button (click)="addCart(book.id)" class="btn btn-cart text-capitalize mr-4">
                 <i class="fa fa-shopping-cart mr-4"></i>Thêm vào giỏ hàng
-              </a>
-              <a [routerLink]="['order/pay']" class="btn btn-order mr-1 text-capitalize">Mua ngay</a>
+              </button>
+              <button [routerLink]="['checkout']" class="btn btn-order mr-1 text-capitalize">Mua ngay</button>
             </div>
 
             <div>
@@ -85,25 +85,7 @@
   <article class="card mt-5">
     <div class="card-body">
       <div class="row m-auto card-body">
-        <div class="w_20" >
-          <mat-card>
-            <div style="height: 200px" [routerLink]="['book/', book.id]">
-              <img style="height: 200px; width: 150px; padding-left: 10px" [src]="book.imageList[0].path"
-                   [alt]="book.imageList[0].name">
-            </div>
-            <mat-card-content class="mt-2">
-              <p style="margin-bottom: 5px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
-                 [routerLink]="['book/', book.id]">
-                {{book.name}}
-              </p>
-              <p>
-                <span class="text-danger font-weight-bold">{{book.price | currency: 'VND'}}</span>
-                <span class="right"><i class="fa fa-shopping-cart" style="font-size: 15px"
-                                       (click)="addCart(book.id)"></i></span>
-              </p>
-            </mat-card-content>
-          </mat-card>
-        </div>
+        <app-list-book></app-list-book>
       </div>
     </div>
   </article>

@@ -485,6 +485,10 @@ a:hover, a:focus {
   margin-bottom: 0;
 }
 
+.bg-navbar {
+  background-color: #1ABB9C;
+}
+
 .navbar-header {
   background: #34495E;
 }
@@ -1644,7 +1648,7 @@ ul.quick-list li i {
 }
 
 .w_20 {
-  width: 18%;
+  width: 20%;
   min-width: 200px;
 }
 

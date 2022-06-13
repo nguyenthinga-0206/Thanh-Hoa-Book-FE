@@ -12,7 +12,6 @@ import {Category} from "../../../../model/book/Category";
 export class NavbarComponent implements OnInit {
 
   categoryList!: Array<Category>;
-  titleCategory: any;
 
   constructor(public authService: AuthService,
               private bookService: BookService,
@@ -23,7 +22,6 @@ export class NavbarComponent implements OnInit {
     this.bookService.getAllCategory().subscribe(data => {
       this.categoryList = data;
     });
-    // this.titleCategory = '<div class="list-group"> <button type="button" class="list-group-item list-group-item-action" *ngFor="let category of categoryList">{{category.name}}</button></div>';
     if (localStorage.getItem("token") !== null) {
       this.authService.assignSessionStorageWithLocalStorage();
     }
@@ -40,5 +38,4 @@ export class NavbarComponent implements OnInit {
   home() {
     this.router.navigateByUrl("/").then(() => window.location.reload());
   }
-
 }

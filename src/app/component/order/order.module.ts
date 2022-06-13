@@ -10,8 +10,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
-import { CartComponent } from './users/cart/cart.component';
-import { OrderPayComponent } from './users/order-pay/order-pay.component';
+import {CartComponent} from './users/cart/cart.component';
+import {CheckoutComponent} from './users/order-pay/checkout.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
 
@@ -22,7 +22,7 @@ import {MatCardModule} from "@angular/material/card";
     OrderDetailsComponent,
     OrderStatusComponent,
     CartComponent,
-    OrderPayComponent
+    CheckoutComponent
   ],
   imports: [
     CommonModule,

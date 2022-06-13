@@ -12,16 +12,12 @@ export class LoginService {
 
   readonly URL_LOGIN = "http://localhost:8080/api/login";
 
-  requestHeader = new HttpHeaders(
-    {"No-Auth": "True"}
-  );
-
   constructor(private httpClient: HttpClient,
               private authService: AuthService) {
   }
 
   public login(loginRequest: LoginRequest): Observable<LoginResponse> {
-    return this.httpClient.post<LoginResponse>(this.URL_LOGIN, loginRequest, {headers: this.requestHeader});
+    return this.httpClient.post<LoginResponse>(this.URL_LOGIN, loginRequest);
   }
 
   public roleMatch(allowedRole: string[]): boolean {

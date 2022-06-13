@@ -3,12 +3,12 @@
 </div>
 
 <div *ngIf="bookList!=null" class="container padding-y" style="margin-bottom: 20px">
-  <div class="card">
-    <div class="row m-auto card-body">
+  <div>
+    <div class="row">
       <div class="w_20" *ngFor="let book of bookList | paginate :{itemsPerPage:40 ,currentPage : p}">
         <mat-card>
           <div style="height: 200px" [routerLink]="['book/', book.id]">
-            <img style="height: 200px; width: 150px; padding-left: 10px" [src]="book.imageList[0].path"
+            <img style="height: 200px; width: 100%; padding-left: 10px" [src]="book.imageList[0].path"
                  [alt]="book.imageList[0].name">
           </div>
           <mat-card-content class="mt-2">

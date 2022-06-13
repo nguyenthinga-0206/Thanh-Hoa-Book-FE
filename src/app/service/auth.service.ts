@@ -14,6 +14,7 @@ export class AuthService {
     this.setToken(loginResponse.jwt);
     this.setRole(loginResponse.role);
     this.setFullName(loginResponse.fullName);
+    this.setEmail(loginResponse.email);
     this.setUsername(loginResponse.username);
     this.setImage(loginResponse.image);
   }
@@ -22,6 +23,7 @@ export class AuthService {
     localStorage.setItem("token", loginResponse.jwt);
     localStorage.setItem("role", loginResponse.role);
     localStorage.setItem("fullName", loginResponse.fullName);
+    localStorage.setItem("email", loginResponse.email);
     localStorage.setItem("username", loginResponse.username);
     localStorage.setImage(loginResponse.image);
   }
@@ -30,6 +32,7 @@ export class AuthService {
     this.setToken(<string>localStorage.getItem('token'));
     this.setRole(<string>localStorage.getItem('role'));
     this.setFullName(<string>localStorage.getItem('fullName'));
+    this.setEmail(<string>localStorage.getItem('email'));
     this.setUsername(<string>localStorage.getItem('username'));
     this.setImage(<string>localStorage.setImage('image'));
   }
@@ -44,6 +47,10 @@ export class AuthService {
 
   public setFullName(fullName: string) {
     sessionStorage.setItem("fullName", fullName);
+  }
+
+  public setEmail(email: string) {
+    sessionStorage.setItem("email", email);
   }
 
   public setUsername(username: string) {
@@ -64,6 +71,10 @@ export class AuthService {
 
   public getFullName() {
     return sessionStorage.getItem("fullName");
+  }
+
+  public getEmail() {
+    return sessionStorage.getItem("email");
   }
 
   public getUsername() {

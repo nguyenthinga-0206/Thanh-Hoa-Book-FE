@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {TableListOrderComponent} from "../component/order/management/table-list-order/table-list-order.component";
 import {AuthGuard} from "../guard/auth.guard";
 import {CartComponent} from "../component/order/users/cart/cart.component";
-import {OrderPayComponent} from "../component/order/users/order-pay/order-pay.component";
+import {CheckoutComponent} from "../component/order/users/order-pay/checkout.component";
 
 const routes: Routes = [
   {
@@ -12,9 +12,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {role: ['ROLE_ADMIN', 'ROLE_MANAGEMENT']}
   },
-  {path: "cart", component: CartComponent},
   {
-    path: "order/pay", component: OrderPayComponent,
+    path: "cart", component: CartComponent,
+    canActivate: [AuthGuard],
+    data: {role: ['ROLE_USER']}
+  },
+  {
+    path: "checkout", component: CheckoutComponent,
     canActivate: [AuthGuard],
     data: {role: 'ROLE_USER'}
   }
