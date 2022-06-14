@@ -15,6 +15,7 @@ export class CreateManagementComponent implements OnInit {
 
   selectedFile: File | any;
   url: string = "";
+  error!: string;
 
   constructor(private userService: UsersService,
               private dialogRef: MatDialogRef<CreateManagementComponent>,
@@ -34,7 +35,6 @@ export class CreateManagementComponent implements OnInit {
     fullName: new FormControl('', [Validators.required, Validators.maxLength(45)]),
     birthday: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required, Validators.pattern("^[0][0-9]{9}$")]),
     gender: new FormControl('', [Validators.required]),
     image: new FormControl()
   });
@@ -42,15 +42,19 @@ export class CreateManagementComponent implements OnInit {
   createManagement() {
     this.formCreateManagement.value.image = this.url;
     if (!this.formCreateManagement.invalid) {
-      this.userService.createManagement(this.formCreateManagement.value).subscribe(() => {
+      this.userService.createManagement(this.formCreateManagement.value).subscribe(data => {
+          this.formCreateManagement.reset();
           this.snackBar.open("Thêm mới thành công", "Đóng", {
             panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 3000
           });
         },
-      );
+        error => {
+          if (error.status == 400) {
+            this.error = 'Email đã được đăng ký mời nhập Email khác!';
+          }
+        });
       this.ngOnInit();
-      this.formCreateManagement.reset();
     }
   }
 

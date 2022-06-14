@@ -20,6 +20,7 @@ function checkpassword(c: AbstractControl) {
 export class RegisterComponent implements OnInit {
 
   registerRequest!: RegisterRequest;
+  error!: string;
 
   constructor(private homeService: HomeService,
               private router: Router,) {
@@ -46,10 +47,14 @@ export class RegisterComponent implements OnInit {
         role: ERole.ROLE_USER,
         email: this.formRegister.value.email,
       };
-      console.log(this.registerRequest);
       this.homeService.register(this.registerRequest).subscribe(data => {
-        this.router.navigate(['/login']);
-      })
+          this.router.navigate(['/login']);
+        },
+        error => {
+          if (error.status == 400){
+            this.error = 'Email đã được đăng ký mời nhập Email khác!';
+          }
+        });
     }
   }
 }

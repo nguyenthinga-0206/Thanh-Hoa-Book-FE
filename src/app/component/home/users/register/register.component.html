@@ -19,6 +19,9 @@
         <mat-error *ngIf="formRegister.get('email')?.hasError('email') && formRegister.get('email')?.touched">
           Email không đúng định dạng!
         </mat-error>
+        <mat-error *ngIf="error">
+          {{error}}
+        </mat-error>
           <div class="wrap-input100 m-b-26">
             <span class="label-input100">Tên đăng nhập</span>
             <input class="input100" type="text" formControlName="username" placeholder="uess12">
