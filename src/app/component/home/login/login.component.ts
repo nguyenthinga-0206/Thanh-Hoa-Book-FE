@@ -49,10 +49,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']).then(() => window.location.reload());
         break;
       case "ROLE_MANAGEMENT":
-        this.router.navigate(['/management/book']);
+        this.router.navigate(['/management']);
         break;
       case "ROLE_ADMIN":
-        this.router.navigate(['/management/book']);
+        this.router.navigate(['/management']);
         break;
       default:
         this.router.navigate(['/forbidden'])
