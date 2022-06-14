@@ -8,6 +8,7 @@ import {CartRequest} from "../dto/order/CartRequest";
 import {CartDTO} from "../dto/order/CartDTO";
 import {AuthService} from "./auth.service";
 import {Cart} from "../model/order/Cart";
+import {OrdersRequest} from "../dto/order/ordersRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,10 @@ export class OrdersService {
 
   getOrderDetailsByOrderId(id: number): Observable<Array<OrderDetails>> {
     return this.httpClient.get<Array<OrderDetails>>(this.URL_ORDERS + "/" + id + "/detail");
+  }
+
+  createOrder(orderRequest: OrdersRequest): Observable<boolean> {
+    return this.httpClient.post<boolean>(this.URL_ORDERS, orderRequest, {headers: this.headers});
   }
 
   editStatus(statusDTO: StatusDTO): Observable<boolean> {

@@ -26,34 +26,37 @@ import {MatCardModule} from "@angular/material/card";
 import { BookDetailComponent } from './users/book-detail/book-detail.component';
 
 @NgModule({
-  declarations: [
-    CreateBookComponent,
-    UpdateBookComponent,
-    DeleteBookComponent,
-    TableListBookComponent,
-    ListBookComponent,
-    AddDetailBookComponent,
-    CreateCategoryComponent,
-    CreateAuthorComponent,
-    CreateProducerComponent,
-    BookDetailComponent
-  ],
-  imports: [
-    CommonModule,
-    BookRoutingModule,
-    FormsModule,
-    NgxPaginationModule,
-    MatDialogModule,
-    MatGridListModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
-    MatCardModule
-  ]
+    declarations: [
+        CreateBookComponent,
+        UpdateBookComponent,
+        DeleteBookComponent,
+        TableListBookComponent,
+        ListBookComponent,
+        AddDetailBookComponent,
+        CreateCategoryComponent,
+        CreateAuthorComponent,
+        CreateProducerComponent,
+        BookDetailComponent
+    ],
+    exports: [
+        ListBookComponent
+    ],
+    imports: [
+        CommonModule,
+        BookRoutingModule,
+        FormsModule,
+        NgxPaginationModule,
+        MatDialogModule,
+        MatGridListModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatProgressSpinnerModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireStorageModule,
+        AngularFireDatabaseModule,
+        MatCardModule
+    ]
 })
 export class BookModule {
 }

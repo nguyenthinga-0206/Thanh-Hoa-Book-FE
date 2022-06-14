@@ -15,7 +15,7 @@
     </thead>
     <tbody>
     <tr class="text-td" *ngFor="let detail of orderDetailList">
-      <td><img class="book-image" src="{{detail.book.imageList[0]}}" alt="alt"> <br>{{detail.book.name}}</td>
+      <td><img class="book-image" src="{{detail.book.imageList[0].path}}" alt="alt"> <br>{{detail.book.name}}</td>
       <td class="text-right">{{detail.book.price | currency: "VND"}}</td>
       <td class="text-right">{{detail.quantity}}</td>
       <td class="text-right">{{detail.quantity * detail.book.price | currency: "VND"}}</td>

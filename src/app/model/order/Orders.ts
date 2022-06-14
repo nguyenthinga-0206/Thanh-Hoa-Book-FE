@@ -8,7 +8,8 @@ export interface Orders {
   fullName: string,
   phone: string,
   address: string,
+  ship: number,
   orderDetails: Array<OrderDetails>,
   status: EStatus,
-  account: Account
+  userCreateFlag: string
 }

@@ -11,9 +11,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
 import {CartComponent} from './users/cart/cart.component';
-import {CheckoutComponent} from './users/order-pay/checkout.component';
+import {CheckoutComponent} from './users/checkout/checkout.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
+import {BookModule} from "../book/book.module";
 
 
 @NgModule({
@@ -24,17 +25,18 @@ import {MatCardModule} from "@angular/material/card";
     CartComponent,
     CheckoutComponent
   ],
-  imports: [
-    CommonModule,
-    OrderRoutingModule,
-    NgxPaginationModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    MatCardModule
-  ]
+    imports: [
+        CommonModule,
+        OrderRoutingModule,
+        NgxPaginationModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatProgressSpinnerModule,
+        MatCardModule,
+        BookModule
+    ]
 })
 export class OrderModule {
 }

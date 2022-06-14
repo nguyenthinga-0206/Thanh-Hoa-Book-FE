@@ -1637,4 +1637,9 @@ a[class*=card]:hover .title {
   color: red;
 }
 
+
+.address-padding {
+  padding: 10px;
+}
+
 /*# sourceMappingURL=ui.css.map */
