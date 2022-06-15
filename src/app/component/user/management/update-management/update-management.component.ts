@@ -5,7 +5,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {finalize} from "rxjs/operators";
-import {User} from "../../../../model/user/User";
 
 @Component({
   selector: 'app-update-management',

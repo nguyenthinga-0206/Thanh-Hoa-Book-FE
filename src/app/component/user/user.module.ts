@@ -15,6 +15,7 @@ import { ProfileComponent } from './users/profile/profile.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatListModule} from "@angular/material/list";
 import {OrderModule} from "../order/order.module";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {OrderModule} from "../order/order.module";
     MatFormFieldModule,
     MatTabsModule,
     MatListModule,
-    OrderModule
+    OrderModule,
+    MatInputModule
   ]
 })
 export class UserModule { }

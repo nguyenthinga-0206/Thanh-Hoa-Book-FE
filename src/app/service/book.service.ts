@@ -43,7 +43,7 @@ export class BookService {
     return this.httpClient.get<Array<Category>>(this.URL_CATEGORY);
   }
 
-  createBook(bookDTO: BookDTO) {
+  createBook(bookDTO: BookDTO): Observable<boolean> {
     return this.httpClient.post<boolean>(this.URL_BOOK, bookDTO, {headers: this.headers});
   }
 
@@ -51,19 +51,19 @@ export class BookService {
     return this.httpClient.put<boolean>(this.URL_BOOK + "/add-book", addBookDTO, {headers: this.headers});
   }
 
-  createCategory(category: Category) {
+  createCategory(category: Category): Observable<boolean> {
     return this.httpClient.post<boolean>(this.URL_CATEGORY, category, {headers: this.headers});
   }
 
-  createAuthor(author: Author) {
+  createAuthor(author: Author): Observable<boolean> {
     return this.httpClient.post<boolean>(this.URL_AUTHOR, author, {headers: this.headers});
   }
 
-  createProducer(producer: Producer) {
+  createProducer(producer: Producer): Observable<boolean> {
     return this.httpClient.post<boolean>(this.URL_PRODUCER, producer, {headers: this.headers});
   }
 
-  editBook(bookDTO: BookDTO) {
+  editBook(bookDTO: BookDTO): Observable<boolean> {
     return this.httpClient.put<boolean>(this.URL_BOOK, bookDTO, {headers: this.headers});
   }
 

@@ -98,11 +98,18 @@
 }
 
 .border-profile {
+  position: relative;
   /*height: 200px;*/
+  width: 200px;
+  margin: 20px auto;
+  border-radius: 20%;
   border: 1px solid rgba(52, 73, 94, 0.44);
 }
 
 .image_profile {
+  margin: 5px;
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
   background: #fff;
 }
