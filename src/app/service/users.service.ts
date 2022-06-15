@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../model/user/User";
 import {BookDTO} from "../dto/book/BookDTO";
-import {ChangePassword} from "../dto/user/ChangePassword";
+import {ChangePasswordRequest} from "../dto/user/ChangePasswordRequest";
 import {AuthService} from "./auth.service";
 import {ProfileRequest} from "../dto/user/profileRequest";
 
@@ -42,7 +42,7 @@ export class UsersService {
     return this.httpClient.put<boolean>(this.URL_USERS + "profile", profile, {headers: this.headers});
   }
 
-  changePassword(changePassword: ChangePassword) {
+  changePassword(changePassword: ChangePasswordRequest) {
     return this.httpClient.put<boolean>(this.URL_USERS + "change-password", changePassword);
   }
 

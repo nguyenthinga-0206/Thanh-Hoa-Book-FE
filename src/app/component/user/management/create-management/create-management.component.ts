@@ -55,6 +55,7 @@ export class CreateManagementComponent implements OnInit {
           }
         });
       this.ngOnInit();
+      this.formCreateManagement.reset();
     }
   }
 

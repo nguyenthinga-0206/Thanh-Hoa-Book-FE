@@ -23,8 +23,4 @@ export class HistoryOrdersComponent implements OnInit {
     })
   }
 
-  changeStatus(status: EStatus) {
-
-  }
-
 }
