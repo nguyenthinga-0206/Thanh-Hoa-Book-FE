@@ -1,0 +1,22 @@
+<div *ngIf="orderList==null" class="text-center">
+  <img src="assets/images/don_hang.png">
+  <h5>Chưa có đơn hàng</h5>
+</div>
+<div class="card mt-2" *ngFor="let order of orderList">
+  <div class="card-header">
+    <b>Ngày lên đơn:<span
+      class="ml-4 font-weight-lighter">{{order.orders.timeCreateFlag | date: "HH:mm:ss  dd-MM-yyyy"}}</span></b>
+  </div>
+  <div class="card-body row mr-0 ml-0 pt-3" *ngFor="let detail of order.orders.orderDetailsList">
+    <img class="col-2" src="{{detail.book.imageList[0].path}}" height="60px"/>
+    <div class="col-8 pr-4">
+      <p class="text-uppercase text-capitalize" style="font-size: 15px; margin-bottom: 0px">{{detail.book.name}}</p>
+      <b>x{{detail.quantity}}</b>
+    </div>
+    <b>{{detail.book.price * detail.quantity | currency:"VND"}}</b>
+  </div>
+  <hr>
+  <p class="mr-0 text-danger font-weight-bold order-history-total">
+    Tổng tiền: {{order.totalPrice | currency: "VND"}}
+  </p>
+</div>

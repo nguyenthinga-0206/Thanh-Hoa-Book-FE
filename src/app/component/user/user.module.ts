@@ -11,7 +11,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import { ChangePasswordComponent } from './users/change-password/change-password.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { UpdateManagementComponent } from './management/update-management/update-management.component';
-
+import { ProfileComponent } from './users/profile/profile.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatListModule} from "@angular/material/list";
+import {OrderModule} from "../order/order.module";
 
 @NgModule({
   declarations: [
@@ -20,6 +23,7 @@ import { UpdateManagementComponent } from './management/update-management/update
     TableListUserComponent,
     ChangePasswordComponent,
     UpdateManagementComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,10 @@ import { UpdateManagementComponent } from './management/update-management/update
     MatDialogModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTabsModule,
+    MatListModule,
+    OrderModule
   ]
 })
 export class UserModule { }

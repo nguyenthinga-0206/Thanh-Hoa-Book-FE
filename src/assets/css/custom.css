@@ -97,6 +97,16 @@
   float: left;
 }
 
+.border-profile {
+  /*height: 200px;*/
+  border: 1px solid rgba(52, 73, 94, 0.44);
+}
+
+.image_profile {
+  border-radius: 50%;
+  background: #fff;
+}
+
 .img-circle.profile_img {
   width: 70%;
   background: #fff;

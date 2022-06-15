@@ -5,6 +5,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {finalize} from "rxjs/operators";
+import {User} from "../../../../model/user/User";
 
 @Component({
   selector: 'app-update-management',
@@ -55,12 +56,10 @@ export class UpdateManagementComponent implements OnInit {
   });
 
   editManagement() {
-    this.formUpdateManagement.setValue({
-      id: this.data.id,
-      image: this.url
-    });
+    this.formUpdateManagement.value.id = this.data.id;
+    this.formUpdateManagement.value.image = this.url;
     if (!this.formUpdateManagement.invalid) {
-      this.userService.createManagement(this.formUpdateManagement.value).subscribe(() => {
+      this.userService.updateManagement(this.formUpdateManagement.value).subscribe(() => {
           this.snackBar.open("Cập nhật thành công", "Đóng", {
             panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 3000

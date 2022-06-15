@@ -1,0 +1,99 @@
+<div class="container-fluid" style="min-width: 1000px; margin-bottom: 20px">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="text-center border-profile">
+          <img *ngIf="!profile?.image" src="assets/images/avatar.jpg" alt="..."
+               class="image_profile">
+          <img *ngIf="profile?.image" src="{{profile?.image}}" alt="..."
+               class="image_profile">
+          <div class="text-center mt-3">
+            <button class="btn btn-secondary"><i class="fa fa-upload mr-2"></i>Đổi ảnh</button>
+          </div>
+        </div>
+
+        <div class="card mt-4">
+          <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#profile">
+              Thông tin cá nhân
+            </a>
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="#change-password">
+              Đổi mật khẩu
+            </a>
+            <a class="list-group-item list-group-item-action" *ngIf="!isAdmin()" data-toggle="list"
+               href="#history-orders">Đơn mua</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-9 mt-3">
+        <div class="tab-content">
+          <div class="tab-pane fade active show" id="profile">
+            <h3 class="text-uppercase text-center font-weight-bold">Thông tin cá nhân</h3>
+            <div class="mt-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-group row">
+                    <label for="fullName" class="col-sm-2 col-form-label font-weight-bold">Họ và tên</label>
+                    <div class="col-10">
+                      <input type="text" disabled class="form-control" id="fullName"
+                             value="{{profile?.fullName}}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label font-weight-bold">Email</label>
+                    <div class="col-10">
+                      <input type="text" disabled class="form-control" id="email"
+                             value="{{profile?.email}}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label font-weight-bold">Tên tài khoản</label>
+                    <div class="col-10">
+                      <input type="text" disabled class="form-control" id="username"
+                             value="{{profile?.account?.username}}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="gender" class="col-sm-2 col-form-label font-weight-bold">Giới tính</label>
+                    <div class="col-10">
+                      <input type="text" disabled class="form-control" id="gender"
+                             value="{{profile?.gender}}">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="birthday" class="col-sm-2 col-form-label font-weight-bold">Ngày sinh</label>
+                    <div class="col-10">
+                      <input type="text" disabled class="form-control" id="birthday"
+                             value="{{profile?.birthday}}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="change-password">
+            <h3 class="text-uppercase text-center font-weight-bold">Đổi mật khẩu</h3>
+            <app-change-password></app-change-password>
+          </div>
+          <div class="tab-pane fade" id="history-orders">
+            <h3 class="text-uppercase text-center font-weight-bold">Đơn mua</h3>
+            <mat-tab-group>
+              <mat-tab label="Chờ xác nhận">
+                <app-history-orders [statusInput]="'PENDING'"></app-history-orders>
+              </mat-tab>
+              <mat-tab label="Chờ lấy hàng">
+                <app-history-orders [statusInput]="'WAITING'"></app-history-orders>
+              </mat-tab>
+              <mat-tab label="Đang giao">
+                <app-history-orders [statusInput]="'DELIVERY'"></app-history-orders>
+              </mat-tab>
+              <mat-tab label="Đã giao">
+                <app-history-orders [statusInput]="'DELIVERED'"></app-history-orders>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

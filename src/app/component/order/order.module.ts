@@ -15,6 +15,8 @@ import {CheckoutComponent} from './users/checkout/checkout.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
 import {BookModule} from "../book/book.module";
+import { HistoryOrdersComponent } from './users/history-orders/history-orders.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 @NgModule({
@@ -23,20 +25,25 @@ import {BookModule} from "../book/book.module";
     OrderDetailsComponent,
     OrderStatusComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    HistoryOrdersComponent
   ],
-    imports: [
-        CommonModule,
-        OrderRoutingModule,
-        NgxPaginationModule,
-        MatDialogModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatProgressSpinnerModule,
-        MatCardModule,
-        BookModule
-    ]
+  exports: [
+    HistoryOrdersComponent
+  ],
+  imports: [
+    CommonModule,
+    OrderRoutingModule,
+    NgxPaginationModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    BookModule,
+    MatTabsModule
+  ]
 })
 export class OrderModule {
 }

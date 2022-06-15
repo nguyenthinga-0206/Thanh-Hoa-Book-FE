@@ -9,6 +9,8 @@ import {CartDTO} from "../dto/order/CartDTO";
 import {AuthService} from "./auth.service";
 import {Cart} from "../model/order/Cart";
 import {OrdersRequest} from "../dto/order/ordersRequest";
+import {EStatus} from "../model/order/EStatus";
+import {OrderResponse} from "../dto/order/OrderResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +47,10 @@ export class OrdersService {
 
   getOrderDetailsByOrderId(id: number): Observable<Array<OrderDetails>> {
     return this.httpClient.get<Array<OrderDetails>>(this.URL_ORDERS + "/" + id + "/detail");
+  }
+
+  getOrderHisory(status: string): Observable<Array<OrderResponse>> {
+    return this.httpClient.get<Array<OrderResponse>>(this.URL_ORDERS + "/history?status=" + status, {headers: this.headers});
   }
 
   createOrder(orderRequest: OrdersRequest): Observable<boolean> {

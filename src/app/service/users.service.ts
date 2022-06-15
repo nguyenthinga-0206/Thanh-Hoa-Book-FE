@@ -10,7 +10,7 @@ import {AuthService} from "./auth.service";
   providedIn: 'root'
 })
 export class UsersService {
-  readonly URL_USERS = "http://localhost:8080/api/users";
+  readonly URL_USERS = "http://localhost:8080/api/users/";
 
   constructor(private httpClient: HttpClient,
               private authService: AuthService) {
@@ -25,6 +25,10 @@ export class UsersService {
     return this.httpClient.get<Array<User>>(this.URL_USERS, {headers: this.headers});
   }
 
+  getProfile(email: string): Observable<User> {
+    return this.httpClient.get<User>(this.URL_USERS + "profile?email=" + email);
+  }
+
   createManagement(user: User) {
     return this.httpClient.post<boolean>(this.URL_USERS, user, {headers: this.headers});
   }
@@ -34,7 +38,7 @@ export class UsersService {
   }
 
   changePassword(changePassword: ChangePassword) {
-    return this.httpClient.put<boolean>(this.URL_USERS + "change-password", changePassword, {headers: this.headers});
+    return this.httpClient.put<boolean>(this.URL_USERS + "change-password", changePassword);
   }
 
   deleteUser(id: number) {

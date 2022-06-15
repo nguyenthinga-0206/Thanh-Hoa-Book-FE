@@ -37,8 +37,8 @@
       <ul class="nav-item dropdown open" style="padding-left: 60px;">
         <a class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
            data-toggle="dropdown" aria-expanded="false">
-          <img *ngIf="!authService.getImage()" src="assets/images/avatar.jpg">
-          <img *ngIf="authService.getImage()" src="{{authService.getImage()}}">
+          <img *ngIf="!user?.image" src="assets/images/avatar.jpg">
+          <img *ngIf="user?.image" src="{{user?.image}}">
           <span data-toggle="tooltip" data-placement="bottom">
           {{authService.getUsername()}}
         </span>
