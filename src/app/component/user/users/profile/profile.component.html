@@ -1,0 +1,143 @@
+<div class="container-fluid" style="min-width: 1000px; margin-bottom: 20px">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="text-center border-profile">
+          <img *ngIf="!profile?.image" src="assets/images/avatar.jpg" alt="..."
+               class="image_profile">
+          <img *ngIf="profile?.image" src="{{profile?.image}}" alt="..."
+               class="image_profile">
+          <div class="text-center mt-3 mb-2">
+            <h5 class="text-uppercase font-weight-bold">{{profile?.fullName}}</h5>
+          </div>
+        </div>
+        <div class="text-center mt-2">
+          <button class="btn btn-secondary" (click)="checkStatus(false)">
+            <i class="fa fa-edit mr-2"></i>
+            Sửa thông tin
+          </button>
+        </div>
+
+        <div class="card mt-4">
+          <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#profile">
+              Thông tin cá nhân
+            </a>
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="#change-password">
+              Đổi mật khẩu
+            </a>
+            <a class="list-group-item list-group-item-action" *ngIf="!isAdmin()" data-toggle="list"
+               href="#history-orders">Đơn mua</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-9 mt-2">
+        <div class="tab-content">
+          <div class="tab-pane fade active show" id="profile">
+            <h3 class="text-uppercase text-center font-weight-bold">Thông tin cá nhân</h3>
+            <div class="mt-4">
+              <div class="card">
+                <div class="card-body">
+                  <form [formGroup]="formUpdateProfile" (ngSubmit)="editProfile()">
+                    <div class="row">
+                      <div class="col-8">
+                        <div class="form-group row">
+                          <label for="fullName" class="col-4 col-form-label font-weight-bold">Họ và tên</label>
+                          <div class="col-8">
+                            <p [hidden]="!is_edit">{{profile?.fullName}}</p>
+                            <input [hidden]="is_edit" type="text" class="form-control" formControlName="fullName"
+                                   id="fullName">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="email" class="col-4 col-form-label font-weight-bold">Email</label>
+                          <div class="col-8">
+                            <p [hidden]="!is_edit">{{profile?.email}}</p>
+                            <input [hidden]="is_edit" type="text" class="form-control" formControlName="email"
+                                   id="email">
+                          </div>
+                        </div>
+                        <div formGroupName="account">
+                          <div class="form-group row">
+                            <label for="username" class="col-4 col-form-label font-weight-bold">Tên tài khoản</label>
+                            <div class="col-8">
+                              <p [hidden]="!is_edit">{{profile?.account?.username}}</p>
+                              <input [hidden]="is_edit" type="text" class="form-control" formControlName="username"
+                                     id="username">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="gender" class="col-4 col-form-label font-weight-bold">Giới tính</label>
+                          <div class="col-8">
+                            <p [hidden]="!is_edit">{{profile?.gender}}</p>
+                            <select [hidden]="is_edit" formControlName="gender" class="form-control" id="gender">
+                              <option class="form-check-input" value="MALE">Nam
+                              <option class="form-check-input" value="FEMALE">Nữ
+                              <option class="form-check-input" value="OTHER">Khác
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="birthday" class="col-4 col-form-label font-weight-bold">Ngày sinh</label>
+                          <div class="col-8">
+                            <p [hidden]="!is_edit">{{profile?.birthday}}</p>
+                            <input [hidden]="is_edit" type="date" class="form-control" formControlName="birthday"
+                                   id="birthday">
+                          </div>
+                        </div>
+                        <div class="text-center mt-3" [hidden]="is_edit">
+                          <button type="submit" class="btn btn-order w-25">Lưu</button>
+                          <button (click)="checkStatus(true)" class="btn btn-secondary w-25">Thoát</button>
+                        </div>
+                      </div>
+                      <div class="col-4 mr-0">
+                        <div [hidden]="!is_edit">
+                          <img *ngIf="!profile?.image" src="assets/images/avatar.jpg" alt="..."
+                               class="image_profile">
+                          <img *ngIf="profile?.image" src="{{profile?.image}}" alt="..."
+                               class="image_profile">
+                        </div>
+                        <div class="avatar-wrapper" [hidden]="is_edit" (change)="selectFile($event)">
+                          <img *ngIf="!url" class="profile-pic" src="assets/images/avatar.jpg"/>
+                          <img *ngIf="url" class="profile-pic" src="{{url}}"/>
+                          <div class="upload-button">
+                            <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                          </div>
+                          <input class="file-upload" type="file" accept="image/*" formControlName="image"/>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="change-password">
+            <h3 class="text-uppercase text-center font-weight-bold">Đổi mật khẩu</h3>
+            <app-change-password></app-change-password>
+          </div>
+
+          <div class="tab-pane fade" id="history-orders">
+            <h3 class="text-uppercase text-center font-weight-bold">Lịch sử đơn hàng</h3>
+            <mat-tab-group color="warn">
+              <mat-tab label="Chờ xác nhận">
+                <app-history-orders [statusInput]="'PENDING'"></app-history-orders>
+              </mat-tab>
+              <mat-tab label="Chờ lấy hàng">
+                <app-history-orders [statusInput]="'WAITING'"></app-history-orders>
+              </mat-tab>
+              <mat-tab label="Đang giao">
+                <app-history-orders [statusInput]="'DELIVERY'"></app-history-orders>
+              </mat-tab>
+              <mat-tab label="Đã giao">
+                <app-history-orders [statusInput]="'DELIVERED'"></app-history-orders>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

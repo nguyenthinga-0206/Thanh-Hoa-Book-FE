@@ -3,11 +3,10 @@ import {Account} from "./Account";
 
 export interface User {
   id: number,
-  fullName: string,
+  fullName?: string,
   birthday?: Date,
   email: string,
-  phone?: string,
-  gender: EGender,
+  gender?: EGender,
   image?: string,
   account: Account
 }

@@ -3,6 +3,8 @@ import {AuthService} from "../../../../service/auth.service";
 import {Router} from "@angular/router";
 import {BookService} from "../../../../service/book.service";
 import {Category} from "../../../../model/book/Category";
+import {User} from "../../../../model/user/User";
+import {UsersService} from "../../../../service/users.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,17 +14,22 @@ import {Category} from "../../../../model/book/Category";
 export class NavbarComponent implements OnInit {
 
   categoryList!: Array<Category>;
-  titleCategory: string = '';
 
   constructor(public authService: AuthService,
+              private userService: UsersService,
               private bookService: BookService,
               private router: Router) {
   }
 
+  email: string = '' + this.authService.getEmail();
+  user!: User;
+
   ngOnInit(): void {
+    this.userService.getProfile(this.email).subscribe(data => {
+      this.user = data;
+    });
     this.bookService.getAllCategory().subscribe(data => {
       this.categoryList = data;
-      this.titleCategory = "<button class=''>"
     });
     if (localStorage.getItem("token") !== null) {
       this.authService.assignSessionStorageWithLocalStorage();
@@ -40,5 +47,4 @@ export class NavbarComponent implements OnInit {
   home() {
     this.router.navigateByUrl("/").then(() => window.location.reload());
   }
-
 }

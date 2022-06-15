@@ -34,7 +34,6 @@ export class UpdateManagementComponent implements OnInit {
       fullName: this.data.fullName,
       birthday: this.data.birthday,
       email: this.data.email,
-      phone: this.data.phone,
       gender: this.data.gender,
       image: null
     });
@@ -51,20 +50,15 @@ export class UpdateManagementComponent implements OnInit {
     fullName: new FormControl('', [Validators.required, Validators.maxLength(45)]),
     birthday: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required, Validators.pattern("^[0][0-9]{9}$")]),
     gender: new FormControl('', [Validators.required]),
     image: new FormControl()
   });
 
   editManagement() {
-    this.formUpdateManagement.setValue({
-      id: this.data.id,
-      // account: {password: this.data.account.password},
-      image: this.url
-    });
-    console.log(this.formUpdateManagement.value);
+    this.formUpdateManagement.value.id = this.data.id;
+    this.formUpdateManagement.value.image = this.url;
     if (!this.formUpdateManagement.invalid) {
-      this.userService.createManagement(this.formUpdateManagement.value).subscribe(() => {
+      this.userService.updateManagement(this.formUpdateManagement.value).subscribe(() => {
           this.snackBar.open("Cập nhật thành công", "Đóng", {
             panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 3000

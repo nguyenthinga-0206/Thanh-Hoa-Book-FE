@@ -1,6 +1,7 @@
 import {OrderDetails} from "./OrderDetails";
 import {Account} from "../user/Account";
 import {EStatus} from "./EStatus";
+import DateTimeFormat = Intl.DateTimeFormat;
 
 export interface Orders {
   id: number,
@@ -8,7 +9,9 @@ export interface Orders {
   fullName: string,
   phone: string,
   address: string,
-  orderDetails: Array<OrderDetails>,
+  ship: number,
+  orderDetailsList: Array<OrderDetails>,
   status: EStatus,
-  account: Account
+  userCreateFlag: string
+  timeCreateFlag: Date
 }

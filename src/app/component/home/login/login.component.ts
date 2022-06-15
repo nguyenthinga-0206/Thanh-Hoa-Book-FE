@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginService} from "../../../service/login.service";
+import {HomeService} from "../../../service/home.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../service/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   isLoginValid = false;
 
 
-  constructor(private loginService: LoginService,
+  constructor(private homeService: HomeService,
               private router: Router,
               private authService: AuthService,
               private matSnackBar: MatSnackBar,
@@ -49,10 +49,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']).then(() => window.location.reload());
         break;
       case "ROLE_MANAGEMENT":
-        this.router.navigate(['/management/book']);
+        this.router.navigate(['/management']);
         break;
       case "ROLE_ADMIN":
-        this.router.navigate(['/management/book']);
+        this.router.navigate(['/management']);
         break;
       default:
         this.router.navigate(['/forbidden'])
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
 
   public login() {
     if (!this.formLogin.invalid) {
-      this.loginService.login(this.formLogin.value).subscribe(
+      this.homeService.login(this.formLogin.value).subscribe(
         (loginResponse) => {
           this.setLoginComplete(loginResponse)
         },

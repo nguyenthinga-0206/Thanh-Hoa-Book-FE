@@ -10,13 +10,26 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
+import {CartComponent} from './users/cart/cart.component';
+import {CheckoutComponent} from './users/checkout/checkout.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatCardModule} from "@angular/material/card";
+import {BookModule} from "../book/book.module";
+import { HistoryOrdersComponent } from './users/history-orders/history-orders.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 @NgModule({
   declarations: [
     TableListOrderComponent,
     OrderDetailsComponent,
-    OrderStatusComponent
+    OrderStatusComponent,
+    CartComponent,
+    CheckoutComponent,
+    HistoryOrdersComponent
+  ],
+  exports: [
+    HistoryOrdersComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +38,11 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatDialogModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    BookModule,
+    MatTabsModule
   ]
 })
 export class OrderModule {

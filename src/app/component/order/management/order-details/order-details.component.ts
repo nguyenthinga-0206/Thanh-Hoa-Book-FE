@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {OrdersService} from "../../../../service/orders.service";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {Orders} from "../../../../model/order/Orders";
 import {OrderDetails} from "../../../../model/order/OrderDetails";
 

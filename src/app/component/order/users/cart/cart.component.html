@@ -1,0 +1,103 @@
+<div class="container-fluid " style="min-width: 1000px; margin-bottom: 20px">
+  <div class="container">
+    <div *ngIf="cartList == null">
+      <div class="text-center">
+        <img src="assets/images/404.png">
+      </div>
+      <button [routerLink]="['']" class="btn btn-light">
+        <i class="fa fa-chevron-left"></i>
+        Tiếp tục mua hàng
+      </button>
+    </div>
+    <div class="row" *ngIf="cartList != null">
+      <main class="col-md-9">
+        <div class="card">
+          <table class="table table-borderless table-shopping-cart">
+            <thead class="text-light bg-cart">
+            <tr class="text-uppercase text-center">
+              <th>Sản phẩm</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+              <th>Tổng</th>
+              <th>Xóa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cart of cartList">
+              <td>
+                <figure class="itemside">
+                  <div class="aside"><img src="{{cart.book.imageList[0].path}}" class="img-sm"></div>
+                  <figcaption class="info">
+                    <a [href]="['book/'+ cart.book.id]" class="title text-dark">{{cart.book.name}}</a>
+                  </figcaption>
+                </figure>
+              </td>
+              <td>
+                <input class="input-qty" type="number" id="quantity"
+                       [value]="cart.quantity" disabled>
+              </td>
+              <td class="text-right">
+                {{cart.book.price | currency: "VND"}}
+              </td>
+              <td class="text-right">
+                {{cart.quantity * cart.book.price | currency: "VND"}}
+              </td>
+              <td class="text-right">
+                <a class="btn" (click)="deleteCart(cart.id)"><i class="fa fa-trash text-trash"></i></a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+          <div class="card-body border-top">
+            <a [href]="['checkout']">
+              <button class="btn btn-success float-md-right">
+                Thanh toán
+                <i class="fa fa-chevron-right"></i>
+              </button>
+            </a>
+            <button [routerLink]="['']" class="btn btn-light">
+              <i class="fa fa-chevron-left"></i>
+              Tiếp tục mua hàng
+            </button>
+          </div>
+        </div>
+      </main>
+      <aside class="col-md-3 mt-3">
+        <div class="card">
+          <div class="card-body">
+            <dl class="dlist-align">
+              <dt>Tổng tiền:</dt>
+              <dd class="text-right">{{total | currency: "VND"}}</dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt>Phí vận chuyển:</dt>
+              <dd class="text-right">{{priceShip | currency: "VND"}}</dd>
+            </dl>
+            <hr>
+            <dl class="dlist-align" style="font-size: 25px">
+              <dt>Tổng:</dt>
+              <dd class="text-right text-danger">{{totalPrice | currency: "VND"}}</dd>
+            </dl>
+          </div>
+        </div>
+        <div class="pt-3">
+          <h5 class="font-weight-bold">Dịch vụ của chúng tôi</h5>
+          <p><i class="fa fa-truck mr-4"></i>Giao tận nhà trong 3 - 7 ngày làm việc.</p>
+          <p><i class="fa fa-truck mr-4"></i>Miễn phí giao hàng Toàn Quốc cho đơn hàng trên 300k.</p>
+        </div>
+      </aside>
+    </div>
+
+
+    <div class="card mt-5">
+      <div class="card-body">
+        <h4 class="font-weight-bold text-center text-uppercase">sản phẩm gợi ý</h4>
+        <div class="row">
+          <app-list-book></app-list-book>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

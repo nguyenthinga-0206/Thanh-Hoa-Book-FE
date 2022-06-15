@@ -13,6 +13,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { NavbarComponent } from './users/navbar/navbar.component';
 import { RegisterComponent } from './users/register/register.component';
+import { HomeAdminComponent } from './management/home-admin/home-admin.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RegisterComponent } from './users/register/register.component';
     ForbiddenComponent,
     NavbarComponent,
     RegisterComponent,
+    HomeAdminComponent,
   ],
   exports: [
     HeaderComponent,

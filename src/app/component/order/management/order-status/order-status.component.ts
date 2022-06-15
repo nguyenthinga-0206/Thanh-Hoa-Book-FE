@@ -35,8 +35,7 @@ export class OrderStatusComponent implements OnInit {
     if (this.status == undefined || this.status[0] == this.order.status) {
       this.dialogRef.close();
       this.snackBar.open('Trạng thái chưa được thay đổi !', "OK", {
-        duration: 3000,
-        panelClass: ['warning']
+        duration: 3000
       });
     } else {
       this.statusDTO = {

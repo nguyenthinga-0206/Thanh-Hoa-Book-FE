@@ -715,10 +715,6 @@ p:last-child {
   border-color: #ed1c24;
 }
 
-.btn-order i {
-  color: #ffffff;
-}
-
 .btn-order:hover {
   color: #ffffff;
   background-color: red;
@@ -1384,6 +1380,7 @@ a[class*=card]:hover .title {
 .menu-category {
   margin: 0;
   padding: 0;
+  width: 200px;
 }
 
 .menu-category li {
@@ -1626,6 +1623,23 @@ a[class*=card]:hover .title {
   font-weight: bold;
   margin-right: 5px;
   display: block;
+}
+
+.bg-cart {
+  background-color: #6c757d;;
+}
+
+.text-trash {
+  color: #6c757d;
+}
+
+.text-trash:hover {
+  color: red;
+}
+
+
+.address-padding {
+  padding: 10px;
 }
 
 /*# sourceMappingURL=ui.css.map */

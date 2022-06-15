@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from "../service/auth.service";
-import {LoginService} from "../service/login.service";
+import {HomeService} from "../service/home.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService,
               private router: Router,
-              private loginService: LoginService) {
+              private homeService: HomeService) {
   }
 
   canActivate(
@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
       const role = route.data["role"] as Array<string>;
 
       if (role !== null) {
-        const match = this.loginService.roleMatch(role);
+        const match = this.homeService.roleMatch(role);
         if (match) {
           return true;
         } else {

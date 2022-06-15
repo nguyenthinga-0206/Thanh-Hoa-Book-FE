@@ -1,1 +1,79 @@
-<p>register works!</p>
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-form-title" style="background-image: url(assets/images/bg_01.jpg);">
+					<span class="login100-form-title-1">
+						ĐĂNG NHẬP
+					</span>
+      </div>
+
+      <form class="login100-form" [formGroup]="formRegister" (ngSubmit)="register()">
+        <div class="wrap-input100 m-b-26">
+          <span class="label-input100">Email</span>
+          <input class="input100" type="text" formControlName="email" placeholder="your-email@gmail.com">
+          <span class="focus-input100"></span>
+        </div>
+        <mat-error *ngIf="formRegister.get('email')?.hasError('required') && formRegister.get('email')?.touched">
+          Email không được để trống!
+        </mat-error>
+        <mat-error *ngIf="formRegister.get('email')?.hasError('email') && formRegister.get('email')?.touched">
+          Email không đúng định dạng!
+        </mat-error>
+        <mat-error *ngIf="error">
+          {{error}}
+        </mat-error>
+          <div class="wrap-input100 m-b-26">
+            <span class="label-input100">Tên đăng nhập</span>
+            <input class="input100" type="text" formControlName="username" placeholder="uess12">
+            <span class="focus-input100"></span>
+          </div>
+          <mat-error
+            *ngIf="formRegister.get('username')?.hasError('required') && formRegister.get('username')?.touched">
+            Tên đăng nhập không được để trống!
+          </mat-error>
+          <mat-error
+            *ngIf="formRegister.get('username')?.hasError('maxLength') && formRegister.get('username')?.touched">
+            Tên đăng nhập không được lớn hơn 45 ký tự!
+          </mat-error>
+          <div style="width: 100%" formGroupName="passwordGroup">
+            <div class="wrap-input100 m-b-18">
+              <span class="label-input100">Mật khẩu</span>
+              <input class="input100" type="password" formControlName="password" placeholder="********">
+              <span class="focus-input100"></span>
+            </div>
+            <mat-error
+              *ngIf="formRegister.get('passwordGroup.password')?.hasError('required') && formRegister.get('passwordGroup.password')?.touched">
+              Mật khẩu không được để trống!
+            </mat-error>
+            <mat-error
+              *ngIf="formRegister.get('passwordGroup.password')?.hasError('minLength') && formRegister.get('passwordGroup.password')?.touched">
+              Mật khẩu phải lớn hơn 8 ký tự!
+            </mat-error>
+            <div class="wrap-input100 m-b-18">
+              <span class="label-input100">Xác nhận mật khẩu</span>
+              <input class="input100" type="password" formControlName="confimPassword" placeholder="********">
+              <span class="focus-input100"></span>
+            </div>
+            <mat-error
+              *ngIf="formRegister.get('passwordGroup.confimPassword')?.hasError('required') && formRegister.get('passwordGroup.confimPassword')?.touched">
+              Mật khẩu không được để trống!
+            </mat-error>
+            <mat-error
+              *ngIf="formRegister.get('passwordGroup.confimPassword')?.hasError('minLength') && formRegister.get('passwordGroup.confimPassword')?.touched">
+              Mật khẩu phải lớn hơn 8 ký tự!
+            </mat-error>
+          </div>
+          <mat-error
+            *ngIf="formRegister.hasError('passwordnotmatch', ['passwordGroup']) && formRegister.get('passwordGroup')?.touched">
+            Mật khẩu không trùng khớp!
+          </mat-error>
+
+        <div class="container-login100-form-btn">
+          <button class="login100-form-btn" type="submit">
+            Đăng Ký
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

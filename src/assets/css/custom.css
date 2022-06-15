@@ -97,6 +97,23 @@
   float: left;
 }
 
+.border-profile {
+  position: relative;
+  /*height: 200px;*/
+  width: 200px;
+  margin: 20px auto;
+  border-radius: 20%;
+  border: 1px solid rgba(52, 73, 94, 0.44);
+}
+
+.image_profile {
+  margin: 5px;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background: #fff;
+}
+
 .img-circle.profile_img {
   width: 70%;
   background: #fff;
@@ -483,6 +500,10 @@ a:hover, a:focus {
 
 .navbar {
   margin-bottom: 0;
+}
+
+.bg-navbar {
+  background-color: #1ABB9C;
 }
 
 .navbar-header {
@@ -1644,7 +1665,7 @@ ul.quick-list li i {
 }
 
 .w_20 {
-  width: 18%;
+  width: 20%;
   min-width: 200px;
 }
 
