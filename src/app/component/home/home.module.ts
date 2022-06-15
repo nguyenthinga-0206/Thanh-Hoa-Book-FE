@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {HomeRoutingModule} from '../../routing/home-routing.module';
-import {FooterComponent} from './management/footer/footer.component';
+import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './management/header/header.component';
 import {LoginComponent} from "./login/login.component";
 import {ReactiveFormsModule} from "@angular/forms";
