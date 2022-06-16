@@ -15,7 +15,7 @@ import {OrdersService} from "../../../../service/orders.service";
 export class NavbarComponent implements OnInit {
 
   categoryList!: Array<Category>;
-  quantity: number = 0
+  quantity: number = 0;
 
   constructor(public authService: AuthService,
               private userService: UsersService,
@@ -34,12 +34,20 @@ export class NavbarComponent implements OnInit {
     this.bookService.getAllCategory().subscribe(data => {
       this.categoryList = data;
     });
-    this.ordersService.getAllCart().subscribe(data =>{
-        this.quantity = data.cartList.length;
+    this.ordersService.getAllCart().subscribe(data => {
+      this.quantity = data.cartList.length;
     });
     if (localStorage.getItem("token") !== null) {
       this.authService.assignSessionStorageWithLocalStorage();
     }
+  }
+
+  searchByName(name: string) {
+    this.router.navigate(['search?name', name]).then(() => window.location.reload());
+  }
+
+  searchByCategory(id: number) {
+    this.router.navigate(['category', id]).then(() => window.location.reload());
   }
 
   public isLoggedIn() {
@@ -53,4 +61,5 @@ export class NavbarComponent implements OnInit {
   home() {
     this.router.navigateByUrl("/").then(() => window.location.reload());
   }
+
 }

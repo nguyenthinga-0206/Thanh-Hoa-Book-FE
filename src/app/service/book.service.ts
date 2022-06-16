@@ -47,6 +47,10 @@ export class BookService {
     return this.httpClient.get<Book>(this.URL_BOOK + "/" + id)
   }
 
+  getBookByName(name: string): Observable<Array<Book>> {
+    return this.httpClient.get<Array<Book>>(this.URL_BOOK + "/search?name=" + name);
+  }
+
   getBookByCategory(id: number): Observable<Array<Book>> {
     return this.httpClient.get<Array<Book>>(this.URL_BOOK + "/category/" + id);
   }
