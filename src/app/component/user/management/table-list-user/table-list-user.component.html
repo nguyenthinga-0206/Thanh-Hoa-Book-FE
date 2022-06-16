@@ -48,12 +48,12 @@
     </thead>
     <tbody>
     <tr class="text-td" *ngFor="let user of userList | filter: searchText | orderBy: order:reverse:caseInsensitive | paginate :{itemsPerPage:5 ,currentPage : p}">
-      <td>
+      <td (click)="openUserDetail(user)">
         <img class="user-image" *ngIf="user.image" src="{{user.image}}" alt="">
         <img class="user-image" *ngIf="!user.image" src="assets/images/avatar.jpg" alt="">
         {{user.account.username}}
       </td>
-      <td>{{user.fullName}}</td>
+      <td (click)="openUserDetail(user)">{{user.fullName}}</td>
       <td>
         <p *ngIf="user.account.role == role.ROLE_ADMIN">Quản lý</p>
         <p *ngIf="user.account.role == role.ROLE_MANAGEMENT">Nhân viên</p>

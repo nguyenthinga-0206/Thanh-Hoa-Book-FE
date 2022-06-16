@@ -7,6 +7,7 @@ import {EGender} from "../../../../model/user/EGender";
 import {UpdateManagementComponent} from "../update-management/update-management.component";
 import {ERole} from "../../../../model/user/ERole";
 import {OrderPipe} from "ngx-order-pipe";
+import {UserDetailComponent} from "../user-detail/user-detail.component";
 
 @Component({
   selector: 'app-table-list-user',
@@ -49,7 +50,6 @@ export class TableListUserComponent implements OnInit {
       width: '500px',
       height: '600px'
     });
-
     dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });
@@ -61,7 +61,17 @@ export class TableListUserComponent implements OnInit {
       height: '600px',
       data: user
     });
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
+  }
 
+  openUserDetail(user: User) {
+    const dialogRef = this.dialog.open(UserDetailComponent, {
+      width: '500px',
+      height: '500px',
+      data: user
+    });
     dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });

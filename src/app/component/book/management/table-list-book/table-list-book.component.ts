@@ -84,7 +84,7 @@ export class TableListBookComponent implements OnInit {
   openDialogDetail(book: Book) {
     const dialogRef = this.dialog.open(DetailBookComponent, {
       width: '500px',
-      height: '400px',
+      height: '500px',
       data: book
     });
 

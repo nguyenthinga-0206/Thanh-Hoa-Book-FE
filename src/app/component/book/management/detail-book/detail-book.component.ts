@@ -15,10 +15,7 @@ export class DetailBookComponent implements OnInit {
   book!: Book;
   cover = ECover;
 
-  constructor(private bookService: BookService,
-              private dialogRef: MatDialogRef<DetailBookComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private snackBar: MatSnackBar) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
