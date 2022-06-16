@@ -26,7 +26,7 @@
     <mat-drawer-container class="example-container" style="height: 600px">
       <mat-drawer #drawer class="example-sidenav" mode="side" style="width: 210px">
         <div class="left_col scroll-view">
-          <div class="navbar nav_title site_title" style="border: 0;">
+          <div routerLink="management/" class="navbar nav_title site_title" style="border: 0;">
             <i class="fa fa-book"></i> <span> HONNYA BOOK</span>
           </div>
           <div class="profile clearfix">
@@ -46,18 +46,6 @@
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
               <ul class="list-sidebars side-menu">
-                <li>
-                  <mat-accordion>
-                    <mat-expansion-panel hideToggle>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title class="fa fa-home">
-                          Trang chủ<span class="fa fa-chevron-down"></span>
-                        </mat-panel-title>
-                      </mat-expansion-panel-header>
-                      <button mat-button><a [routerLink]="['management/']">#</a></button>
-                    </mat-expansion-panel>
-                  </mat-accordion>
-                </li>
                 <li>
                   <mat-accordion>
                     <mat-expansion-panel hideToggle>

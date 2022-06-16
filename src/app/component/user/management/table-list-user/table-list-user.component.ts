@@ -8,6 +8,7 @@ import {UpdateManagementComponent} from "../update-management/update-management.
 import {ERole} from "../../../../model/user/ERole";
 import {OrderPipe} from "ngx-order-pipe";
 import {UserDetailComponent} from "../user-detail/user-detail.component";
+import {AuthService} from "../../../../service/auth.service";
 
 @Component({
   selector: 'app-table-list-user',
@@ -24,7 +25,8 @@ export class TableListUserComponent implements OnInit {
   reverse: boolean = false;
   caseInsensitive: boolean = false;
 
-  constructor(private usersService: UsersService,
+  constructor(public authService: AuthService,
+              private usersService: UsersService,
               private orderPipe: OrderPipe,
               private dialog: MatDialog) {
   }
@@ -75,5 +77,9 @@ export class TableListUserComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });
+  }
+
+  isAdmin() {
+    return this.authService.getRole() == "ROLE_ADMIN";
   }
 }
