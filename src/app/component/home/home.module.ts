@@ -14,6 +14,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { NavbarComponent } from './users/navbar/navbar.component';
 import { RegisterComponent } from './users/register/register.component';
 import { HomeAdminComponent } from './management/home-admin/home-admin.component';
+import {MatBadgeModule} from "@angular/material/badge";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HomeAdminComponent } from './management/home-admin/home-admin.component
         ReactiveFormsModule,
         MatFormFieldModule,
         MatExpansionModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatBadgeModule
     ]
 })
 export class HomeModule {

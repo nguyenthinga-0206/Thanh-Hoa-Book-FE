@@ -43,6 +43,14 @@ export class BookService {
     return this.httpClient.get<Array<Category>>(this.URL_CATEGORY);
   }
 
+  getBookById(id: number): Observable<Book> {
+    return this.httpClient.get<Book>(this.URL_BOOK + "/" + id)
+  }
+
+  getBookByCategory(id: number): Observable<Array<Book>> {
+    return this.httpClient.get<Array<Book>>(this.URL_BOOK + "/category/" + id);
+  }
+
   createBook(bookDTO: BookDTO): Observable<boolean> {
     return this.httpClient.post<boolean>(this.URL_BOOK, bookDTO, {headers: this.headers});
   }
@@ -65,10 +73,6 @@ export class BookService {
 
   editBook(bookDTO: BookDTO): Observable<boolean> {
     return this.httpClient.put<boolean>(this.URL_BOOK, bookDTO, {headers: this.headers});
-  }
-
-  getBookById(id: number): Observable<Book> {
-    return this.httpClient.get<Book>(this.URL_BOOK + "/" + id)
   }
 
   deleteBookById(id: number) {

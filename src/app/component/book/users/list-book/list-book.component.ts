@@ -37,7 +37,8 @@ export class ListBookComponent implements OnInit {
     this.ordersService.addCart(this.cartRequest).subscribe(data => {
       this.snackBar.open("Sản phẩm đã được thêm vào giỏ hàng", "OK", {
         duration: 3000
-      })
+      });
+      window.location.reload();
     });
   }
 

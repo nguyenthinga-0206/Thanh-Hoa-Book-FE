@@ -2,7 +2,7 @@
   <img src="assets/images/homepage.jpg" width="200px">
 </div>
 
-<div *ngIf="bookList != null" class="container padding-y" style="margin-bottom: 20px; min-width: 1000px">
+<div *ngIf="bookList != null" class="container padding-y" style="margin-bottom: 20px; min-width: 1200px">
   <div>
     <div class="row">
       <div class="w_20" *ngFor="let book of bookList | paginate :{itemsPerPage:40 ,currentPage : p}">

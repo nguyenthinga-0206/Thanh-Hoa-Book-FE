@@ -57,6 +57,7 @@ export class BookDetailComponent implements OnInit {
       this.snackBar.open("Sản phẩm đã được thêm vào giỏ hàng", "Đóng", {
         duration: 3000
       });
+      window.location.reload();
     })
   }
 }
