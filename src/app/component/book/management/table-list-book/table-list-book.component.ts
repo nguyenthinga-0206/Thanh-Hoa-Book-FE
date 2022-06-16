@@ -7,6 +7,7 @@ import {DeleteBookComponent} from "../delete-book/delete-book.component";
 import {AddDetailBookComponent} from "../add-detail-book/add-detail-book.component";
 import {UpdateBookComponent} from "../update-book/update-book.component";
 import {DetailBookComponent} from "../detail-book/detail-book.component";
+import {OrderPipe} from "ngx-order-pipe";
 
 @Component({
   selector: 'app-table-list-book',
@@ -16,6 +17,10 @@ import {DetailBookComponent} from "../detail-book/detail-book.component";
 export class TableListBookComponent implements OnInit {
   bookList!: Array<Book>;
   p: number | any;
+  searchText: any;
+  order: string = '';
+  reverse: boolean = false;
+  caseInsensitive: boolean = false;
 
   constructor(private bookService: BookService,
               private dialog: MatDialog) {
@@ -29,12 +34,18 @@ export class TableListBookComponent implements OnInit {
     );
   }
 
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+    this.order = value;
+  }
+
   openDialogCreate() {
     const dialogRef = this.dialog.open(CreateBookComponent, {
       width: '700px',
       height: '700px',
     });
-
     dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });

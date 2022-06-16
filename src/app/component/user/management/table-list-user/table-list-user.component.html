@@ -1,21 +1,53 @@
 <h3 class="text-center">DANH SÁCH THÀNH VIÊN</h3>
+<input [(ngModel)]="searchText" autocomplete="off" type="search" placeholder="Tìm kiếm"
+       class="search-table">
 <button type="button" class="btn btn-primary float-right" (click)="openDialogCreate()"><i class="fa fa-plus"></i>
 </button>
 <div class="card-box table-responsive">
   <table class="table table-striped table-bordered" style="width:100%">
     <thead>
     <tr class="text-center">
-      <th>Tên tài khoản</th>
-      <th>Họ và tên</th>
-      <th>Quyền hạn</th>
-      <th>Giới tính</th>
-      <th>Ngày sinh</th>
-      <th>Email</th>
+      <th [class.active]="order === 'account.username'"
+          (click)="setOrder('account.username')">
+        Tên tài khoản
+        <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th [class.active]="order === 'fullName'"
+          (click)="setOrder('fullName')">
+        Họ và tên
+        <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th [class.active]="order === 'account.role'"
+          (click)="setOrder('account.role')">
+        Quyền hạn
+        <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th [class.active]="order === 'gender'"
+          (click)="setOrder('gender')">
+        Giới tính
+        <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th [class.active]="order === 'birthday'"
+          (click)="setOrder('birthday')">
+        Ngày sinh
+        <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th [class.active]="order === 'email'"
+          (click)="setOrder('email')">
+        Email
+        <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
       <th>Hành động</th>
     </tr>
     </thead>
     <tbody>
-    <tr class="text-td" *ngFor="let user of userList | paginate :{itemsPerPage:5 ,currentPage : p}">
+    <tr class="text-td" *ngFor="let user of userList | filter: searchText | orderBy: order:reverse:caseInsensitive | paginate :{itemsPerPage:5 ,currentPage : p}">
       <td>
         <img class="user-image" *ngIf="user.image" src="{{user.image}}" alt="">
         <img class="user-image" *ngIf="!user.image" src="assets/images/avatar.jpg" alt="">

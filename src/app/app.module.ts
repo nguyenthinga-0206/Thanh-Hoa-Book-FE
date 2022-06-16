@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {HomeModule} from "./component/home/home.module";
 import {UserModule} from "./component/user/user.module";
 import {BookModule} from "./component/book/book.module";
-import {OrderModule} from "./component/order/order.module";
+import {OrdersModule} from "./component/order/orders.module";
 import {NgxPaginationModule} from "ngx-pagination";
 import {HttpClientModule} from "@angular/common/http";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -20,31 +20,33 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {OrderModule} from "ngx-order-pipe";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        HomeModule,
-        UserModule,
-        BookModule,
-        OrderModule,
-        NgxPaginationModule,
-        MatDialogModule,
-        BrowserAnimationsModule,
-        MatSnackBarModule,
-        MatSidenavModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireStorageModule,
-        AngularFireDatabaseModule,
-        MatExpansionModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HomeModule,
+    UserModule,
+    BookModule,
+    OrdersModule,
+    NgxPaginationModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    MatExpansionModule,
+    OrderModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

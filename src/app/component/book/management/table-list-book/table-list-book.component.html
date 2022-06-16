@@ -1,26 +1,53 @@
 <h3 class="text-center text-uppercase">danh sách sách trong cửa hàng</h3>
-<button mat-button (click)="openDialogCreate()" type="button" class="btn btn-primary float-right"><i class="fa fa-plus"></i></button>
+<input [(ngModel)]="searchText" autocomplete="off" type="search" placeholder="Tìm kiếm"
+       class="search-table">
+<button mat-button (click)="openDialogCreate()" type="button" class="btn btn-primary float-right"><i
+  class="fa fa-plus"></i></button>
 <div class="table-responsive">
   <table class="table table-striped table-bordered" style="width:100%">
     <thead>
     <tr class="text-center">
-      <th>Mã sách</th>
-      <th>Tên sách</th>
-      <th>Số lượng</th>
-      <th>Giá</th>
+      <th [class.active]="order === 'code'"
+          (click)="setOrder('code')">
+        Mã sách
+        <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th [class.active]="order === 'name'"
+          (click)="setOrder('name')">
+        Tên sách
+        <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th [class.active]="order === 'quantity'"
+          (click)="setOrder('quantity')">
+        Số lượng
+        <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
+      <th [class.active]="order === 'price'"
+          (click)="setOrder('price')">
+        Giá
+        <span [hidden]="reverse">▼</span>
+        <span [hidden]="!reverse">▲</span>
+      </th>
       <th>Hành động</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let book of bookList | paginate :{itemsPerPage:5 ,currentPage : p}">
+    <tr *ngFor="let book of bookList | filter: searchText | orderBy: order:reverse:caseInsensitive  | paginate :{itemsPerPage:5 ,currentPage : p}">
       <td (click)="openDialogDetail(book)">{{book.code}}</td>
-      <td (click)="openDialogDetail(book)"><p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 350px">{{book.name}}</p></td>
+      <td (click)="openDialogDetail(book)"><p
+        style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 350px">{{book.name}}</p></td>
       <td class="text-right">{{book.quantity}}</td>
       <td class="text-right">{{book.price | currency: 'VND'}}</td>
       <td class="text-right">
-        <button mat-button (click)="openDialogAdd(book.id)" type="button" class="btn btn-outline-success"><i class="fa fa-plus"></i></button>
-        <button mat-button (click)="openDialogEdit(book.id)" type="button" class="btn btn-outline-warning"><i class="fa fa-edit"></i></button>
-        <button mat-button (click)="openDialogDelete(book)" type="button" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+        <button mat-button (click)="openDialogAdd(book.id)" type="button" class="btn btn-outline-success"><i
+          class="fa fa-plus"></i></button>
+        <button mat-button (click)="openDialogEdit(book.id)" type="button" class="btn btn-outline-warning"><i
+          class="fa fa-edit"></i></button>
+        <button mat-button (click)="openDialogDelete(book)" type="button" class="btn btn-outline-danger"><i
+          class="fa fa-trash"></i></button>
       </td>
     </tr>
     </tbody>

@@ -75,7 +75,6 @@ export class CreateBookComponent implements OnInit {
   createBook() {
     this.formCreateBook.value.imageList = this.imageList;
     if (!this.formCreateBook.invalid) {
-      console.log(this.formCreateBook.value);
       this.bookService.createBook(this.formCreateBook.value).subscribe(
         (data) => {
           this.snackBar.open("Thêm mới thành công", "Đóng", {

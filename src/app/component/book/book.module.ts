@@ -25,6 +25,8 @@ import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {MatCardModule} from "@angular/material/card";
 import {BookDetailComponent} from './users/book-detail/book-detail.component';
 import { DetailBookComponent } from './management/detail-book/detail-book.component';
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {OrderModule} from "ngx-order-pipe";
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { DetailBookComponent } from './management/detail-book/detail-book.compon
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    MatCardModule
+    MatCardModule,
+    Ng2SearchPipeModule,
+    OrderModule
   ]
 })
 export class BookModule {

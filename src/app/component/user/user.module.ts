@@ -5,7 +5,7 @@ import { UserRoutingModule } from '../../routing/user-routing.module';
 import { CreateManagementComponent } from './management/create-management/create-management.component';
 import { TableListUserComponent } from './management/table-list-user/table-list-user.component';
 import {NgxPaginationModule} from "ngx-pagination";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { ChangePasswordComponent } from './users/change-password/change-password.component';
 import {MatDialogModule} from "@angular/material/dialog";
@@ -13,8 +13,10 @@ import { UpdateManagementComponent } from './management/update-management/update
 import { ProfileComponent } from './users/profile/profile.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatListModule} from "@angular/material/list";
-import {OrderModule} from "../order/order.module";
+import {OrdersModule} from "../order/orders.module";
 import {MatInputModule} from "@angular/material/input";
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {OrderModule} from "ngx-order-pipe";
 
 @NgModule({
   declarations: [
@@ -33,8 +35,11 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     MatTabsModule,
     MatListModule,
+    OrdersModule,
+    MatInputModule,
+    Ng2SearchPipeModule,
     OrderModule,
-    MatInputModule
+    FormsModule
   ]
 })
 export class UserModule { }

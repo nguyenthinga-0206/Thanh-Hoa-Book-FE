@@ -16,6 +16,10 @@ export class TableListOrderComponent implements OnInit {
   oderList!: Array<Orders>;
   statusEnum = EStatus;
   p: number | any;
+  searchText: any;
+  order: string = '';
+  reverse: boolean = false;
+  caseInsensitive: boolean = false;
 
   constructor(private ordersService: OrdersService,
               private dialog: MatDialog) {
@@ -26,6 +30,13 @@ export class TableListOrderComponent implements OnInit {
       this.oderList = data;
       this.p = 1;
     })
+  }
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+    this.order = value;
   }
 
   openDialogEdit(order: Orders) {

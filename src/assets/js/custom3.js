@@ -11,4 +11,8 @@
       minViewMode: "years"
     });
   })
+
+  jQuery(document).ready(function () {
+    $('#example').DataTable();
+  });
 })(jQuery);
