@@ -13,8 +13,8 @@
     </thead>
     <tbody>
     <tr *ngFor="let book of bookList | paginate :{itemsPerPage:5 ,currentPage : p}">
-      <td>{{book.code}}</td>
-      <td><p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 350px">{{book.name}}</p></td>
+      <td (click)="openDialogDetail(book)">{{book.code}}</td>
+      <td (click)="openDialogDetail(book)"><p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 350px">{{book.name}}</p></td>
       <td class="text-right">{{book.quantity}}</td>
       <td class="text-right">{{book.price | currency: 'VND'}}</td>
       <td class="text-right">

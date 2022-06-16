@@ -1,0 +1,55 @@
+<h1 mat-dialog-title class="text-center m-1">Chi tiết sách</h1>
+<p class="text-center m-0">{{book.name}}</p>
+<p class="text-center m-0">{{book.code}}</p>
+<hr>
+<div mat-dialog-content>
+  <div class="row">
+    <b class="col-4">Tên sách:&ensp;</b>
+    <span>{{book.name}}</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Số lượng:</b>
+    <span>{{book.quantity}} quyển(cuốn)</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Giá tiền:</b>
+    <span>{{book.price | currency: "VND"}}</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Nhà xuất bản:&ensp;</b>
+    <span>{{book.yearPublishing}}</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Kích thước:&ensp;</b>
+    <span>{{book.lenght}} x {{book.width}} x {{book.height}} cm</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Trọng lượng:&ensp;</b>
+    <span>{{book.weight}} grams</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Hình thức bìa:&ensp;</b>
+    <span *ngIf="book.formCover == cover.SOFT">Bìa mềm</span>
+    <span *ngIf="book.formCover == cover.HARD">Bìa cứng</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Thể loại:&ensp;</b>
+    <span *ngFor="let category of book.categoryList">{{category.name}}</span><br>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Tác giả:&ensp;</b>
+    <span *ngFor="let author of book.authorList">{{author.name}}</span><br>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Ảnh:&ensp;</b>
+    <img *ngFor="let image of book.imageList" [src]="image.path" style="width: 40px; height: 40px; padding-right: 5px">
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Mô tả:&ensp;</b>
+    <span class="col-8 pl-0 pr-0" [innerText]="book.description"></span>
+  </div>
+  <hr>
+</div>
+<div mat-dialog-actions class="justify-content-center">
+  <button mat-button mat-dialog-close class="btn btn-secondary">Thoát</button>
+</div>

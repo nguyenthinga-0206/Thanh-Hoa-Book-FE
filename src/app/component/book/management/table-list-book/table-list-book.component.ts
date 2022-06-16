@@ -6,6 +6,7 @@ import {CreateBookComponent} from "../create-book/create-book.component";
 import {DeleteBookComponent} from "../delete-book/delete-book.component";
 import {AddDetailBookComponent} from "../add-detail-book/add-detail-book.component";
 import {UpdateBookComponent} from "../update-book/update-book.component";
+import {DetailBookComponent} from "../detail-book/detail-book.component";
 
 @Component({
   selector: 'app-table-list-book',
@@ -67,6 +68,18 @@ export class TableListBookComponent implements OnInit {
         });
       }
     )
+  }
+
+  openDialogDetail(book: Book) {
+    const dialogRef = this.dialog.open(DetailBookComponent, {
+      width: '500px',
+      height: '400px',
+      data: book
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
   openDialogDelete(book: Book) {

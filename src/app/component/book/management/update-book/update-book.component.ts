@@ -9,7 +9,6 @@ import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CreateCategoryComponent} from "../create-category/create-category.component";
 import {CreateAuthorComponent} from "../create-author/create-author.component";
 import {CreateProducerComponent} from "../create-producer/create-producer.component";
-import {Book} from "../../../../model/book/Book";
 import {MatOptionSelectionChange} from "@angular/material/core";
 
 @Component({

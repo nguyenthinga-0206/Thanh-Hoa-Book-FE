@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {BookService} from "../../../../service/book.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Producer} from "../../../../model/book/Producer";
 import {Author} from "../../../../model/book/Author";
 import {Category} from "../../../../model/book/Category";
@@ -12,9 +12,7 @@ import {CreateProducerComponent} from "../create-producer/create-producer.compon
 import {finalize} from "rxjs/operators";
 import {MatOptionSelectionChange} from "@angular/material/core";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {Image} from "../../../../model/book/Image";
 import {ImageDTO} from "../../../../dto/book/ImageDTO";
-import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-create-book',
@@ -23,6 +21,7 @@ import {formatDate} from "@angular/common";
 })
 
 export class CreateBookComponent implements OnInit {
+
   producerList!: Array<Producer>;
   authorList!: Array<Author>;
   authorListError: Boolean = false;
@@ -48,22 +47,22 @@ export class CreateBookComponent implements OnInit {
     });
     this.bookService.getAllCategory().subscribe(data => {
       this.categoryList = data;
-    })
+    });
   }
 
   formCreateBook = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    code: new FormControl('', [Validators.required]),
-    yearPublishing: new FormControl('', [Validators.required]),
-    quantity: new FormControl('', [Validators.required]),
-    weight: new FormControl('', [Validators.required]),
-    width: new FormControl('', [Validators.required]),
-    lenght: new FormControl('', [Validators.required]),
-    height: new FormControl('', [Validators.required]),
-    pageNumber: new FormControl('', [Validators.required]),
+    code: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,20}$")]),
+    yearPublishing: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}$")]),
+    quantity: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][0-9]{0,6})$")]),
+    weight: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
+    width: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
+    lenght: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
+    height: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([0-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
+    pageNumber: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][0-9]{0,6})$")]),
     language: new FormControl('', [Validators.required]),
     formCover: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,12})|([0])\.[0-9]{2}$")]),
     imageList: new FormArray([]),
     authorList: new FormArray([], [Validators.required]),
     producer: new FormGroup({
@@ -173,4 +172,5 @@ export class CreateBookComponent implements OnInit {
       this.categoryListError = categoryList.value.length == 0 ? true : false;
     }
   }
+
 }

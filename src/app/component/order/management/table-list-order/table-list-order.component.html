@@ -19,7 +19,9 @@
       <td>{{order.userCreateFlag}}</td>
       <td>{{order.fullName}}</td>
       <td>{{order.phone}}</td>
-      <td>{{order.address}}</td>
+      <td><p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 150px">
+        {{order.address}}</p>
+      </td>
       <td>
         <p *ngIf="order.status == statusEnum.PENDING">Chờ xác nhận</p>
         <p *ngIf="order.status == statusEnum.WAITING">Chờ lấy hàng</p>

@@ -4,28 +4,20 @@
   <div mat-dialog-content>
     <div class="form-group row" style="padding: 0px 10px">
       <label>Tên sách</label>
-      <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên sách">
+      <input type="text" class="form-control" formControlName="name" maxlength="45" placeholder="Nhập tên sách">
       <mat-error
         *ngIf="formCreateBook.get('name')?.hasError('required') && formCreateBook.get('name')?.touched">
         Tên sách không được để trống!
       </mat-error>
-      <!--      <mat-error-->
-      <!--        *ngIf="formCreateBook.get('name')?.hasError('maxLength') && formCreateBook.get('name')?.touched">-->
-      <!--        Tên sách không vượt qua 45 ký tự!-->
-      <!--      </mat-error>-->
     </div>
     <div class="row ">
       <div class="form-group col-md-4">
         <label>Mã sách</label>
-        <input type="text" class="form-control" formControlName="code" placeholder="Nhập mã sách">
+        <input type="text" class="form-control" formControlName="code" maxlength="20" placeholder="Nhập mã sách">
         <mat-error
           *ngIf="formCreateBook.get('code')?.hasError('required') && formCreateBook.get('code')?.touched">
           Mã sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('code')?.hasError('pattern') && formCreateBook.get('code')?.touched">-->
-        <!--          Mã sách phải đủ 8 chữ số!-->
-        <!--        </mat-error>-->
       </div>
       <div class="form-group col-md-4">
         <label>Ngôn ngữ</label>
@@ -60,10 +52,10 @@
           *ngIf="formCreateBook.get('price')?.hasError('required') && formCreateBook.get('price')?.touched">
           Giá sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('price')?.hasError('pattern') && formCreateBook.get('price')?.touched">-->
-        <!--          Giá sách phải là một số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formCreateBook.get('price')?.hasError('pattern') && formCreateBook.get('price')?.touched">
+          Giá sách phải là một số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Số lượng</label>
@@ -72,10 +64,10 @@
           *ngIf="formCreateBook.get('quantity')?.hasError('required') && formCreateBook.get('quantity')?.touched">
           Số lượng sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('quantity')?.hasError('pattern') && formCreateBook.get('quantity')?.touched">-->
-        <!--          Số lượng sách phải là số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formCreateBook.get('quantity')?.hasError('pattern') && formCreateBook.get('quantity')?.touched">
+          Số lượng sách phải là số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Số trang</label>
@@ -84,22 +76,22 @@
           *ngIf="formCreateBook.get('pageNumber')?.hasError('required') && formCreateBook.get('pageNumber')?.touched">
           Số trang sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('pageNumber')?.hasError('pattern') && formCreateBook.get('pageNumber')?.touched">-->
-        <!--          Số trang sách phải là số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formCreateBook.get('pageNumber')?.hasError('pattern') && formCreateBook.get('pageNumber')?.touched">
+          Số trang sách phải là số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Năm xuất bản</label>
-        <input type="number" formControlName="yearPublishing" class="form-control"/>
+        <input type="text" formControlName="yearPublishing" class="form-control"/>
         <mat-error
           *ngIf="formCreateBook.get('yearPublishing')?.hasError('required') && formCreateBook.get('yearPublishing')?.touched">
           Năm xuất bản không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('yearPublishing')?.hasError('pattern') && formCreateBook.get('yearPublishing')?.touched">-->
-        <!--          Năm xuất bản không đúng định dạng!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formCreateBook.get('yearPublishing')?.hasError('pattern') && formCreateBook.get('yearPublishing')?.touched">
+          Năm xuất bản không đúng định dạng!
+        </mat-error>
       </div>
     </div>
     <div class="row ">
@@ -110,10 +102,10 @@
           *ngIf="formCreateBook.get('lenght')?.hasError('required') && formCreateBook.get('lenght')?.touched">
           Chiều dài trang sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('lenght')?.hasError('pattern') && formCreateBook.get('lenght')?.touched">-->
-        <!--          Chiều dài trang sách phải là số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formCreateBook.get('lenght')?.hasError('pattern') && formCreateBook.get('lenght')?.touched">
+          Chiều dài trang sách phải là số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Chiều rộng</label>
@@ -122,10 +114,10 @@
           *ngIf="formCreateBook.get('width')?.hasError('required') && formCreateBook.get('width')?.touched">
           Chiều rộng sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('width')?.hasError('pattern') && formCreateBook.get('width')?.touched">-->
-        <!--          Chiều rộng sách phải là một số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formCreateBook.get('width')?.hasError('pattern') && formCreateBook.get('width')?.touched">
+          Chiều rộng sách phải là một số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Chiều cao</label>
@@ -134,10 +126,10 @@
           *ngIf="formCreateBook.get('height')?.hasError('required') && formCreateBook.get('height')?.touched">
           Chiều cao sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('height')?.hasError('pattern') && formCreateBook.get('height')?.touched">-->
-        <!--          Chiều cao sách phải là một số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formCreateBook.get('height')?.hasError('pattern') && formCreateBook.get('height')?.touched">
+          Chiều cao sách phải là một số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Trọng lượng</label>
@@ -146,10 +138,10 @@
           *ngIf="formCreateBook.get('weight')?.hasError('required') && formCreateBook.get('weight')?.touched">
           Trọng lượng sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('weight')?.hasError('pattern') && formCreateBook.get('weight')?.touched">-->
-        <!--          Trọng lượng sách phải là một số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formCreateBook.get('weight')?.hasError('pattern') && formCreateBook.get('weight')?.touched">
+          Trọng lượng sách phải là một số dương!
+        </mat-error>
       </div>
     </div>
     <div class="row">
@@ -193,13 +185,13 @@
         <input multiple type="file" class="form-control" (change)="selectFile($event)">
       </div>
       <div class="form-group col-md-6" *ngIf="imageList">
-        <img *ngFor="let image of imageList" [src]="image.path" style="width: 40px">
+        <img *ngFor="let image of imageList" [src]="image.path" style="width: 40px; height: 40px; padding-right: 5px">
       </div>
     </div>
-        <div class="form-group row" style="padding: 0px 10px">
-          <label>Mô tả</label>
-          <textarea class="form-control" formControlName="description" placeholder="Mô tả"></textarea>
-        </div>
+    <div class="form-group row" style="padding: 0px 10px">
+      <label>Mô tả</label>
+      <textarea class="form-control" formControlName="description" placeholder="Mô tả"></textarea>
+    </div>
   </div>
   <hr>
   <div class="form-group row" mat-dialog-actions>

@@ -24,6 +24,7 @@ import {environment} from "../../../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {MatCardModule} from "@angular/material/card";
 import {BookDetailComponent} from './users/book-detail/book-detail.component';
+import { DetailBookComponent } from './management/detail-book/detail-book.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {BookDetailComponent} from './users/book-detail/book-detail.component';
     CreateAuthorComponent,
     CreateProducerComponent,
     BookDetailComponent,
+    DetailBookComponent,
   ],
   exports: [
     ListBookComponent
