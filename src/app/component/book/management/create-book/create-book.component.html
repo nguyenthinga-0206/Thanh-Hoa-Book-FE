@@ -190,7 +190,7 @@
     <div class="row" formArrayName="imageList">
       <div class="form-group col-md-6">
         <label>Ảnh</label>
-        <input type="file" class="form-control" (change)="selectFile($event)">
+        <input multiple type="file" class="form-control" (change)="selectFile($event)">
       </div>
       <div class="form-group col-md-6" *ngIf="imageList">
         <img *ngFor="let image of imageList" [src]="image.path" style="width: 40px">

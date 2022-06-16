@@ -13,6 +13,8 @@ import {finalize} from "rxjs/operators";
 import {MatOptionSelectionChange} from "@angular/material/core";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {Image} from "../../../../model/book/Image";
+import {ImageDTO} from "../../../../dto/book/ImageDTO";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-create-book',
@@ -26,11 +28,9 @@ export class CreateBookComponent implements OnInit {
   authorListError: Boolean = false;
   categoryList!: Array<Category>;
   categoryListError: Boolean = false;
-  selectedFile: File | any;
-  name: string = "";
-  url: string = "";
-  image!: Image;
-  imageList!: Array<Image>;
+  selectedFile!: Array<File> | any[];
+  imageList: ImageDTO[] = [];
+
 
   constructor(private bookService: BookService,
               private dialog: MatDialog,
@@ -74,10 +74,7 @@ export class CreateBookComponent implements OnInit {
   });
 
   createBook() {
-    this.formCreateBook.value.imageList.push({
-      name: this.name,
-      path: this.url
-    });
+    this.formCreateBook.value.imageList = this.imageList;
     if (!this.formCreateBook.invalid) {
       console.log(this.formCreateBook.value);
       this.bookService.createBook(this.formCreateBook.value).subscribe(
@@ -127,21 +124,20 @@ export class CreateBookComponent implements OnInit {
   }
 
   selectFile(event: any) {
-    const path = Date.now().toString();
     this.selectedFile = event.target.files;
-    // for (let file of this.selectedFile) {
-    //   this.name = file.name;
-    //   console.log(this.name);
-    this.angularFireStorage.upload(path, this.selectedFile).snapshotChanges().pipe(
-      finalize(() => {
-        this.angularFireStorage.ref(path).getDownloadURL().subscribe(data => {
-          this.url = data;
+    for (let file of this.selectedFile) {
+      const path = Date.now().toString();
+      this.angularFireStorage.upload(path, file).snapshotChanges().pipe(
+        finalize(() => {
+          this.angularFireStorage.ref(path).getDownloadURL().subscribe(data => {
+            this.imageList.push({
+              name: file.name, path: data
+            })
+          })
         })
-      })
-    ).subscribe();
-    // this.image.name = this.name;
-    // this.image.path = this.url;
-    // }
+      ).subscribe();
+
+    }
   }
 
   onCheckboxChangeAuthor(event: MatOptionSelectionChange, author: Author) {
