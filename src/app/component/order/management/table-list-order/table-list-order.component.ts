@@ -54,7 +54,7 @@ export class TableListOrderComponent implements OnInit {
   openDialogDetail(id: number) {
     this.ordersService.getById(id).subscribe(data => {
         const dialogRef = this.dialog.open(OrderDetailsComponent, {
-          width: '500px',
+          width: '600px',
           height: '800px',
           data: data
         });

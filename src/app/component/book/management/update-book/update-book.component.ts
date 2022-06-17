@@ -25,6 +25,7 @@ export class UpdateBookComponent implements OnInit {
   authorList!: Array<Author>;
   authorListError: Boolean = false;
   categoryList!: Array<Category>;
+  categorys!: Array<Category>;
   categoryListError: Boolean = false;
   selectedFile!: Array<File> | any[];
   imageList: ImageDTO[] = [];
@@ -35,40 +36,6 @@ export class UpdateBookComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any,
               private snackBar: MatSnackBar,
               private angularFireStorage: AngularFireStorage) {
-  }
-
-  ngOnInit(): void {
-    this.bookService.getAllProducer().subscribe(data => {
-      this.producerList = data;
-    });
-    this.bookService.getAllAuthor().subscribe(data => {
-      this.authorList = data;
-    });
-    this.bookService.getAllCategory().subscribe(data => {
-      this.categoryList = data;
-    });
-    // setTimeout(() => {
-      this.formUpdateBook.setValue({
-        id: this.data.id,
-        name: this.data.name,
-        code: this.data.code,
-        yearPublishing: this.data.yearPublishing,
-        quantity: this.data.quantity,
-        weight: this.data.weight,
-        width: this.data.width,
-        lenght: this.data.lenght,
-        height: this.data.height,
-        pageNumber: this.data.pageNumber,
-        language: this.data.language,
-        formCover: this.data.formCover,
-        price: this.data.price,
-        description: this.data.description,
-        producer: this.data.producer,
-        authorList: this.data.authorList ?? [],
-        categoryList: this.data.categoryList ?? [],
-        imageList: this.data.imageList ?? []
-      });
-    // },);
   }
 
   formUpdateBook = new FormGroup({
@@ -86,29 +53,64 @@ export class UpdateBookComponent implements OnInit {
     formCover: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,12})|([0])\.[0-9]{2}$")]),
     imageList: new FormArray([]),
-    authorList: new FormArray([]),
+    authorList: new FormArray([], Validators.required),
     producer: new FormGroup({
       id: new FormControl()
     }, [Validators.required]),
-    categoryList: new FormArray([]),
+    categoryList: new FormArray([], Validators.required),
     description: new FormControl(),
   });
 
+  ngOnInit(): void {
+    this.bookService.getAllProducer().subscribe(data => {
+      this.producerList = data;
+    });
+    this.bookService.getAllAuthor().subscribe(data => {
+      this.authorList = data;
+    });
+    this.bookService.getAllCategory().subscribe(data => {
+      this.categoryList = data;
+    });
+    this.formUpdateBook.patchValue({
+      id: this.data.id,
+      name: this.data.name,
+      code: this.data.code,
+      yearPublishing: this.data.yearPublishing,
+      quantity: this.data.quantity,
+      weight: this.data.weight,
+      width: this.data.width,
+      lenght: this.data.lenght,
+      height: this.data.height,
+      pageNumber: this.data.pageNumber,
+      language: this.data.language,
+      formCover: this.data.formCover,
+      price: this.data.price,
+      description: this.data.description,
+      producer: this.data.producer,
+    });
+    this.formUpdateBook.value.authorList = this.data.authorList;
+    this.formUpdateBook.value.categoryList = this.data.categoryList;
+    this.categorys = this.data.categoryList;
+    this.formUpdateBook.value.imageList = this.data.imageList;
+    this.imageList = this.data.imageList;
+  }
+
   updateBook() {
-    // this.formUpdateBook.value.imageList = this.imageList;
-    // console.log(this.formUpdateBook.value);
-    // if (!this.formUpdateBook.invalid) {
-    //   this.bookService.editBook(this.formUpdateBook.value).subscribe(
-    //     (data) => {
-    //       this.snackBar.open("Thêm mới thành công", "Đóng", {
-    //         panelClass: ['mat-toolbar', 'mat-primary'],
-    //         duration: 3000
-    //       });
-    //     },
-    //   );
-    //   this.ngOnInit();
-    //   this.formUpdateBook.reset();
-    // }
+    this.formUpdateBook.value.imageList = this.imageList;
+    this.formUpdateBook.value.authorList = this.data.authorList;
+    this.formUpdateBook.value.categoryList = this.data.categoryList;
+    console.log(this.formUpdateBook.value)
+    if (!this.formUpdateBook.invalid) {
+      this.bookService.editBook(this.formUpdateBook.value).subscribe(
+        (data) => {
+          this.snackBar.open("Cập nhật thành công", "Đóng", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 3000
+          });
+        },
+      );
+      this.ngOnInit();
+    }
   }
 
   openDialogAddCategory() {
@@ -154,7 +156,6 @@ export class UpdateBookComponent implements OnInit {
           })
         })
       ).subscribe();
-
     }
   }
 
@@ -190,5 +191,11 @@ export class UpdateBookComponent implements OnInit {
       }
       this.categoryListError = categoryList.value.length == 0 ? true : false;
     }
+  }
+
+  compareFn(o1: any, o2: any): boolean {
+    if (o1.id == o2.id && o1.id == o2.id)
+      return true;
+    else return false
   }
 }

@@ -85,6 +85,7 @@ export class CreateBookComponent implements OnInit {
       );
       this.ngOnInit();
       this.formCreateBook.reset();
+      this.imageList = []
     }
   }
 
@@ -93,7 +94,6 @@ export class CreateBookComponent implements OnInit {
       width: '400px',
       height: '300px',
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
     });
@@ -104,7 +104,6 @@ export class CreateBookComponent implements OnInit {
       width: '400px',
       height: '300px',
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
     });
@@ -115,7 +114,6 @@ export class CreateBookComponent implements OnInit {
       width: '400px',
       height: '300px',
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
     });
