@@ -16,7 +16,7 @@
     <span>{{book.price | currency: "VND"}}</span>
   </div>
   <div class="row mt-2">
-    <b class="col-4">Nhà xuất bản:&ensp;</b>
+    <b class="col-4">Năm xuất bản:&ensp;</b>
     <span>{{book.yearPublishing}}</span>
   </div>
   <div class="row mt-2">
@@ -27,20 +27,24 @@
     <b class="col-4">Trọng lượng:&ensp;</b>
     <span>{{book.weight}} grams</span>
   </div>
-  <div class="row mt-2">
+  <div class="row mt-2" *ngIf="book.formCover != null">
     <b class="col-4">Hình thức bìa:&ensp;</b>
     <span *ngIf="book.formCover == cover.SOFT">Bìa mềm</span>
     <span *ngIf="book.formCover == cover.HARD">Bìa cứng</span>
   </div>
   <div class="row mt-2">
     <b class="col-4">Thể loại:&ensp;</b>
-    <span *ngFor="let category of book.categoryList">{{category.name}}</span><br>
+    <span><p *ngFor="let category of book.categoryList" style="margin-bottom: 0px">{{category.name}}</p><br></span>
   </div>
-  <div class="row mt-2">
+  <div class="row mt-2" *ngIf="book.authorList != null">
     <b class="col-4">Tác giả:&ensp;</b>
-    <span *ngFor="let author of book.authorList">{{author.name}}</span><br>
+    <span><p *ngFor="let author of book.authorList" style="margin-bottom: 0px">{{author.name}}</p><br></span>
   </div>
-  <div class="row mt-2">
+  <div class="row mt-2" *ngIf="book.producer != null">
+    <b class="col-4">Nhà xuất bản:&ensp;</b>
+    <span>{{book.producer.name}}</span><br>
+  </div>
+  <div class="row mt-2" *ngIf="book.imageList != null">
     <b class="col-4">Ảnh:&ensp;</b>
     <img *ngFor="let image of book.imageList" [src]="image.path" style="width: 40px; height: 40px; padding-right: 5px">
   </div>

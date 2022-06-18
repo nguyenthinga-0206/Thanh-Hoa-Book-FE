@@ -27,10 +27,6 @@
           <option value="JAPANESE">Tiếng Nhật</option>
           <option value="CHINESE">Tiếng Trung</option>
         </select>
-        <mat-error
-          *ngIf="formCreateBook.get('language')?.hasError('required') && formCreateBook.get('language')?.touched">
-          Ngôn ngữ không được để trống!
-        </mat-error>
       </div>
       <div class="form-group col-md-4">
         <label>Loại bìa</label>
@@ -38,10 +34,6 @@
           <option value="SOFT" selected>Bìa Mềm</option>
           <option value="HARD">Bìa Cứng</option>
         </select>
-        <mat-error
-          *ngIf="formCreateBook.get('formCover')?.hasError('required') && formCreateBook.get('formCover')?.touched">
-          Loại bìa không được để trống!
-        </mat-error>
       </div>
     </div>
     <div class="row ">
@@ -72,10 +64,6 @@
       <div class="form-group col-md-3">
         <label>Số trang</label>
         <input type="number" class="form-control" formControlName="pageNumber" placeholder="0">
-        <mat-error
-          *ngIf="formCreateBook.get('pageNumber')?.hasError('required') && formCreateBook.get('pageNumber')?.touched">
-          Số trang sách không được để trống!
-        </mat-error>
         <mat-error
           *ngIf="formCreateBook.get('pageNumber')?.hasError('pattern') && formCreateBook.get('pageNumber')?.touched">
           Số trang sách phải là số dương!
@@ -155,7 +143,7 @@
       </div>
       <div class="form-group col-md-4">
         <label>Tác giả <i (click)="openDialogAddAuthor()" class="fa fa-plus btn-outline-secondary"></i></label>
-        <mat-select class="form-control" placeholder="--Chọn--" multiple required>
+        <mat-select class="form-control" placeholder="--Chọn--" multiple>
           <mat-option *ngFor="let author of authorList" value="{{author.id}}" formArrayName="authorList"
                       (onSelectionChange)="onCheckboxChangeAuthor($event,author)">{{author.name}}</mat-option>
         </mat-select>

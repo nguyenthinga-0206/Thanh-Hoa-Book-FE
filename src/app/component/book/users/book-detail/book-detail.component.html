@@ -25,15 +25,15 @@
             <hr>
             <div class="row">
               <div class="mb-3 col-6">
-                <p>Tác giả: <span *ngFor="let author of book.authorList">{{author.name}} </span></p>
+                <p *ngIf="book.authorList != null">Tác giả: <span *ngFor="let author of book.authorList">{{author.name}} </span><br></p>
                 <p>NXB: <span>{{book.producer.name}}</span></p>
                 <p>Kích thước: <span>{{book.lenght}} x {{book.width}} <span *ngIf="book.height != 0">x {{book.height}}</span> cm</span></p>
                 <p>Năm xuất bản: <span>{{book.yearPublishing}}</span></p>
               </div>
               <div class="mb-3" style="padding-left: 10px">
-                <p>Số trang: <span>{{book.pageNumber}}</span></p>
+                <p *ngIf="book.pageNumber !=0">Số trang: <span>{{book.pageNumber}}</span></p>
                 <p>Trọng lượng: <span>{{book.weight}} grams</span></p>
-                <p>Hình thức bìa:
+                <p *ngIf="book.formCover != null">Hình thức bìa:
                   <span *ngIf="book.formCover == cover.SOFT">Bìa mềm</span>
                   <span *ngIf="book.formCover == cover.HARD">Bìa cứng</span>
                 </p>

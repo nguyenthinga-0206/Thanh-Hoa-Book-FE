@@ -27,10 +27,6 @@
           <option value="JAPANESE">Tiếng Nhật</option>
           <option value="CHINESE">Tiếng Trung</option>
         </select>
-        <mat-error
-          *ngIf="formUpdateBook.get('language')?.hasError('required') && formUpdateBook.get('language')?.touched">
-          Ngôn ngữ không được để trống!
-        </mat-error>
       </div>
       <div class="form-group col-md-4">
         <label>Loại bìa</label>
@@ -38,10 +34,6 @@
           <option value="SOFT" selected>Bìa Mềm</option>
           <option value="HARD">Bìa Cứng</option>
         </select>
-        <mat-error
-          *ngIf="formUpdateBook.get('formCover')?.hasError('required') && formUpdateBook.get('formCover')?.touched">
-          Loại bìa không được để trống!
-        </mat-error>
       </div>
     </div>
     <div class="row ">
@@ -72,10 +64,6 @@
       <div class="form-group col-md-3">
         <label>Số trang</label>
         <input type="number" class="form-control" formControlName="pageNumber" placeholder="0">
-        <mat-error
-          *ngIf="formUpdateBook.get('pageNumber')?.hasError('required') && formUpdateBook.get('pageNumber')?.touched">
-          Số trang sách không được để trống!
-        </mat-error>
         <mat-error
           *ngIf="formUpdateBook.get('pageNumber')?.hasError('pattern') && formUpdateBook.get('pageNumber')?.touched">
           Số trang sách phải là số dương!
@@ -156,7 +144,7 @@
       <div class="form-group col-md-4">
         <label>Tác giả <i (click)="openDialogAddAuthor()" class="fa fa-plus btn-outline-secondary"></i></label>
         <mat-select class="form-control" placeholder="--Chọn--" [(ngModel)]=" formUpdateBook.value.authorList"
-                    formControlName="authorList" [compareWith]="compareFn" multiple required>
+                    formControlName="authorList" [compareWith]="compareFn" multiple>
           <mat-option *ngFor="let author of authorList" [value]="author"
                       (onSelectionChange)="onCheckboxChangeAuthor($event,author)">{{author.name}}</mat-option>
         </mat-select>
