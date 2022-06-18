@@ -11,7 +11,8 @@ import {RegisterRequest} from "../dto/user/registerRequest";
 })
 export class HomeService {
 
-  readonly URL_HOME = "http://localhost:8080/api/";
+  // readonly URL_HOME = "http://localhost:8080/api/";
+  readonly URL_HOME = "https://api-thanh-hoa-book.herokuapp.com/api/";
 
   constructor(private httpClient: HttpClient,
               private authService: AuthService) {

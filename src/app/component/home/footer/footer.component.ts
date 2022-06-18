@@ -8,14 +8,11 @@ import {AuthService} from "../../../service/auth.service";
 })
 export class FooterComponent implements OnInit {
 
-  background = '#1ABB9C'
+  background = (this.isAdmin() || this.isManagement()) ? '#2A3F54' : '#1ABB9C';
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    if (this.isAdmin() || this.isManagement()){
-      this.background = '#2A3F54'
-    }
   }
 
   isAdmin() {

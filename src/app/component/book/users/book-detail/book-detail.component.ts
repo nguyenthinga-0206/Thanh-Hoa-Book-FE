@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {BookService} from "../../../../service/book.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Book} from "../../../../model/book/Book";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ECover} from "../../../../model/book/ECover";
 import {CartBookDTO} from "../../../../dto/order/CartBookDTO";
 import {CartRequest} from "../../../../dto/order/CartRequest";
 import {OrdersService} from "../../../../service/orders.service";
+import {AuthService} from "../../../../service/auth.service";
 
 @Component({
   selector: 'app-book-detail',
@@ -21,8 +22,10 @@ export class BookDetailComponent implements OnInit {
   quantity: number = 1;
   cartRequest!: CartRequest;
 
-  constructor(private bookService: BookService,
+  constructor(private authService: AuthService,
+              private bookService: BookService,
               private ordersService: OrdersService,
+              private router: Router,
               private activatedRoute: ActivatedRoute,
               private snackBar: MatSnackBar) {
   }
@@ -49,14 +52,20 @@ export class BookDetailComponent implements OnInit {
   }
 
   addCart(id: number) {
-    this.cartRequest = {
-      id: id,
-      quantity: this.quantity
-    };
-    this.ordersService.addCart(this.cartRequest).subscribe(data => {
-      this.snackBar.open("Sản phẩm đã được thêm vào giỏ hàng", "Đóng", {
-        duration: 3000
+    if (this.authService.getRole() == 'ROLE_USER') {
+      this.cartRequest = {
+        id: id,
+        quantity: this.quantity
+      };
+      this.ordersService.addCart(this.cartRequest).subscribe(data => {
+        this.snackBar.open("Sản phẩm đã được thêm vào giỏ hàng", "Đóng", {
+          duration: 3000
+        });
+        window.location.reload();
       });
-    })
+    }
+    else {
+      this.router.navigate(['/login'])
+    }
   }
 }

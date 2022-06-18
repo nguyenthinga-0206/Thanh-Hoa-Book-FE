@@ -32,7 +32,7 @@ export class CartComponent implements OnInit {
   deleteCart(id: number) {
     this.ordersService.deleteCartById(id).subscribe(data => {
       this.ngOnInit();
-      console.log("deleted")
+      window.location.reload();
     })
   }
 }

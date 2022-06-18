@@ -23,40 +23,46 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {environment} from "../../../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {MatCardModule} from "@angular/material/card";
-import { BookDetailComponent } from './users/book-detail/book-detail.component';
+import {BookDetailComponent} from './users/book-detail/book-detail.component';
+import { DetailBookComponent } from './management/detail-book/detail-book.component';
+import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {OrderModule} from "ngx-order-pipe";
 
 @NgModule({
-    declarations: [
-        CreateBookComponent,
-        UpdateBookComponent,
-        DeleteBookComponent,
-        TableListBookComponent,
-        ListBookComponent,
-        AddDetailBookComponent,
-        CreateCategoryComponent,
-        CreateAuthorComponent,
-        CreateProducerComponent,
-        BookDetailComponent
-    ],
-    exports: [
-        ListBookComponent
-    ],
-    imports: [
-        CommonModule,
-        BookRoutingModule,
-        FormsModule,
-        NgxPaginationModule,
-        MatDialogModule,
-        MatGridListModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatProgressSpinnerModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireStorageModule,
-        AngularFireDatabaseModule,
-        MatCardModule
-    ]
+  declarations: [
+    CreateBookComponent,
+    UpdateBookComponent,
+    DeleteBookComponent,
+    TableListBookComponent,
+    ListBookComponent,
+    AddDetailBookComponent,
+    CreateCategoryComponent,
+    CreateAuthorComponent,
+    CreateProducerComponent,
+    BookDetailComponent,
+    DetailBookComponent,
+  ],
+  exports: [
+    ListBookComponent
+  ],
+  imports: [
+    CommonModule,
+    BookRoutingModule,
+    FormsModule,
+    NgxPaginationModule,
+    MatDialogModule,
+    MatGridListModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    MatCardModule,
+    Ng2SearchPipeModule,
+    OrderModule
+  ]
 })
 export class BookModule {
 }

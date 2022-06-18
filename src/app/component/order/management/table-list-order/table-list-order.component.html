@@ -1,45 +1,86 @@
-<h3 class="text-center">DANH SÁCH ĐƠN HÀNG</h3>
-<br>
-<div class="card-box table-responsive">
-  <table class="table table-striped table-bordered" style="width:100%">
-    <thead>
-    <tr class="text-center">
-      <th>Mã đơn hàng</th>
-      <th>Tài khoản</th>
-      <th>Tên người mua</th>
-      <th>Số điện thoại</th>
-      <th>Địa chỉ</th>
-      <th>Trạng thái</th>
-      <th>Hành động</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let order of oderList | paginate :{itemsPerPage:5 ,currentPage : p}">
-      <td>{{order.code}}</td>
-      <td>{{order.userCreateFlag}}</td>
-      <td>{{order.fullName}}</td>
-      <td>{{order.phone}}</td>
-      <td>{{order.address}}</td>
-      <td>
-        <p *ngIf="order.status == statusEnum.PENDING">Chờ xác nhận</p>
-        <p *ngIf="order.status == statusEnum.WAITING">Chờ lấy hàng</p>
-        <p *ngIf="order.status == statusEnum.DELIVERY">Đang giao</p>
-        <p *ngIf="order.status == statusEnum.DELIVERED">Đã giao</p>
-      </td>
-      <td>
-        <button mat-button (click)="openDialogDetail(order.id)" type="button" class="btn btn-outline-secondary"><i
-          class="fa fa-eye"></i></button>
-        <button mat-button (click)="openDialogEdit(order)" type="button" class="btn btn-outline-warning"><i
-          class="fa fa-edit"></i></button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="text-center" *ngIf="oderList == null">
+  <img src="assets/images/homepage.jpg" width="200px">
+  <h3 class="text-center text-capitalize">Không có dữ liệu</h3>
 </div>
-<!--        Pagination-->
-<pagination-controls class="text-right text" (pageChange)="p = $event"
-                     previousLabel="Trước"
-                     nextLabel="Sau"
-                     [autoHide]="true">
-</pagination-controls>
 
+<div *ngIf="oderList != null">
+  <h3 class="text-center">DANH SÁCH ĐƠN HÀNG</h3>
+  <br>
+  <input [(ngModel)]="searchText" autocomplete="off" type="search" placeholder="Tìm kiếm"
+         class="search-table mb-2">
+  <div class="card-box table-responsive">
+    <table class="table table-striped table-bordered" style="width:100%">
+      <thead>
+      <tr class="text-center">
+        <th [class.active]="order === 'code'"
+            (click)="setOrder('code')">
+          Mã đơn hàng
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [class.active]="order === 'userCreateFlag'"
+            (click)="setOrder('userCreateFlag')">
+          Tài khoản
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [class.active]="order === 'fullName'"
+            (click)="setOrder('fullName')">
+          Tên người mua
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [class.active]="order === 'phone'"
+            (click)="setOrder('phone')">
+          Số điện thoại
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [class.active]="order === 'address'"
+            (click)="setOrder('address')">
+          Địa chỉ
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [class.active]="order === 'status'"
+            (click)="setOrder('status')">
+          Trạng thái
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th>Hành động</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr
+        *ngFor="let order of oderList | filter: searchText | orderBy: order:reverse:caseInsensitive | paginate :{itemsPerPage:5 ,currentPage : p}">
+        <td>{{order.code}}</td>
+        <td>{{order.userCreateFlag}}</td>
+        <td>{{order.fullName}}</td>
+        <td>{{order.phone}}</td>
+        <td><p style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 150px">
+          {{order.address}}</p>
+        </td>
+        <td>
+          <p *ngIf="order.status == statusEnum.PENDING">Chờ xác nhận</p>
+          <p *ngIf="order.status == statusEnum.WAITING">Chờ lấy hàng</p>
+          <p *ngIf="order.status == statusEnum.DELIVERY">Đang giao</p>
+          <p *ngIf="order.status == statusEnum.DELIVERED">Đã giao</p>
+        </td>
+        <td>
+          <button mat-button (click)="openDialogDetail(order.id)" type="button" class="btn btn-outline-secondary"><i
+            class="fa fa-eye"></i></button>
+          <button mat-button (click)="openDialogEdit(order)" type="button" class="btn btn-outline-warning"><i
+            class="fa fa-edit"></i></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--        Pagination-->
+  <pagination-controls class="text-right text" (pageChange)="p = $event"
+                       previousLabel="Trước"
+                       nextLabel="Sau"
+                       [autoHide]="true">
+  </pagination-controls>
+</div>

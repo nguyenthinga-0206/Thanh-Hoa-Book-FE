@@ -1,52 +1,91 @@
-<h3 class="text-center">DANH SÁCH THÀNH VIÊN</h3>
-<button type="button" class="btn btn-primary float-right" (click)="openDialogCreate()"><i class="fa fa-plus"></i>
-</button>
-<div class="card-box table-responsive">
-  <table class="table table-striped table-bordered" style="width:100%">
-    <thead>
-    <tr class="text-center">
-      <th>Tên tài khoản</th>
-      <th>Họ và tên</th>
-      <th>Quyền hạn</th>
-      <th>Giới tính</th>
-      <th>Ngày sinh</th>
-      <th>Email</th>
-      <th>Hành động</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="text-td" *ngFor="let user of userList | paginate :{itemsPerPage:5 ,currentPage : p}">
-      <td>
-        <img class="user-image" *ngIf="user.image" src="{{user.image}}" alt="">
-        <img class="user-image" *ngIf="!user.image" src="assets/images/avatar.jpg" alt="">
-        {{user.account.username}}
-      </td>
-      <td>{{user.fullName}}</td>
-      <td>
-        <p *ngIf="user.account.role == role.ROLE_ADMIN">Quản lý</p>
-        <p *ngIf="user.account.role == role.ROLE_MANAGEMENT">Nhân viên</p>
-        <p *ngIf="user.account.role == role.ROLE_USER">Khách hàng</p>
-      </td>
-      <td>
-        <p *ngIf="user.gender == genderEnum.MALE">Nam</p>
-        <p *ngIf="user.gender == genderEnum.FEMALE">Nữ</p>
-        <p *ngIf="user.gender == genderEnum.OTHER">Khác</p>
-      </td>
-      <td class="text-right">{{user.birthday | date: "dd/MM/yyy"}}</td>
-      <td>{{user.email}}</td>
-      <td>
-        <button [disabled]="user.account.role == role.ROLE_USER" mat-button (click)="openDialogEdit(user)" type="button"
-                class="btn btn-outline-warning"><i
-          class="fa fa-edit"></i></button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="text-center" *ngIf="userList == null">
+  <img src="assets/images/homepage.jpg" width="200px">
+  <h3 class="text-center text-capitalize">Không có dữ liệu</h3>
 </div>
-<!--        Pagination-->
-<pagination-controls class="text-right text" (pageChange)="p = $event"
-                     previousLabel="Trước"
-                     nextLabel="Sau"
-                     [autoHide]="true">
-</pagination-controls>
-
+<div *ngIf="userList != null">
+  <h3 class="text-center">DANH SÁCH THÀNH VIÊN</h3>
+  <input [(ngModel)]="searchText" autocomplete="off" type="search" placeholder="Tìm kiếm"
+         class="search-table">
+  <button [hidden]="isAdmin() ? false : true" type="button" class="btn btn-primary float-right" (click)="openDialogCreate()"><i class="fa fa-plus"></i>
+  </button>
+  <div class="card-box table-responsive">
+    <table class="table table-striped table-bordered" style="width:100%">
+      <thead>
+      <tr class="text-center">
+        <th [class.active]="order === 'account.username'"
+            (click)="setOrder('account.username')">
+          Tên tài khoản
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [class.active]="order === 'fullName'"
+            (click)="setOrder('fullName')">
+          Họ và tên
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [class.active]="order === 'account.role'"
+            (click)="setOrder('account.role')">
+          Quyền hạn
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [class.active]="order === 'gender'"
+            (click)="setOrder('gender')">
+          Giới tính
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [class.active]="order === 'birthday'"
+            (click)="setOrder('birthday')">
+          Ngày sinh
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [class.active]="order === 'email'"
+            (click)="setOrder('email')">
+          Email
+          <span [hidden]="reverse">▼</span>
+          <span [hidden]="!reverse">▲</span>
+        </th>
+        <th [hidden]="isAdmin() ? false : true">Hành động</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="text-td"
+          *ngFor="let user of userList | filter: searchText | orderBy: order:reverse:caseInsensitive | paginate :{itemsPerPage:5 ,currentPage : p}">
+        <td (click)="openUserDetail(user)">
+          <img class="user-image" *ngIf="user.image" src="{{user.image}}" alt="">
+          <img class="user-image" *ngIf="!user.image" src="assets/images/avatar.jpg" alt="">
+          {{user.account.username}}
+        </td>
+        <td (click)="openUserDetail(user)">{{user.fullName}}</td>
+        <td>
+          <p *ngIf="user.account.role == role.ROLE_ADMIN">Quản lý</p>
+          <p *ngIf="user.account.role == role.ROLE_MANAGEMENT">Nhân viên</p>
+          <p *ngIf="user.account.role == role.ROLE_USER">Khách hàng</p>
+        </td>
+        <td>
+          <p *ngIf="user.gender == genderEnum.MALE">Nam</p>
+          <p *ngIf="user.gender == genderEnum.FEMALE">Nữ</p>
+          <p *ngIf="user.gender == genderEnum.OTHER">Khác</p>
+        </td>
+        <td class="text-right">{{user.birthday | date: "dd/MM/yyy"}}</td>
+        <td>{{user.email}}</td>
+        <td [hidden]="isAdmin() ? false : true">
+          <button [disabled]="user.account.role == role.ROLE_USER" mat-button (click)="openDialogEdit(user)"
+                  type="button"
+                  class="btn btn-outline-warning"><i
+            class="fa fa-edit"></i></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--        Pagination-->
+  <pagination-controls class="text-right text" (pageChange)="p = $event"
+                       previousLabel="Trước"
+                       nextLabel="Sau"
+                       [autoHide]="true">
+  </pagination-controls>
+</div>

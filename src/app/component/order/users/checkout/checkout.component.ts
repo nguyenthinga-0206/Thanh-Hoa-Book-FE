@@ -51,6 +51,7 @@ export class CheckoutComponent implements OnInit {
         for (let i = 0; i < this.cartList.length; i++) {
           this.ordersService.deleteCartById(this.cartList[i].id).subscribe();
         }
+        window.location.reload();
         this.router.navigate(['']);
         this.snackBar.open("Đơn hàng đã được thêm thành công.", "Đóng", {
           duration: 3000

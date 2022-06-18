@@ -2,7 +2,7 @@
   <img src="assets/images/don_hang.png">
   <h5>Chưa có đơn hàng</h5>
 </div>
-<div class="card mt-2" *ngFor="let order of orderList">
+<div class="card mt-2" *ngFor="let order of orderList" style="min-width: 1200px">
   <div class="card-header">
     <b>Ngày lên đơn:<span
       class="ml-4 font-weight-lighter">{{order.orders.timeCreateFlag | date: "HH:mm:ss  dd-MM-yyyy"}}</span></b>

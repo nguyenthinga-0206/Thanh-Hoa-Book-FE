@@ -10,7 +10,7 @@ import {BookService} from "../../../../service/book.service";
   styleUrls: ['./delete-book.component.css']
 })
 export class DeleteBookComponent implements OnInit {
-  book!: Book
+  book!: Book;
 
   constructor(private bookService: BookService,
               private dialogRef: MatDialogRef<DeleteBookComponent>,

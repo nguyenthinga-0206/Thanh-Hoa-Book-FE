@@ -13,10 +13,14 @@ import {AuthService} from "./auth.service";
   providedIn: 'root'
 })
 export class BookService {
-  readonly URL_BOOK = "http://localhost:8080/api/book";
-  readonly URL_PRODUCER = "http://localhost:8080/api/producer";
-  readonly URL_AUTHOR = "http://localhost:8080/api/author";
-  readonly URL_CATEGORY = "http://localhost:8080/api/category";
+  // readonly URL_BOOK = "http://localhost:8080/api/book";
+  // readonly URL_PRODUCER = "http://localhost:8080/api/producer";
+  // readonly URL_AUTHOR = "http://localhost:8080/api/author";
+  // readonly URL_CATEGORY = "http://localhost:8080/api/category";
+  readonly URL_BOOK = "https://api-thanh-hoa-book.herokuapp.com/api/book";
+  readonly URL_PRODUCER = "https://api-thanh-hoa-book.herokuapp.com/api/producer";
+  readonly URL_AUTHOR = "https://api-thanh-hoa-book.herokuapp.com/api/author";
+  readonly URL_CATEGORY = "https://api-thanh-hoa-book.herokuapp.com/api/category";
 
   constructor(private httpClient: HttpClient,
               private authService: AuthService) {
@@ -43,6 +47,18 @@ export class BookService {
     return this.httpClient.get<Array<Category>>(this.URL_CATEGORY);
   }
 
+  getBookById(id: number): Observable<Book> {
+    return this.httpClient.get<Book>(this.URL_BOOK + "/" + id)
+  }
+
+  getBookByName(name: string): Observable<Array<Book>> {
+    return this.httpClient.get<Array<Book>>(this.URL_BOOK + "/search?name=" + name);
+  }
+
+  getBookByCategory(id: number): Observable<Array<Book>> {
+    return this.httpClient.get<Array<Book>>(this.URL_BOOK + "/category/" + id);
+  }
+
   createBook(bookDTO: BookDTO): Observable<boolean> {
     return this.httpClient.post<boolean>(this.URL_BOOK, bookDTO, {headers: this.headers});
   }
@@ -65,10 +81,6 @@ export class BookService {
 
   editBook(bookDTO: BookDTO): Observable<boolean> {
     return this.httpClient.put<boolean>(this.URL_BOOK, bookDTO, {headers: this.headers});
-  }
-
-  getBookById(id: number): Observable<Book> {
-    return this.httpClient.get<Book>(this.URL_BOOK + "/" + id)
   }
 
   deleteBookById(id: number) {

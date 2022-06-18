@@ -4,28 +4,20 @@
   <div mat-dialog-content>
     <div class="form-group row" style="padding: 0px 10px">
       <label>Tên sách</label>
-      <input type="text" class="form-control" formControlName="name" placeholder="Nhập tên sách">
+      <input type="text" class="form-control" formControlName="name" maxlength="45" placeholder="Nhập tên sách">
       <mat-error
         *ngIf="formUpdateBook.get('name')?.hasError('required') && formUpdateBook.get('name')?.touched">
         Tên sách không được để trống!
-      </mat-error>
-      <mat-error
-        *ngIf="formUpdateBook.get('name')?.hasError('maxLength') && formUpdateBook.get('name')?.touched">
-        Tên sách không vượt qua 45 ký tự!
       </mat-error>
     </div>
     <div class="row ">
       <div class="form-group col-md-4">
         <label>Mã sách</label>
-        <input type="text" class="form-control" formControlName="code" placeholder="Nhập mã sách">
+        <input type="text" class="form-control" formControlName="code" maxlength="20" placeholder="Nhập mã sách">
         <mat-error
           *ngIf="formUpdateBook.get('code')?.hasError('required') && formUpdateBook.get('code')?.touched">
           Mã sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--             *ngIf="formCreateBook.get('code')?.hasError('pattern') && formCreateBook.get('code')?.touched">-->
-        <!--          Mã sách phải đủ 8 chữ số!-->
-        <!--        </mat-error>-->
       </div>
       <div class="form-group col-md-4">
         <label>Ngôn ngữ</label>
@@ -60,10 +52,10 @@
           *ngIf="formUpdateBook.get('price')?.hasError('required') && formUpdateBook.get('price')?.touched">
           Giá sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--             *ngIf="formCreateBook.get('price')?.hasError('pattern') && formCreateBook.get('price')?.touched">-->
-        <!--          Giá sách phải là một số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formUpdateBook.get('price')?.hasError('pattern') && formUpdateBook.get('price')?.touched">
+          Giá sách phải là một số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Số lượng</label>
@@ -72,10 +64,10 @@
           *ngIf="formUpdateBook.get('quantity')?.hasError('required') && formUpdateBook.get('quantity')?.touched">
           Số lượng sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--             *ngIf="formCreateBook.get('quantity')?.hasError('pattern') && formCreateBook.get('quantity')?.touched">-->
-        <!--          Số lượng sách phải là số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formUpdateBook.get('quantity')?.hasError('pattern') && formUpdateBook.get('quantity')?.touched">
+          Số lượng sách phải là số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Số trang</label>
@@ -84,22 +76,22 @@
           *ngIf="formUpdateBook.get('pageNumber')?.hasError('required') && formUpdateBook.get('pageNumber')?.touched">
           Số trang sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--             *ngIf="formCreateBook.get('pageNumber')?.hasError('pattern') && formCreateBook.get('pageNumber')?.touched">-->
-        <!--          Số trang sách phải là số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formUpdateBook.get('pageNumber')?.hasError('pattern') && formUpdateBook.get('pageNumber')?.touched">
+          Số trang sách phải là số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Năm xuất bản</label>
         <input type="number" formControlName="yearPublishing" class="form-control"/>
         <mat-error
           *ngIf="formUpdateBook.get('yearPublishing')?.hasError('required') && formUpdateBook.get('yearPublishing')?.touched">
-          Mã sách không được để trống!
+          Năm xuất bản không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--             *ngIf="formCreateBook.get('yearPublishing')?.hasError('pattern') && formCreateBook.get('yearPublishing')?.touched">-->
-        <!--          Mã sách phải đủ 8 chữ số!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formUpdateBook.get('yearPublishing')?.hasError('pattern') && formUpdateBook.get('yearPublishing')?.touched">
+          Năm xuất bản không đúng định dạng!
+        </mat-error>
       </div>
     </div>
     <div class="row ">
@@ -110,10 +102,10 @@
           *ngIf="formUpdateBook.get('lenght')?.hasError('required') && formUpdateBook.get('lenght')?.touched">
           Chiều dài trang sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--             *ngIf="formCreateBook.get('lenght')?.hasError('pattern') && formCreateBook.get('lenght')?.touched">-->
-        <!--          Chiều dài trang sách phải là số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formUpdateBook.get('lenght')?.hasError('pattern') && formUpdateBook.get('lenght')?.touched">
+          Chiều dài trang sách phải là số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Chiều rộng</label>
@@ -122,22 +114,18 @@
           *ngIf="formUpdateBook.get('width')?.hasError('required') && formUpdateBook.get('width')?.touched">
           Chiều rộng sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--             *ngIf="formCreateBook.get('width')?.hasError('pattern') && formCreateBook.get('width')?.touched">-->
-        <!--          Chiều rộng sách phải là một số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formUpdateBook.get('width')?.hasError('pattern') && formUpdateBook.get('width')?.touched">
+          Chiều rộng sách phải là một số dương!
+        </mat-error>
       </div>
       <div class="form-group col-md-3">
         <label>Chiều cao</label>
         <input type="number" class="form-control" formControlName="height" placeholder="0.00">
         <mat-error
-          *ngIf="formUpdateBook.get('height')?.hasError('required') && formUpdateBook.get('height')?.touched">
-          Chiều cao sách không được để trống!
+          *ngIf="formUpdateBook.get('height')?.hasError('pattern') && formUpdateBook.get('height')?.touched">
+          Chiều cao sách phải là một số dương!
         </mat-error>
-        <!--        <mat-error-->
-        <!--             *ngIf="formCreateBook.get('height')?.hasError('pattern') && formCreateBook.get('height')?.touched">-->
-        <!--          Chiều cao sách phải là một số dương!-->
-        <!--        </mat-error>-->
       </div>
       <div class="form-group col-md-3">
         <label>Trọng lượng</label>
@@ -146,39 +134,41 @@
           *ngIf="formUpdateBook.get('weight')?.hasError('required') && formUpdateBook.get('weight')?.touched">
           Trọng lượng sách không được để trống!
         </mat-error>
-        <!--        <mat-error-->
-        <!--             *ngIf="formCreateBook.get('weight')?.hasError('pattern') && formCreateBook.get('weight')?.touched">-->
-        <!--          Trọng lượng sách phải là một số dương!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="formUpdateBook.get('weight')?.hasError('pattern') && formUpdateBook.get('weight')?.touched">
+          Trọng lượng sách phải là một số dương!
+        </mat-error>
       </div>
     </div>
     <div class="row ">
       <div class="form-group col-md-4">
         <label>Thể loại <i (click)="openDialogAddCategory()" class="fa fa-plus btn-outline-secondary"></i></label>
-        <mat-select class="form-control" placeholder="--Chọn--" multiple>
-          <mat-option *ngFor="let category of categoryList" value="{{category.id}}" formArrayName="categoryList"
+        <mat-select class="form-control" placeholder="--Chọn--" [(ngModel)]=" formUpdateBook.value.categoryList"
+                    formControlName="categoryList" [compareWith]="compareFn" multiple required>
+          <mat-option *ngFor="let category of categoryList" [value]="category"
                       (onSelectionChange)="onCheckboxChangeCategory($event,category)">{{category.name}}</mat-option>
         </mat-select>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('categoryList')?.hasError('required') && formCreateBook.get('categoryList')?.touched">-->
-        <!--          Nhà xuất bản không được để trống!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="categoryListError">
+          Thể loại không được để trống!
+        </mat-error>
       </div>
       <div class="form-group col-md-4">
         <label>Tác giả <i (click)="openDialogAddAuthor()" class="fa fa-plus btn-outline-secondary"></i></label>
-        <mat-select class="form-control" placeholder="--Chọn--" multiple>
-          <mat-option *ngFor="let author of authorList" value="{{author.id}}" formArrayName="authorList"
+        <mat-select class="form-control" placeholder="--Chọn--" [(ngModel)]=" formUpdateBook.value.authorList"
+                    formControlName="authorList" [compareWith]="compareFn" multiple required>
+          <mat-option *ngFor="let author of authorList" [value]="author"
                       (onSelectionChange)="onCheckboxChangeAuthor($event,author)">{{author.name}}</mat-option>
         </mat-select>
-        <!--        <mat-error-->
-        <!--          *ngIf="formCreateBook.get('authorList')?.hasError('required') && formCreateBook.get('authorList')?.touched">-->
-        <!--          Loại bìa không được để trống!-->
-        <!--        </mat-error>-->
+        <mat-error
+          *ngIf="authorListError">
+          Tác giả không được để trống!
+        </mat-error>
       </div>
       <div class="form-group col-md-4" formGroupName="producer">
         <label>Nhà xuất bản <i (click)="openDialogAddProducer()" class="fa fa-plus btn-outline-secondary"></i></label>
-        <mat-select class="form-control" placeholder="--Chọn--" formControlName="id">
-          <mat-option *ngFor="let producer of producerList" value="{{producer.id}}">{{producer.name}}</mat-option>
+        <mat-select class="form-control" placeholder="--Chọn--" formControlName="id" required>
+          <mat-option *ngFor="let producer of producerList" [value]="producer.id">{{producer.name}}</mat-option>
         </mat-select>
         <mat-error
           *ngIf="formUpdateBook.get('producer')?.hasError('required') && formUpdateBook.get('producer')?.touched">
@@ -186,10 +176,14 @@
         </mat-error>
       </div>
     </div>
-    <div class="row ">
+    <div class="row" formArrayName="imageList">
       <div class="form-group col-md-6">
         <label>Ảnh</label>
-        <input type="file" class="form-control" formControlName="imageList" multiple>
+        <input multiple type="file" class="form-control" (change)="selectFile($event)">
+      </div>
+      <div class="form-group col-md-6" *ngIf="imageList">
+        <img *ngFor="let image of imageList" [src]="image.path"
+             style="width: 50px; height: 60px; padding-right: 5px; padding-top: 15px">
       </div>
     </div>
     <div class="form-group row" style="padding: 0px 10px">

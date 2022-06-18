@@ -1,0 +1,32 @@
+<h1 mat-dialog-title class="text-center m-1">Thông tin tài khoản</h1>
+<p class="text-center m-0">{{user.account.username}}</p>
+<p class="text-center m-0">{{user.fullName}}</p>
+<hr>
+<div mat-dialog-content>
+  <div class="row">
+    <b class="col-4">Họ và tên:&ensp;</b>
+    <span>{{user.fullName}}</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Email:&ensp;</b>
+    <span>{{user.email}}</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Giới tính:</b>
+    <span *ngIf="user.gender == gender.MALE">Nam</span>
+    <span *ngIf="user.gender == gender.FEMALE">Nữ</span>
+    <span *ngIf="user.gender == gender.OTHER">Khác</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Ngày sinh:</b>
+    <span>{{user.birthday | date: "dd-MM-yyyy"}}</span>
+  </div>
+  <div class="row mt-2">
+    <b class="col-4">Ảnh:&ensp;</b>
+    <img src="{{user.image}}" style="width: 100px; height: 100px; padding-right: 5px">
+  </div>
+  <hr>
+</div>
+<div mat-dialog-actions class="justify-content-center">
+  <button mat-button mat-dialog-close class="btn btn-secondary">Thoát</button>
+</div>

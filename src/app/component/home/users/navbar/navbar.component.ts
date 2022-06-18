@@ -5,6 +5,7 @@ import {BookService} from "../../../../service/book.service";
 import {Category} from "../../../../model/book/Category";
 import {User} from "../../../../model/user/User";
 import {UsersService} from "../../../../service/users.service";
+import {OrdersService} from "../../../../service/orders.service";
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +15,12 @@ import {UsersService} from "../../../../service/users.service";
 export class NavbarComponent implements OnInit {
 
   categoryList!: Array<Category>;
+  quantity: number = 0;
 
   constructor(public authService: AuthService,
               private userService: UsersService,
               private bookService: BookService,
+              private ordersService: OrdersService,
               private router: Router) {
   }
 
@@ -31,9 +34,20 @@ export class NavbarComponent implements OnInit {
     this.bookService.getAllCategory().subscribe(data => {
       this.categoryList = data;
     });
+    this.ordersService.getAllCart().subscribe(data => {
+      this.quantity = data.cartList.length;
+    });
     if (localStorage.getItem("token") !== null) {
       this.authService.assignSessionStorageWithLocalStorage();
     }
+  }
+
+  searchByName(name: string) {
+    this.router.navigate(['search?name', name]).then(() => window.location.reload());
+  }
+
+  searchByCategory(id: number) {
+    this.router.navigate(['category', id]).then(() => window.location.reload());
   }
 
   public isLoggedIn() {
@@ -47,4 +61,5 @@ export class NavbarComponent implements OnInit {
   home() {
     this.router.navigateByUrl("/").then(() => window.location.reload());
   }
+
 }

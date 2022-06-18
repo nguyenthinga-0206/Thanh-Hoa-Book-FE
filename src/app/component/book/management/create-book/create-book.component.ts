@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {BookService} from "../../../../service/book.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Producer} from "../../../../model/book/Producer";
 import {Author} from "../../../../model/book/Author";
 import {Category} from "../../../../model/book/Category";
@@ -12,7 +12,7 @@ import {CreateProducerComponent} from "../create-producer/create-producer.compon
 import {finalize} from "rxjs/operators";
 import {MatOptionSelectionChange} from "@angular/material/core";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {Image} from "../../../../model/book/Image";
+import {ImageDTO} from "../../../../dto/book/ImageDTO";
 
 @Component({
   selector: 'app-create-book',
@@ -21,16 +21,15 @@ import {Image} from "../../../../model/book/Image";
 })
 
 export class CreateBookComponent implements OnInit {
+
   producerList!: Array<Producer>;
   authorList!: Array<Author>;
   authorListError: Boolean = false;
   categoryList!: Array<Category>;
   categoryListError: Boolean = false;
-  selectedFile: File | any;
-  name: string = "";
-  url: string = "";
-  image!: Image;
-  imageList!: Array<Image>;
+  selectedFile!: Array<File> | any[];
+  imageList: ImageDTO[] = [];
+
 
   constructor(private bookService: BookService,
               private dialog: MatDialog,
@@ -48,22 +47,22 @@ export class CreateBookComponent implements OnInit {
     });
     this.bookService.getAllCategory().subscribe(data => {
       this.categoryList = data;
-    })
+    });
   }
 
   formCreateBook = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    code: new FormControl('', [Validators.required]),
-    yearPublishing: new FormControl('', [Validators.required]),
-    quantity: new FormControl('', [Validators.required]),
-    weight: new FormControl('', [Validators.required]),
-    width: new FormControl('', [Validators.required]),
-    lenght: new FormControl('', [Validators.required]),
-    height: new FormControl('', [Validators.required]),
-    pageNumber: new FormControl('', [Validators.required]),
+    code: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,20}$")]),
+    yearPublishing: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}$")]),
+    quantity: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][0-9]{0,6})$")]),
+    weight: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
+    width: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
+    lenght: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
+    height: new FormControl('', [Validators.pattern("^(?!^0\.00$)([0-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
+    pageNumber: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][0-9]{0,6})$")]),
     language: new FormControl('', [Validators.required]),
     formCover: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,12})|([0])\.[0-9]{2}$")]),
     imageList: new FormArray([]),
     authorList: new FormArray([], [Validators.required]),
     producer: new FormGroup({
@@ -74,12 +73,8 @@ export class CreateBookComponent implements OnInit {
   });
 
   createBook() {
-    this.formCreateBook.value.imageList.push({
-      name: this.name,
-      path: this.url
-    });
+    this.formCreateBook.value.imageList = this.imageList;
     if (!this.formCreateBook.invalid) {
-      console.log(this.formCreateBook.value);
       this.bookService.createBook(this.formCreateBook.value).subscribe(
         (data) => {
           this.snackBar.open("Thêm mới thành công", "Đóng", {
@@ -90,6 +85,7 @@ export class CreateBookComponent implements OnInit {
       );
       this.ngOnInit();
       this.formCreateBook.reset();
+      this.imageList = []
     }
   }
 
@@ -98,7 +94,6 @@ export class CreateBookComponent implements OnInit {
       width: '400px',
       height: '300px',
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
     });
@@ -109,7 +104,6 @@ export class CreateBookComponent implements OnInit {
       width: '400px',
       height: '300px',
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
     });
@@ -120,28 +114,26 @@ export class CreateBookComponent implements OnInit {
       width: '400px',
       height: '300px',
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       this.ngOnInit();
     });
   }
 
   selectFile(event: any) {
-    const path = Date.now().toString();
     this.selectedFile = event.target.files;
-    // for (let file of this.selectedFile) {
-    //   this.name = file.name;
-    //   console.log(this.name);
-    this.angularFireStorage.upload(path, this.selectedFile).snapshotChanges().pipe(
-      finalize(() => {
-        this.angularFireStorage.ref(path).getDownloadURL().subscribe(data => {
-          this.url = data;
+    for (let file of this.selectedFile) {
+      const path = Date.now().toString();
+      this.angularFireStorage.upload(path, file).snapshotChanges().pipe(
+        finalize(() => {
+          this.angularFireStorage.ref(path).getDownloadURL().subscribe(data => {
+            this.imageList.push({
+              name: file.name, path: data
+            })
+          })
         })
-      })
-    ).subscribe();
-    // this.image.name = this.name;
-    // this.image.path = this.url;
-    // }
+      ).subscribe();
+
+    }
   }
 
   onCheckboxChangeAuthor(event: MatOptionSelectionChange, author: Author) {
@@ -177,4 +169,5 @@ export class CreateBookComponent implements OnInit {
       this.categoryListError = categoryList.value.length == 0 ? true : false;
     }
   }
+
 }

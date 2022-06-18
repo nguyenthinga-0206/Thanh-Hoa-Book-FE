@@ -13,7 +13,13 @@ const routes: Routes = [
     data: {role: ['ROLE_ADMIN', 'ROLE_MANAGEMENT']}
   },
   {
-    path: "", component: ListBookComponent
+    path: "", component: ListBookComponent,
+  },
+  {
+    path: "search?name/:name", component: ListBookComponent,
+  },
+  {
+    path: "category/:id", component: ListBookComponent,
   },
   {
     path: "book/:id", component: BookDetailComponent
