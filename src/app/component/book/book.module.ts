@@ -56,9 +56,6 @@ import {OrderModule} from "ngx-order-pipe";
     MatFormFieldModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
     MatCardModule,
     Ng2SearchPipeModule,
     OrderModule
