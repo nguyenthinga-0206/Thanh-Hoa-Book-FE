@@ -27,7 +27,7 @@
               <div class="mb-3 col-6">
                 <p>Tác giả: <span *ngFor="let author of book.authorList">{{author.name}} </span></p>
                 <p>NXB: <span>{{book.producer.name}}</span></p>
-                <p>Kích thước: <span>{{book.lenght}} x {{book.width}} x {{book.height}} cm</span></p>
+                <p>Kích thước: <span>{{book.lenght}} x {{book.width}} <span *ngIf="book.height != 0">x {{book.height}}</span> cm</span></p>
                 <p>Năm xuất bản: <span>{{book.yearPublishing}}</span></p>
               </div>
               <div class="mb-3" style="padding-left: 10px">
@@ -84,12 +84,12 @@
     </div>
   </article>
 
-  <article class="card mt-5">
-    <div class="card-body">
-      <h4 class="font-weight-bold text-center text-uppercase">sản phẩm gợi ý</h4>
-      <div class="row m-auto card-body">
-        <app-list-book></app-list-book>
-      </div>
-    </div>
-  </article>
+<!--  <article class="card mt-5">-->
+<!--    <div class="card-body">-->
+<!--      <h4 class="font-weight-bold text-center text-uppercase">sản phẩm gợi ý</h4>-->
+<!--      <div class="row m-auto card-body">-->
+<!--        <app-list-book></app-list-book>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </article>-->
 </div>

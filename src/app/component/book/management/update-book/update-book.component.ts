@@ -13,6 +13,7 @@ import {MatOptionSelectionChange} from "@angular/material/core";
 import {ImageDTO} from "../../../../dto/book/ImageDTO";
 import {finalize} from "rxjs/operators";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {log} from "util";
 
 @Component({
   selector: 'app-update-book',
@@ -47,17 +48,17 @@ export class UpdateBookComponent implements OnInit {
     weight: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
     width: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
     lenght: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
-    height: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([0-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
+    height: new FormControl('', [Validators.pattern("^(?!^0\.00$)([0-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
     pageNumber: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][0-9]{0,6})$")]),
     language: new FormControl('', [Validators.required]),
     formCover: new FormControl('', [Validators.required]),
     price: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,12})|([0])\.[0-9]{2}$")]),
     imageList: new FormArray([]),
-    authorList: new FormArray([], Validators.required),
+    authorList: new FormControl(),
     producer: new FormGroup({
       id: new FormControl()
     }, [Validators.required]),
-    categoryList: new FormArray([], Validators.required),
+    categoryList: new FormControl(),
     description: new FormControl(),
   });
 
@@ -88,18 +89,15 @@ export class UpdateBookComponent implements OnInit {
       description: this.data.description,
       producer: this.data.producer,
     });
-    this.formUpdateBook.value.authorList = this.data.authorList;
-    this.formUpdateBook.value.categoryList = this.data.categoryList;
-    this.categorys = this.data.categoryList;
+    this.formUpdateBook.controls.authorList.setValue(this.data.authorList);
+    this.formUpdateBook.controls.categoryList.setValue(this.data.categoryList);
     this.formUpdateBook.value.imageList = this.data.imageList;
     this.imageList = this.data.imageList;
+    this.categorys = this.data.imageList;
   }
 
   updateBook() {
     this.formUpdateBook.value.imageList = this.imageList;
-    this.formUpdateBook.value.authorList = this.data.authorList;
-    this.formUpdateBook.value.categoryList = this.data.categoryList;
-    console.log(this.formUpdateBook.value)
     if (!this.formUpdateBook.invalid) {
       this.bookService.editBook(this.formUpdateBook.value).subscribe(
         (data) => {
@@ -110,6 +108,7 @@ export class UpdateBookComponent implements OnInit {
         },
       );
       this.ngOnInit();
+      this.dialogRef.close();
     }
   }
 
@@ -177,25 +176,19 @@ export class UpdateBookComponent implements OnInit {
   }
 
   onCheckboxChangeCategory(event: MatOptionSelectionChange, category: Category) {
-    const categoryList = (this.formUpdateBook.controls.categoryList as FormArray);
+    const temp = (this.formUpdateBook.controls.categoryList as FormArray);
+    const categoryList = temp.value;
     if (event.source.selected) {
-      {
-        categoryList.push(new FormControl(category));
-      }
-      this.categoryListError = categoryList.value.length > 0 ? false : true;
+        categoryList.push(category);
+      this.categoryListError = categoryList.length > 0 ? false : true;
     } else {
-      {
-        const index = categoryList.controls
-          .findIndex(x => x.value === category);
+        const index = categoryList.findIndex((x: { value: Category; }) => x.value === category);
         categoryList.removeAt(index);
-      }
-      this.categoryListError = categoryList.value.length == 0 ? true : false;
+      this.categoryListError = categoryList.length == 0 ? true : false;
     }
   }
 
-  compareFn(o1: any, o2: any): boolean {
-    if (o1.id == o2.id && o1.id == o2.id)
-      return true;
-    else return false
+  compareFn(t1: any, t2: any): boolean {
+    return t1 && t2 ? t1.id === t2.id : t1 === t2;
   }
 }

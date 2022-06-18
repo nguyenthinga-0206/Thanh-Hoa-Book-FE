@@ -21,7 +21,7 @@
   </div>
   <div class="row mt-2">
     <b class="col-4">Kích thước:&ensp;</b>
-    <span>{{book.lenght}} x {{book.width}} x {{book.height}} cm</span>
+    <span>{{book.lenght}} x {{book.width}} <span *ngIf="book.height != 0">x {{book.height}}</span> cm</span>
   </div>
   <div class="row mt-2">
     <b class="col-4">Trọng lượng:&ensp;</b>

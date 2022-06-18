@@ -44,7 +44,7 @@ export class TableListBookComponent implements OnInit {
   openDialogCreate() {
     const dialogRef = this.dialog.open(CreateBookComponent, {
       width: '700px',
-      height: '700px',
+      height: '800px',
     });
     dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
@@ -69,11 +69,10 @@ export class TableListBookComponent implements OnInit {
   openDialogEdit(id: number) {
     this.bookService.getBookById(id).subscribe(data => {
         const dialogRef = this.dialog.open(UpdateBookComponent, {
-          width: '500px',
+          width: '700px',
           height: '800px',
           data: data
         });
-
         dialogRef.afterClosed().subscribe(() => {
           this.ngOnInit();
         });

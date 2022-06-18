@@ -67,8 +67,8 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           this.isLoginValid = false;
-          switch (error.error.status) { // error.error.status = 404 or 400
-            case "401":
+          switch (error.status) { // error.error.status = 404 or 400
+            case 401:
               this.errorUsername = "Tài khoản hoặc mật khẩu sai";
               this.errorPassword = "";
               break;

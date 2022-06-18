@@ -1,19 +1,36 @@
 <div *ngIf="bookList == null" class="text-center">
   <img src="assets/images/homepage.jpg" width="200px">
+  <p style="font-size: 18px" *ngIf="searchError">{{searchError}}</p>
 </div>
 
 <div *ngIf="bookList != null" class="container padding-y" style="margin-bottom: 20px; min-width: 1200px">
+  <h3 *ngIf="search">Kết quả tìm kiếm '<span style="font-size: 23px; color: #1ABB9C">{{search}}</span>'</h3>
+  <div class="row mt-2 pl-3">
+    <div class="form-group row col-2">
+      <label for="price" class="col-4">Giá</label>
+      <mat-select class=" form-control col-8" id="price" placeholder="--Chọn--">
+        <mat-option (click)="setOrderLow('price')" value="low">Giá Thấp</mat-option>
+        <mat-option (click)="setOrderHigh('price')" value="high">Giá Cao</mat-option>
+      </mat-select>
+    </div>
+    <div class="form-group row col-8">
+      <label for="producer" class="col-2">Nhà xuất bản</label>
+      <mat-select class="pl-2 form-control col-4" id="producer" placeholder="--Chọn--" multiple>
+        <mat-option *ngFor="let producer of producerList" [value]="producer.id">{{producer.name}}</mat-option>
+      </mat-select>
+    </div>
+  </div>
   <div>
     <div class="row">
-      <div class="w_20" *ngFor="let book of bookList | paginate :{itemsPerPage:40 ,currentPage : p}">
+      <div class="w_20" *ngFor="let book of bookList | orderBy: order:reverse:caseInsensitive | paginate :{itemsPerPage:40 ,currentPage : p}">
         <mat-card>
-          <div style="height: 200px" [routerLink]="['book/', book.id]">
+          <div style="height: 200px" (click)="detail(book.id)">
             <img style="height: 200px; width: 100%; padding-left: 10px" [src]="book.imageList[0].path"
                  [alt]="book.imageList[0].name">
           </div>
           <mat-card-content class="mt-2">
             <p style="margin-bottom: 5px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
-               [routerLink]="['book/', book.id]">
+               (click)="detail(book.id)">
               {{book.name}}
             </p>
             <p>

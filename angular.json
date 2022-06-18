@@ -34,8 +34,7 @@
               "node_modules/font-awesome/css/font-awesome.css",
               "src/assets/css/style.css",
               "src/assets/css/style2.css",
-              "src/assets/css/custom.css",
-              "src/assets/css/dataTables.bootstrap4.min.css"
+              "src/assets/css/custom.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -45,8 +44,7 @@
               "node_modules/datatables.net/js/jquery.dataTables.min.js",
               "src/assets/js/custom.js",
               "src/assets/js/custom2.js",
-              "src/assets/js/custom3.js",
-              "src/assets/js/dataTables.bootstrap4.min.js"
+              "src/assets/js/custom3.js"
             ]
           },
           "configurations": {

@@ -123,10 +123,6 @@
         <label>Chiều cao</label>
         <input type="number" class="form-control" formControlName="height" placeholder="0.00">
         <mat-error
-          *ngIf="formCreateBook.get('height')?.hasError('required') && formCreateBook.get('height')?.touched">
-          Chiều cao sách không được để trống!
-        </mat-error>
-        <mat-error
           *ngIf="formCreateBook.get('height')?.hasError('pattern') && formCreateBook.get('height')?.touched">
           Chiều cao sách phải là một số dương!
         </mat-error>
@@ -147,7 +143,7 @@
     <div class="row">
       <div class="form-group col-md-4">
         <label>Thể loại <i (click)="openDialogAddCategory()" class="fa fa-plus btn-outline-secondary"></i></label>
-        <mat-select id="categoryList" class="form-control" placeholder="--Chọn--" multiple>
+        <mat-select id="categoryList" class="form-control" placeholder="--Chọn--" multiple required>
           <mat-option *ngFor="let category of categoryList" value="{{category.id}}"
                       formArrayName="categoryList"
                       (onSelectionChange)="onCheckboxChangeCategory($event,category)">{{category.name}}</mat-option>
@@ -159,7 +155,7 @@
       </div>
       <div class="form-group col-md-4">
         <label>Tác giả <i (click)="openDialogAddAuthor()" class="fa fa-plus btn-outline-secondary"></i></label>
-        <mat-select class="form-control" placeholder="--Chọn--" multiple>
+        <mat-select class="form-control" placeholder="--Chọn--" multiple required>
           <mat-option *ngFor="let author of authorList" value="{{author.id}}" formArrayName="authorList"
                       (onSelectionChange)="onCheckboxChangeAuthor($event,author)">{{author.name}}</mat-option>
         </mat-select>
@@ -170,7 +166,7 @@
       </div>
       <div class="form-group col-md-4" formGroupName="producer">
         <label>Nhà xuất bản <i (click)="openDialogAddProducer()" class="fa fa-plus btn-outline-secondary"></i></label>
-        <mat-select class="form-control" placeholder="--Chọn--" formControlName="id">
+        <mat-select class="form-control" placeholder="--Chọn--" formControlName="id" required>
           <mat-option *ngFor="let producer of producerList" value="{{producer.id}}">{{producer.name}}</mat-option>
         </mat-select>
         <mat-error
