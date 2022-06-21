@@ -59,6 +59,10 @@ export class OrdersService {
     return this.httpClient.post<boolean>(this.URL_ORDERS, orderRequest, {headers: this.headers});
   }
 
+  editCart(id: number, quantity: number): Observable<boolean> {
+    return this.httpClient.put<boolean>(this.URL_CARTS + "/" + id + "/" + quantity, {headers: this.headers});
+  }
+
   editStatus(statusDTO: StatusDTO): Observable<boolean> {
     return this.httpClient.put<boolean>(this.URL_ORDERS + "/status", statusDTO, {headers: this.headers});
   }

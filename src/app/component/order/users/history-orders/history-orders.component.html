@@ -2,7 +2,7 @@
   <img src="assets/images/don_hang.png">
   <h5>Chưa có đơn hàng</h5>
 </div>
-<div class="card mt-2" *ngFor="let order of orderList" style="min-width: 1200px">
+<div class="card mt-2" *ngFor="let order of orderList">
   <div class="card-header">
     <b>Ngày lên đơn:<span
       class="ml-4 font-weight-lighter">{{order.orders.timeCreateFlag | date: "HH:mm:ss  dd-MM-yyyy"}}</span></b>
@@ -13,10 +13,12 @@
       <p class="text-uppercase text-capitalize" style="font-size: 15px; margin-bottom: 0px">{{detail.book.name}}</p>
       <b>x{{detail.quantity}}</b>
     </div>
-    <b>{{detail.book.price * detail.quantity | currency:"VND"}}</b>
+    <b class="col-2">{{detail.book.price * detail.quantity | currency:"VND"}}</b>
   </div>
   <hr>
-  <p class="mr-0 text-danger font-weight-bold order-history-total">
-    Tổng tiền: {{order.totalPrice | currency: "VND"}}
-  </p>
+  <div class="mr-0 text-danger">
+    <p class="price-order">Phí ship: {{order.orders.ship | currency: "VND"}}</p>
+    <p class="price-order">Tiền hàng: {{order.totalPrice | currency: "VND"}}</p>
+    <p class="font-weight-bold order-history-total">Tổng tiền: {{order.totalPrice + order.orders.ship | currency: "VND"}}</p>
+  </div>
 </div>
