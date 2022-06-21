@@ -59,12 +59,12 @@ export class CreateBookComponent implements OnInit {
     width: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
     lenght: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
     height: new FormControl('', [Validators.pattern("^(?!^0\.00$)([0-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
-    pageNumber: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][0-9]{0,6})$")]),
-    language: new FormControl('', [Validators.required]),
-    formCover: new FormControl('', [Validators.required]),
+    pageNumber: new FormControl('', [Validators.pattern("^(?!^0$)([1-9][0-9]{0,6})$")]),
+    language: new FormControl(null),
+    formCover: new FormControl(null),
     price: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,12})|([0])\.[0-9]{2}$")]),
     imageList: new FormArray([]),
-    authorList: new FormArray([], [Validators.required]),
+    authorList: new FormArray([]),
     producer: new FormGroup({
       id: new FormControl()
     }, [Validators.required]),
@@ -84,8 +84,7 @@ export class CreateBookComponent implements OnInit {
         },
       );
       this.ngOnInit();
-      this.formCreateBook.reset();
-      this.imageList = []
+      this.dialogRef.close();
     }
   }
 

@@ -11,8 +11,8 @@ import {ProfileRequest} from "../dto/user/profileRequest";
   providedIn: 'root'
 })
 export class UsersService {
-  // readonly URL_USERS = "http://localhost:8080/api/users/";
-  readonly URL_USERS = "https://api-thanh-hoa-book.herokuapp.com/api/users/";
+  readonly URL_USERS = "http://localhost:8080/api/users/";
+  // readonly URL_USERS = "https://api-thanh-hoa-book.herokuapp.com/api/users/";
 
   constructor(private httpClient: HttpClient,
               private authService: AuthService) {

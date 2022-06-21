@@ -24,7 +24,7 @@ export class ListBookComponent implements OnInit {
   search: string = '';
   order: string = 'price';
   reverse: boolean = false;
-  caseInsensitive: boolean = true; //khong phan biet hoa thuong caseInsensitive = true, phân biet hoa thuong caseInsensitive =  false
+  caseInsensitive: boolean = false; //khong phan biet hoa thuong caseInsensitive = true, phân biet hoa thuong caseInsensitive =  false
 
   constructor(private authService: AuthService,
               private bookService: BookService,

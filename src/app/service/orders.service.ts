@@ -17,10 +17,10 @@ import {OrderResponse} from "../dto/order/OrderResponse";
 })
 export class OrdersService {
 
-  // readonly URL_ORDERS = "http://localhost:8080/api/orders";
-  // readonly URL_CARTS = "http://localhost:8080/api/cart";
-  readonly URL_ORDERS = "https://api-thanh-hoa-book.herokuapp.com/api/orders";
-  readonly URL_CARTS = "https://api-thanh-hoa-book.herokuapp.com/api/cart";
+  readonly URL_ORDERS = "http://localhost:8080/api/orders";
+  readonly URL_CARTS = "http://localhost:8080/api/cart";
+  // readonly URL_ORDERS = "https://api-thanh-hoa-book.herokuapp.com/api/orders";
+  // readonly URL_CARTS = "https://api-thanh-hoa-book.herokuapp.com/api/cart";
 
   constructor(private httpClient: HttpClient,
               private authService: AuthService) {
