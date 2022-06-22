@@ -35,4 +35,18 @@ export class CartComponent implements OnInit {
       window.location.reload();
     })
   }
+
+  minusQuantity(cart: Cart) {
+    if (cart.quantity > 1) {
+      cart.quantity -= 1;
+    }
+    this.ordersService.editCart(cart.id, cart.quantity).subscribe(data=>{})
+  }
+
+  plusQuantity(cart: Cart) {
+    if (cart.quantity < cart.book.quantity) {
+      cart.quantity += 1;
+    }
+    this.ordersService.editCart(cart.id, cart.quantity).subscribe(data=>{})
+  }
 }

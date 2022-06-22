@@ -5,3 +5,10 @@
   padding-right: 10px;
   margin: 5px;
 }
+
+.price-order {
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 15px;
+}

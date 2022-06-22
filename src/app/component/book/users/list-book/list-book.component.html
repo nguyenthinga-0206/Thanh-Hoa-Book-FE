@@ -5,24 +5,19 @@
 
 <div *ngIf="bookList != null" class="container padding-y" style="margin-bottom: 20px; min-width: 1200px">
   <h3 *ngIf="search">Kết quả tìm kiếm '<span style="font-size: 23px; color: #1ABB9C">{{search}}</span>'</h3>
-  <div class="row mt-2 pl-3">
+  <div class="row mt-2 pl-2">
     <div class="form-group row col-2">
-      <label for="price" class="col-4">Giá</label>
+      <label for="price" class="col-4 pt-1">Giá</label>
       <mat-select class=" form-control col-8" id="price" placeholder="--Chọn--">
         <mat-option (click)="setOrderLow('price')" value="low">Giá Thấp</mat-option>
         <mat-option (click)="setOrderHigh('price')" value="high">Giá Cao</mat-option>
       </mat-select>
     </div>
-    <div class="form-group row col-8">
-      <label for="producer" class="col-2">Nhà xuất bản</label>
-      <mat-select class="pl-2 form-control col-4" id="producer" placeholder="--Chọn--" multiple>
-        <mat-option *ngFor="let producer of producerList" [value]="producer.id">{{producer.name}}</mat-option>
-      </mat-select>
-    </div>
   </div>
   <div>
     <div class="row">
-      <div class="w_20" *ngFor="let book of bookList | orderBy: order:reverse:caseInsensitive | paginate :{itemsPerPage:20 ,currentPage : p}">
+      <div class="w_20"
+           *ngFor="let book of bookList | orderBy: order:reverse:caseInsensitive | paginate :{itemsPerPage:20 ,currentPage : p}">
         <mat-card>
           <div style="height: 200px" (click)="detail(book.id)">
             <img style="height: 200px; width: 100%; padding-left: 10px" [src]="book.imageList[0].path"
@@ -35,8 +30,9 @@
             </p>
             <p>
               <span class="text-danger font-weight-bold">{{book.price | currency: 'VND'}}</span>
-              <span class="right"><i class="fa fa-shopping-cart" style="font-size: 15px"
+              <span *ngIf="book.quantity !=0" class="right"><i class="fa fa-shopping-cart" style="font-size: 15px"
                                      (click)="addCart(book.id)"></i></span>
+              <span *ngIf="book.quantity ==0" class="right">Hết hàng</span>
             </p>
           </mat-card-content>
         </mat-card>

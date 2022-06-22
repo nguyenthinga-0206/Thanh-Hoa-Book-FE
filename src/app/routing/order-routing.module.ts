@@ -21,6 +21,11 @@ const routes: Routes = [
     path: "checkout", component: CheckoutComponent,
     canActivate: [AuthGuard],
     data: {role: ['ROLE_USER']}
+  },
+  {
+    path: "checkout/:id", component: CheckoutComponent,
+    canActivate: [AuthGuard],
+    data: {role: ['ROLE_USER']}
   }
 ];
 

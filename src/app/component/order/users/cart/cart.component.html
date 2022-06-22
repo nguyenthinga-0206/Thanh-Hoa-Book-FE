@@ -28,13 +28,15 @@
                 <figure class="itemside">
                   <div class="aside"><img src="{{cart.book.imageList[0].path}}" class="img-sm"></div>
                   <figcaption class="info">
-                    <a [href]="['book/'+ cart.book.id]" class="title text-dark">{{cart.book.name}}</a>
+                    <a [href]="['book/'+ cart.book.id]" class="title text-dark" style="margin-bottom: 5px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100px">{{cart.book.name}}</a>
                   </figcaption>
                 </figure>
               </td>
               <td>
+                <button class="minus is-form" (click)="minusQuantity(cart)"><i class="fa fa-minus"></i></button>
                 <input class="input-qty" type="number" id="quantity"
                        [value]="cart.quantity" disabled>
+                <button class="plus is-form" (click)="plusQuantity(cart)"><i class="fa fa-plus"></i></button>
               </td>
               <td class="text-right">
                 {{cart.book.price | currency: "VND"}}
@@ -42,8 +44,12 @@
               <td class="text-right">
                 {{cart.quantity * cart.book.price | currency: "VND"}}
               </td>
-              <td class="text-right">
+              <td class="text-right" style="text-align-last: center;" *ngIf="cart.quantity <= cart.book.quantity">
                 <a class="btn" (click)="deleteCart(cart.id)"><i class="fa fa-trash text-trash"></i></a>
+              </td>
+              <td class="text-right text-danger"  style="text-align-last: center;" *ngIf="cart.quantity > cart.book.quantity">
+                <a class="btn" (click)="deleteCart(cart.id)"><i class="fa fa-trash text-trash"></i></a><br>
+                Hết hàng
               </td>
             </tr>
             </tbody>
@@ -88,16 +94,6 @@
         </div>
       </aside>
     </div>
-
-
-<!--    <div class="card mt-5">-->
-<!--      <div class="card-body">-->
-<!--        <h4 class="font-weight-bold text-center text-uppercase">sản phẩm gợi ý</h4>-->
-<!--        <div class="row">-->
-<!--          <app-list-book></app-list-book>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
 </div>
 
