@@ -22,6 +22,7 @@ export class ChangePasswordComponent implements OnInit {
 
   email: string = '' + this.authService.getEmail();
   changePasswordRequest!: ChangePasswordRequest;
+  oldPasswordError: string = '';
 
   constructor(private authService: AuthService,
               private userService: UsersService,
@@ -48,13 +49,17 @@ export class ChangePasswordComponent implements OnInit {
         oldPassword: this.formChangePassword.value.oldPassword
       };
       this.userService.changePassword(this.changePasswordRequest).subscribe(data => {
-        this.snackBar.open("Cập nhật thành công", "Đóng", {
-          panelClass: ['mat-toolbar', 'mat-primary'],
-          duration: 3000
-        });
-        this.authService.clear();
-        this.router.navigate(['/login'])
-      });
+          this.snackBar.open("Cập nhật thành công", "Đóng", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 3000
+          });
+          this.authService.clear();
+          this.router.navigate(['/login'])
+        },
+        error => {
+          this.oldPasswordError = 'Mật khẩu cũ không đúng!'
+        }
+      );
     }
   }
 

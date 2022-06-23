@@ -10,7 +10,8 @@
               <input type="text" class="form-control" id="fullName" formControlName="fullName"
                      placeholder="Nguyen Thi H">
               <mat-error
-                *ngIf="checkouForm.get('fullName')?.hasError('required') && checkouForm.get('fullName')?.touched">
+                *ngIf="(checkouForm.get('fullName')?.hasError('required') && checkouForm.get('fullName')?.touched) ||
+                (checkouForm.get('fullName')?.untouched && submitting)">
                 Họ và tên không được để trống!
               </mat-error>
               <mat-error
@@ -24,7 +25,8 @@
             <div class="col-sm-10">
               <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="098xxxxx12">
               <mat-error
-                *ngIf="checkouForm.get('phone')?.hasError('required') && checkouForm.get('phone')?.touched">
+                *ngIf="(checkouForm.get('phone')?.hasError('required') && checkouForm.get('phone')?.touched) ||
+                (checkouForm.get('phone')?.untouched && submitting)">
                 Số điện thoại không được để trống!
               </mat-error>
               <mat-error
@@ -39,7 +41,8 @@
               <input type="text" class="form-control" id="address" formControlName="address"
                      placeholder="1XX, Trần Phú Toản, xxxx">
               <mat-error
-                *ngIf="checkouForm.get('address')?.hasError('required') && checkouForm.get('address')?.touched">
+                *ngIf="(checkouForm.get('address')?.hasError('required') && checkouForm.get('address')?.touched) ||
+                (checkouForm.get('address')?.untouched && submitting)">
                 Địa chỉ không được để trống!
               </mat-error>
               <mat-error

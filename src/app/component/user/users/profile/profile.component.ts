@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   is_edit: boolean = true;
   selectedFile: File | any;
   url?: string = '';
+  background = (this.isAdmin() || this.isManagement()) ? '#2A3F54' : '#1ABB9C';
 
   constructor(public authService: AuthService,
               private userService: UsersService,
@@ -95,6 +96,10 @@ export class ProfileComponent implements OnInit {
 
   isAdmin() {
     return this.authService.getRole() == "ROLE_ADMIN";
+  }
+
+  isManagement() {
+    return this.authService.getRole() == "ROLE_MANAGEMENT";
   }
 
 }

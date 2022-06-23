@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
 
   registerRequest!: RegisterRequest;
   error!: string;
+  submitting: boolean = false;
 
   constructor(private homeService: HomeService,
               private router: Router,) {
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnInit {
   });
 
   register() {
+    this.submitting = true;
     if (!this.formRegister.invalid) {
       this.registerRequest = {
         username: this.formRegister.value.username,

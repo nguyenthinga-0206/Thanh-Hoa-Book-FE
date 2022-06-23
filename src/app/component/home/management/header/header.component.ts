@@ -27,6 +27,11 @@ export class HeaderComponent implements OnInit {
 
   public logout() {
     this.authService.clear();
+    window.location.reload();
+  }
+
+  isAdmin() {
+    return this.authService.getRole() == "ROLE_ADMIN";
   }
 
 }

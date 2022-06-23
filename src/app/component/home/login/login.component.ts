@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   errorUsername: string = "";
   errorPassword: string = "";
   isLoginValid = false;
-
+  submitting: boolean = false;
 
   constructor(private homeService: HomeService,
               private router: Router,
@@ -49,10 +49,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']).then(() => window.location.reload());
         break;
       case "ROLE_MANAGEMENT":
-        this.router.navigate(['/management']);
+        this.router.navigate(['/management']).then(() => window.location.reload());
         break;
       case "ROLE_ADMIN":
-        this.router.navigate(['/management']);
+        this.router.navigate(['/management']).then(() => window.location.reload());
         break;
       default:
         this.router.navigate(['/forbidden'])
@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
+    this.submitting = true;
     if (!this.formLogin.invalid) {
       this.homeService.login(this.formLogin.value).subscribe(
         (loginResponse) => {

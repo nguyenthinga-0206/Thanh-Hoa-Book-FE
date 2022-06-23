@@ -45,7 +45,7 @@ import {OrderModule} from "ngx-order-pipe";
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     MatExpansionModule,
-    OrderModule
+    OrderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

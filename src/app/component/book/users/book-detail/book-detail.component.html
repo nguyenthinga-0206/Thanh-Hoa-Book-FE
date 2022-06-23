@@ -64,7 +64,7 @@
               <button [disabled]="book.quantity == 0" (click)="addCart(book.id)" class="btn btn-cart text-capitalize mr-4">
                 <i class="fa fa-shopping-cart mr-4"></i>Thêm vào giỏ hàng
               </button>
-              <a [href]="['checkout']">
+              <a (click)="movecheckout(book, quantity)" >
                 <button class="btn btn-order mr-1 text-capitalize" [disabled]="book.quantity == 0">Mua ngay</button>
               </a>
             </div>

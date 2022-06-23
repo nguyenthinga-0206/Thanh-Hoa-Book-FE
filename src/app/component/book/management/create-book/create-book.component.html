@@ -15,7 +15,8 @@
         <label>Mã sách</label>
         <input type="text" class="form-control" formControlName="code" maxlength="20" placeholder="Nhập mã sách">
         <mat-error
-          *ngIf="formCreateBook.get('code')?.hasError('required') && formCreateBook.get('code')?.touched">
+          *ngIf="(formCreateBook.get('code')?.hasError('required') && formCreateBook.get('code')?.touched) ||
+          (formCreateBook.get('code')?.untouched && submitting)">
           Mã sách không được để trống!
         </mat-error>
       </div>
@@ -41,7 +42,8 @@
         <label>Giá</label>
         <input type="number" class="form-control" formControlName="price" placeholder="0.00">
         <mat-error
-          *ngIf="formCreateBook.get('price')?.hasError('required') && formCreateBook.get('price')?.touched">
+          *ngIf="(formCreateBook.get('price')?.hasError('required') && formCreateBook.get('price')?.touched) ||
+          (formCreateBook.get('price')?.untouched && submitting)">
           Giá sách không được để trống!
         </mat-error>
         <mat-error
@@ -53,7 +55,8 @@
         <label>Số lượng</label>
         <input type="number" class="form-control" formControlName="quantity" placeholder="0">
         <mat-error
-          *ngIf="formCreateBook.get('quantity')?.hasError('required') && formCreateBook.get('quantity')?.touched">
+          *ngIf="(formCreateBook.get('quantity')?.hasError('required') && formCreateBook.get('quantity')?.touched) ||
+          (formCreateBook.get('quantity')?.untouched && submitting)">
           Số lượng sách không được để trống!
         </mat-error>
         <mat-error
@@ -73,7 +76,8 @@
         <label>Năm xuất bản</label>
         <input type="text" formControlName="yearPublishing" class="form-control"/>
         <mat-error
-          *ngIf="formCreateBook.get('yearPublishing')?.hasError('required') && formCreateBook.get('yearPublishing')?.touched">
+          *ngIf="(formCreateBook.get('yearPublishing')?.hasError('required') && formCreateBook.get('yearPublishing')?.touched) ||
+          (formCreateBook.get('yearPublishing')?.untouched && submitting)">
           Năm xuất bản không được để trống!
         </mat-error>
         <mat-error
@@ -87,7 +91,8 @@
         <label>Chiều dài</label>
         <input type="number" class="form-control" formControlName="lenght" placeholder="0.00">
         <mat-error
-          *ngIf="formCreateBook.get('lenght')?.hasError('required') && formCreateBook.get('lenght')?.touched">
+          *ngIf="(formCreateBook.get('lenght')?.hasError('required') && formCreateBook.get('lenght')?.touched) ||
+          (formCreateBook.get('lenght')?.untouched && submitting)">
           Chiều dài trang sách không được để trống!
         </mat-error>
         <mat-error
@@ -99,7 +104,8 @@
         <label>Chiều rộng</label>
         <input type="number" class="form-control" formControlName="width" placeholder="0.00">
         <mat-error
-          *ngIf="formCreateBook.get('width')?.hasError('required') && formCreateBook.get('width')?.touched">
+          *ngIf="(formCreateBook.get('width')?.hasError('required') && formCreateBook.get('width')?.touched) ||
+          (formCreateBook.get('width')?.untouched && submitting)">
           Chiều rộng sách không được để trống!
         </mat-error>
         <mat-error
@@ -119,7 +125,8 @@
         <label>Trọng lượng</label>
         <input type="number" class="form-control" formControlName="weight" placeholder="0.00">
         <mat-error
-          *ngIf="formCreateBook.get('weight')?.hasError('required') && formCreateBook.get('weight')?.touched">
+          *ngIf="(formCreateBook.get('weight')?.hasError('required') && formCreateBook.get('weight')?.touched) ||
+          (formCreateBook.get('weight')?.untouched && submitting)">
           Trọng lượng sách không được để trống!
         </mat-error>
         <mat-error
@@ -169,7 +176,8 @@
         <input multiple type="file" class="form-control" (change)="selectFile($event)">
       </div>
       <div class="form-group col-md-6" *ngIf="imageList">
-        <img *ngFor="let image of imageList" [src]="image.path" style="width: 50px; height: 60px; padding-right: 5px; padding-top: 15px">
+        <img *ngFor="let image of imageList" [src]="image.path"
+             style="width: 50px; height: 60px; padding-right: 5px; padding-top: 15px">
       </div>
     </div>
     <div class="form-group row" style="padding: 0px 10px">

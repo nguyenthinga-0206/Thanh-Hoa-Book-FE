@@ -23,7 +23,8 @@
           <option class="form-check-input" value="ROLE_ADMIN">Quản lý
         </select>
         <mat-error
-          *ngIf="formCreateManagement.get('role')?.hasError('required') && formCreateManagement.get('role')?.touched">
+          *ngIf="(formCreateManagement.get('role')?.hasError('required') && formCreateManagement.get('role')?.touched) ||
+          (formCreateManagement.get('role')?.untouched && submitting)">
           Quyền hạn không được để trống!
         </mat-error>
       </div>
@@ -31,7 +32,8 @@
         <label>Mật khẩu</label>
         <input type="password " class="form-control" formControlName="password" placeholder="********">
         <mat-error
-          *ngIf="formCreateManagement.get('account.password')?.hasError('required') && formCreateManagement.get('account.password')?.touched">
+          *ngIf="(formCreateManagement.get('account.password')?.hasError('required') && formCreateManagement.get('account.password')?.touched) ||
+          (formCreateManagement.get('account.password')?.untouched && submitting)">
           Mật khẩu không được để trống!
         </mat-error>
         <mat-error
@@ -44,7 +46,8 @@
       <label>Họ và tên</label>
       <input type="text" class="form-control" formControlName="fullName" placeholder="Nguyễn Văn A">
       <mat-error
-        *ngIf="formCreateManagement.get('fullName')?.hasError('required') && formCreateManagement.get('fullName')?.touched">
+        *ngIf="(formCreateManagement.get('fullName')?.hasError('required') && formCreateManagement.get('fullName')?.touched) ||
+        (formCreateManagement.get('fullName')?.untouched && submitting)">
         Tên không được để trống!
       </mat-error>
       <mat-error
@@ -56,7 +59,8 @@
       <label>Email</label>
       <input type="text" class="form-control" formControlName="email" placeholder="anv12@gmail.com">
       <mat-error
-        *ngIf="formCreateManagement.get('email')?.hasError('required') && formCreateManagement.get('email')?.touched">
+        *ngIf="(formCreateManagement.get('email')?.hasError('required') && formCreateManagement.get('email')?.touched) ||
+        (formCreateManagement.get('email')?.untouched && submitting)">
         Email không được để trống!
       </mat-error>
       <mat-error
@@ -80,7 +84,8 @@
           <option class="form-check-input" value="OTHER">Khác
         </select>
         <mat-error
-          *ngIf="formCreateManagement.get('gender')?.hasError('required') && formCreateManagement.get('gender')?.touched">
+          *ngIf="(formCreateManagement.get('gender')?.hasError('required') && formCreateManagement.get('gender')?.touched) ||
+          (formCreateManagement.get('gender')?.untouched && submitting)">
           Giới tính không được để trống!
         </mat-error>
       </div>

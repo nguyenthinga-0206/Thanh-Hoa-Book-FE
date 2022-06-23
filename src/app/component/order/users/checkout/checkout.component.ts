@@ -16,30 +16,34 @@ import {CartCheckout} from "../../../../dto/order/CartCheckout";
 })
 export class CheckoutComponent implements OnInit {
 
-  cartList!: Array<Cart>;
-  cartCheckout!: CartCheckout;
+  cartList: Cart[] = [];
   book!: Book;
   cart!: Cart;
   total: number = 0;
-  quantity: number = 1;
+  quantity: number;
   priceShip: number = 0;
   totalPrice: number = 0;
+  submitting: boolean = false;
 
   constructor(private ordersService: OrdersService,
               private bookService: BookService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private snackBar: MatSnackBar) {
+    this.book = this.router.getCurrentNavigation()?.extras.state?.book;
+    this.quantity = this.router.getCurrentNavigation()?.extras.state?.quantity;
   }
 
   ngOnInit(): void {
-    var id = this.activatedRoute.snapshot.params["id"];
-    this.bookService.getBookById(id).subscribe(data => {
-      this.book = data;
-    });
-    if (id != null) {
-      console.log('mua hang')
+    if (this.book != null) {
+      this.cartList.push({id: 0, quantity: this.quantity, book: this.book});
+      this.total = this.book.price * this.quantity;
+      if (this.total < 300000) {
+        this.priceShip = 30000;
+      }
+      this.totalPrice = this.total + this.priceShip;
     } else {
+
       this.ordersService.getAllCart().subscribe(data => {
         this.cartList = data.cartList;
         this.total = data.total;
@@ -60,6 +64,7 @@ export class CheckoutComponent implements OnInit {
   });
 
   order() {
+    this.submitting = true;
     if (!this.checkouForm.invalid) {
       this.checkouForm.value.ship = this.priceShip;
       this.checkouForm.value.detailsList = this.cartList;

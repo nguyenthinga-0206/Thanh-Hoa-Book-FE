@@ -29,6 +29,7 @@ export class CreateBookComponent implements OnInit {
   categoryListError: Boolean = false;
   selectedFile!: Array<File> | any[];
   imageList: ImageDTO[] = [];
+  submitting: boolean = false;
 
 
   constructor(private bookService: BookService,
@@ -73,6 +74,7 @@ export class CreateBookComponent implements OnInit {
   });
 
   createBook() {
+    this.submitting = true;
     this.formCreateBook.value.imageList = this.imageList;
     if (!this.formCreateBook.invalid) {
       this.bookService.createBook(this.formCreateBook.value).subscribe(
@@ -85,6 +87,8 @@ export class CreateBookComponent implements OnInit {
       );
       this.ngOnInit();
       this.dialogRef.close();
+    } else {
+
     }
   }
 

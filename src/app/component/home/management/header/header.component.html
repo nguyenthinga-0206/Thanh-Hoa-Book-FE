@@ -62,18 +62,18 @@
                     </mat-expansion-panel>
                   </mat-accordion>
                 </li>
-<!--                <li>-->
-<!--                  <mat-accordion>-->
-<!--                    <mat-expansion-panel hideToggle>-->
-<!--                      <mat-expansion-panel-header>-->
-<!--                        <mat-panel-title class="fa fa-bar-chart-o">-->
-<!--                          Thống kê <span class="fa fa-chevron-down"></span>-->
-<!--                        </mat-panel-title>-->
-<!--                      </mat-expansion-panel-header>-->
-<!--                      <button mat-button><a [routerLink]="['management/static']">Doanh số</a></button>-->
-<!--                    </mat-expansion-panel>-->
-<!--                  </mat-accordion>-->
-<!--                </li>-->
+                <li [hidden]="!isAdmin()">
+                  <mat-accordion>
+                    <mat-expansion-panel hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title class="fa fa-bar-chart-o">
+                          Thống kê <span class="fa fa-chevron-down"></span>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <button mat-button><a [routerLink]="['management/statistic']">Top bán chạy</a></button>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </li>
               </ul>
             </div>
           </div>
