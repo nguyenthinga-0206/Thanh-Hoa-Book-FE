@@ -70,7 +70,7 @@
         <td>
           <button mat-button (click)="openDialogDetail(order.id)" type="button" class="btn btn-outline-secondary"><i
             class="fa fa-eye"></i></button>
-          <button mat-button (click)="openDialogEdit(order)" type="button" class="btn btn-outline-warning"><i
+          <button [disabled]="order.status == statusEnum.DELIVERED" mat-button (click)="openDialogEdit(order)" type="button" class="btn btn-outline-warning"><i
             class="fa fa-edit"></i></button>
         </td>
       </tr>
