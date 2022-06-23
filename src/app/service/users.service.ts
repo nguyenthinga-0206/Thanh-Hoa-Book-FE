@@ -11,8 +11,8 @@ import {ProfileRequest} from "../dto/user/profileRequest";
   providedIn: 'root'
 })
 export class UsersService {
-  readonly URL_USERS = "http://localhost:8080/api/users/";
-  // readonly URL_USERS = "https://api-thanh-hoa-book.herokuapp.com/api/users/";
+  // readonly URL_USERS = "http://localhost:8080/api/users/";
+  readonly URL_USERS = "https://api-thanh-hoa-book.herokuapp.com/api/users/";
 
   constructor(private httpClient: HttpClient,
               private authService: AuthService) {
@@ -48,6 +48,6 @@ export class UsersService {
   }
 
   deleteUser(id: number): Observable<boolean> {
-    return this.httpClient.put<boolean>(this.URL_USERS, id, {headers: this.headers});
+    return this.httpClient.delete<boolean>(this.URL_USERS  + id, {headers: this.headers});
   }
 }

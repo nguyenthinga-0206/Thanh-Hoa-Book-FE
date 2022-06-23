@@ -77,6 +77,10 @@
                   type="button"
                   class="btn btn-outline-warning"><i
             class="fa fa-edit"></i></button>
+          <button [disabled]="user.account.role == role.ROLE_USER" mat-button (click)="openDialogDelete(user)"
+                  type="button"
+                  class="btn btn-outline-danger"><i
+            class="fa fa-trash"></i></button>
         </td>
       </tr>
       </tbody>

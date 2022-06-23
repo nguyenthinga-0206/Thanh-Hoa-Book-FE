@@ -14,10 +14,7 @@ import {LoginResponse} from "../../../dto/login/LoginResponse";
 })
 export class LoginComponent implements OnInit {
 
-  isRememberMe = false;
   errorUsername: string = "";
-  errorPassword: string = "";
-  isLoginValid = false;
   submitting: boolean = false;
 
   constructor(private homeService: HomeService,
@@ -35,13 +32,10 @@ export class LoginComponent implements OnInit {
 
   formLogin = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)])
+    password: new FormControl('', [Validators.required])
   });
 
   public setLoginComplete(loginResponse: LoginResponse) {
-    if (this.isRememberMe) {
-      this.authService.setLocalStorage(loginResponse);
-    }
     this.authService.setSessionStorage(loginResponse);
     const role = loginResponse.role;
     switch (role) {
@@ -67,15 +61,12 @@ export class LoginComponent implements OnInit {
           this.setLoginComplete(loginResponse)
         },
         (error) => {
-          this.isLoginValid = false;
-          switch (error.status) { // error.error.status = 404 or 400
+          switch (error.status) {
             case 401:
               this.errorUsername = "Tài khoản hoặc mật khẩu sai";
-              this.errorPassword = "";
               break;
-            case "Account locked":
+            case 423:
               this.errorUsername = "Tài khoản của bạn đã bị khóa";
-              this.errorPassword = "";
               break;
             default:
               this.matSnackBar.open("Hệ thống đang bảo trì vui lòng đăng nhập lại", "OK", {
@@ -85,8 +76,6 @@ export class LoginComponent implements OnInit {
           }
         }
       )
-    } else {
-      this.isLoginValid = true;
     }
   }
 }

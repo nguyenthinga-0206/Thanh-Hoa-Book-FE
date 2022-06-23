@@ -9,6 +9,9 @@ import {ERole} from "../../../../model/user/ERole";
 import {OrderPipe} from "ngx-order-pipe";
 import {UserDetailComponent} from "../user-detail/user-detail.component";
 import {AuthService} from "../../../../service/auth.service";
+import {Book} from "../../../../model/book/Book";
+import {DeleteBookComponent} from "../../../book/management/delete-book/delete-book.component";
+import {DeleteManagementComponent} from "../delete-management/delete-management.component";
 
 @Component({
   selector: 'app-table-list-user',
@@ -74,6 +77,18 @@ export class TableListUserComponent implements OnInit {
       height: '500px',
       data: user
     });
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
+  }
+
+  openDialogDelete(user: User) {
+    const dialogRef = this.dialog.open(DeleteManagementComponent, {
+      width: '400px',
+      height: '350px',
+      data: user
+    });
+
     dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });

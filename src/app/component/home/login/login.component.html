@@ -30,9 +30,6 @@
         (formLogin.get('password')?.untouched && submitting)">
           Mật khẩu không được để trống!
         </mat-error>
-        <mat-error *ngIf="formLogin.get('password')?.hasError('minLength') && formLogin.get('password')?.touched">
-          Mật khẩu phải lớn hơn 8 ký tự!
-        </mat-error>
         <mat-error *ngIf="errorUsername">
           {{errorUsername}}
         </mat-error>
