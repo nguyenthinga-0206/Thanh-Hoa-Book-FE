@@ -16,6 +16,7 @@ export class CreateManagementComponent implements OnInit {
   selectedFile: File | any;
   url: string = "";
   error!: string;
+  submitting: boolean = false;
 
   constructor(private userService: UsersService,
               private dialogRef: MatDialogRef<CreateManagementComponent>,
@@ -40,6 +41,7 @@ export class CreateManagementComponent implements OnInit {
   });
 
   createManagement() {
+    this.submitting = true;
     this.formCreateManagement.value.image = this.url;
     if (!this.formCreateManagement.invalid) {
       this.userService.createManagement(this.formCreateManagement.value).subscribe(data => {

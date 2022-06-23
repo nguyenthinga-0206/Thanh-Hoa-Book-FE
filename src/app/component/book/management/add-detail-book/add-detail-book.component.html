@@ -7,7 +7,8 @@
       <input type="number" formControlName="quantity" class="col-sm-8 form-control" placeholder="0">
       <p class="col-4"></p>
       <mat-error
-           *ngIf="formAddBook.get('quantity')?.hasError('required') && formAddBook.get('quantity')?.touched">
+           *ngIf="(formAddBook.get('quantity')?.hasError('required') && formAddBook.get('quantity')?.touched) ||
+           (formAddBook.get('quantity')?.untouched && submitting)">
         Số lượng sách không được để trống!
       </mat-error>
       <mat-error

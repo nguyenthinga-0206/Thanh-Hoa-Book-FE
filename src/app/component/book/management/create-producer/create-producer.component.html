@@ -7,7 +7,8 @@
       <input type="text" formControlName="name" class="col-sm-8 form-control" placeholder="Nhà xuất bản">
       <p class="col-4"></p>
       <mat-error
-        *ngIf="formAddProducer.get('name')?.hasError('required') && formAddProducer.get('name')?.touched">
+        *ngIf="(formAddProducer.get('name')?.hasError('required') && formAddProducer.get('name')?.touched) ||
+        (formAddProducer.get('name')?.untouched && submitting)">
         Tên nhà xuất bản không được để trống!
       </mat-error>
     </div>

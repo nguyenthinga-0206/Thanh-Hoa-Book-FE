@@ -12,7 +12,9 @@ import {AddBookDTO} from "../../../../dto/book/AddBookDTO";
   styleUrls: ['./add-detail-book.component.css']
 })
 export class AddDetailBookComponent implements OnInit {
+
   book!: Book;
+  submitting: boolean = false;
 
   constructor(private bookService: BookService,
               private dialogRef: MatDialogRef<AddDetailBookComponent>,
@@ -30,6 +32,7 @@ export class AddDetailBookComponent implements OnInit {
   });
 
   addBook() {
+    this.submitting = true;
     this.formAddBook.value.id = this.book.id;
     if (!this.formAddBook.invalid) {
       console.log(this.formAddBook.value);

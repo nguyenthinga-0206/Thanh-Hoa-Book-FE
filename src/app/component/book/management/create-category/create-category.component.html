@@ -7,7 +7,8 @@
       <input type="text" formControlName="name" class="col-sm-8 form-control" placeholder="Thể loại">
       <p class="col-4"></p>
       <mat-error
-        *ngIf="formAddCategory.get('name')?.hasError('required') && formAddCategory.get('name')?.touched">
+        *ngIf="(formAddCategory.get('name')?.hasError('required') && formAddCategory.get('name')?.touched) ||
+        (formAddCategory.get('name')?.untouched && submitting)">
         Tên không được để trống!
       </mat-error>
     </div>

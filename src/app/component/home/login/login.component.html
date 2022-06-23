@@ -13,7 +13,8 @@
           <input class="input100" type="text" formControlName="email" placeholder="your-email@gmail.com">
           <span class="focus-input100"></span>
         </div>
-        <mat-error *ngIf="formLogin.get('email')?.hasError('required') && formLogin.get('email')?.touched">
+        <mat-error *ngIf="(formLogin.get('email')?.hasError('required') && formLogin.get('email')?.touched) ||
+        (formLogin.get('email')?.untouched && submitting)">
           Email không được để trống!
         </mat-error>
         <mat-error *ngIf="formLogin.get('email')?.hasError('email') && formLogin.get('email')?.touched">
@@ -25,7 +26,8 @@
           <input class="input100" type="password" formControlName="password" placeholder="********">
           <span class="focus-input100"></span>
         </div>
-        <mat-error *ngIf="formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched">
+        <mat-error *ngIf="(formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched) ||
+        (formLogin.get('password')?.untouched && submitting)">
           Mật khẩu không được để trống!
         </mat-error>
         <mat-error *ngIf="formLogin.get('password')?.hasError('minLength') && formLogin.get('password')?.touched">
@@ -34,20 +36,6 @@
         <mat-error *ngIf="errorUsername">
           {{errorUsername}}
         </mat-error>
-
-        <!--        <div class="flex-sb-m w-full p-b-30">-->
-        <!--          <div>-->
-        <!--            <input class="" id="ckb1" type="checkbox" name="remember-me">-->
-        <!--            <label class="label-checkbox100" for="ckb1">-->
-        <!--              Nhớ mật khẩu-->
-        <!--            </label>-->
-        <!--          </div>-->
-        <!--          <div class="m-b-8">-->
-        <!--            <a href="#" class="txt1">-->
-        <!--              Quên mật khẩu?-->
-        <!--            </a>-->
-        <!--          </div>-->
-        <!--        </div>-->
 
         <div class="container-login100-form-btn">
           <button class="login100-form-btn" type="submit">

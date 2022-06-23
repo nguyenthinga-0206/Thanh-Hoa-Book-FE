@@ -11,6 +11,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class CreateProducerComponent implements OnInit {
 
+  submitting: Boolean = false;
+
   constructor(private bookService: BookService,
               private dialogRef: MatDialogRef<CreateProducerComponent>,
               private snackBar: MatSnackBar) {
@@ -24,6 +26,7 @@ export class CreateProducerComponent implements OnInit {
   });
 
   addProducer() {
+    this.submitting = true;
     if (!this.formAddProducer.invalid) {
       this.bookService.createProducer(this.formAddProducer.value).subscribe(() => {
         this.dialogRef.close();

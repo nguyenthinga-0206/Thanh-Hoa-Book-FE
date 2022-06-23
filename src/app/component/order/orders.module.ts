@@ -15,10 +15,11 @@ import {CheckoutComponent} from './users/checkout/checkout.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
 import {BookModule} from "../book/book.module";
-import { HistoryOrdersComponent } from './users/history-orders/history-orders.component';
+import {HistoryOrdersComponent} from './users/history-orders/history-orders.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {OrderModule} from "ngx-order-pipe";
+import {StatisticComponent} from './management/statistic/statistic.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {OrderModule} from "ngx-order-pipe";
     OrderStatusComponent,
     CartComponent,
     CheckoutComponent,
-    HistoryOrdersComponent
+    HistoryOrdersComponent,
+    StatisticComponent
   ],
   exports: [
     HistoryOrdersComponent

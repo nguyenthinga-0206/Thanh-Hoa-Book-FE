@@ -63,9 +63,12 @@ export class BookDetailComponent implements OnInit {
         });
         window.location.reload();
       });
-    }
-    else {
+    } else {
       this.router.navigate(['/login'])
     }
+  }
+
+  movecheckout(book: Book, quantity: number) {
+    this.router.navigate(['/checkout'], {state: {book: book, quantity: quantity}})
   }
 }

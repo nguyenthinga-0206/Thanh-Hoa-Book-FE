@@ -11,6 +11,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class CreateAuthorComponent implements OnInit {
 
+  submitting: boolean = false;
+
   constructor(private bookService: BookService,
               private dialogRef: MatDialogRef<CreateAuthorComponent>,
               private snackBar: MatSnackBar) {
@@ -24,6 +26,7 @@ export class CreateAuthorComponent implements OnInit {
   });
 
   addAuthor() {
+    this.submitting = true;
     if (!this.formAddAuthor.invalid) {
       this.bookService.createAuthor(this.formAddAuthor.value).subscribe(data => {
         this.dialogRef.close();

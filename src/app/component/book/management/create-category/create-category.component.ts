@@ -11,6 +11,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class CreateCategoryComponent implements OnInit {
 
+  submitting: Boolean = false;
+
   constructor(private bookService: BookService,
               private dialogRef: MatDialogRef<CreateCategoryComponent>,
               private snackBar: MatSnackBar) {
@@ -24,6 +26,7 @@ export class CreateCategoryComponent implements OnInit {
   });
 
   addCategory() {
+    this.submitting = true;
     if (!this.formAddCategory.invalid) {
       this.bookService.createCategory(this.formAddCategory.value).subscribe(data => {
         this.dialogRef.close();

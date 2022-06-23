@@ -1,0 +1,30 @@
+<!--  <div class="row statistic-flex">-->
+<!--    <div class="col-5 card">-->
+<!--      <h3 class="text-center">Biểu đồ cột</h3>-->
+<!--      <div class="card-body">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-6 card">-->
+      <h3 class="text-center">Sách bán chạy</h3>
+      <div class="card-body">
+        <table class="table table-striped table-bordered">
+          <thead>
+          <tr class="text-center">
+            <th>STT</th>
+            <th>Tên sách</th>
+            <th>Số lượng bán ra</th>
+            <th>Tổng tiền thu được</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let top of topBook; let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{top.name}}</td>
+            <td class="text-right">{{top.count}}</td>
+            <td class="text-right">{{top.total | currency: "VND"}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+<!--    </div>-->
+<!--  </div>-->

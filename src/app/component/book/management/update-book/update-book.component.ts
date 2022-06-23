@@ -143,6 +143,7 @@ export class UpdateBookComponent implements OnInit {
   }
 
   selectFile(event: any) {
+    this.imageList = [];
     this.selectedFile = event.target.files;
     for (let file of this.selectedFile) {
       const path = Date.now().toString();
