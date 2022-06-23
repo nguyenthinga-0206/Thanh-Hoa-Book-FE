@@ -66,7 +66,7 @@ export class UpdateManagementComponent implements OnInit {
         },
       );
       this.ngOnInit();
-      this.formUpdateManagement.reset();
+      this.dialogRef.close();
     }
   }
 

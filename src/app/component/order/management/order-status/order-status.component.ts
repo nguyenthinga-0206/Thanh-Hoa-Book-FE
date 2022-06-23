@@ -25,6 +25,12 @@ export class OrderStatusComponent implements OnInit {
 
   ngOnInit(): void {
     this.order = this.data;
+    if (this.order.status == 'WAITING') {
+      this.statusArr = [['WAITING', 'Chờ lấy hàng'], ['DELIVERY', 'Đang giao'], ['DELIVERED', 'Đã giao']];
+    }
+    if (this.order.status == 'DELIVERY') {
+      this.statusArr = [['DELIVERY', 'Đang giao'], ['DELIVERED', 'Đã giao']];
+    }
   }
 
   changeStatus(status: string) {
