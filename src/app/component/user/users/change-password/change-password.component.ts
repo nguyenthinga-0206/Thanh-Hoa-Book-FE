@@ -22,7 +22,7 @@ export class ChangePasswordComponent implements OnInit {
 
   email: string = '' + this.authService.getEmail();
   changePasswordRequest!: ChangePasswordRequest;
-  oldPasswordError: string = '';
+  oldPasswordError: Boolean = false;
 
   constructor(private authService: AuthService,
               private userService: UsersService,
@@ -57,7 +57,7 @@ export class ChangePasswordComponent implements OnInit {
           this.router.navigate(['/login'])
         },
         error => {
-          this.oldPasswordError = 'Mật khẩu cũ không đúng!'
+          this.oldPasswordError = true;
         }
       );
     }

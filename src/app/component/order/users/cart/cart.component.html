@@ -5,8 +5,8 @@
         <img src="assets/images/404.png">
       </div>
       <button [routerLink]="['']" class="btn btn-light">
-        <i class="fa fa-chevron-left"></i>
-        Tiếp tục mua hàng
+        <i class="fa fa-chevron-left pr-2"></i>
+        <span translate>settings.continueShopping</span>
       </button>
     </div>
     <div class="row" *ngIf="cartList != null">
@@ -15,11 +15,11 @@
           <table class="table table-borderless table-shopping-cart">
             <thead class="text-light bg-cart">
             <tr class="text-uppercase text-center">
-              <th>Sản phẩm</th>
-              <th>Số lượng</th>
-              <th>Giá</th>
-              <th>Tổng</th>
-              <th>Xóa</th>
+              <th translate>settings.product</th>
+              <th translate>settings.quantity</th>
+              <th translate>settings.price</th>
+              <th translate>settings.total</th>
+              <th translate>settings.action</th>
             </tr>
             </thead>
             <tbody>
@@ -28,7 +28,8 @@
                 <figure class="itemside">
                   <div class="aside"><img src="{{cart.book.imageList[0].path}}" class="img-sm"></div>
                   <figcaption class="info">
-                    <a [href]="['book/'+ cart.book.id]" class="title text-dark" style="margin-bottom: 5px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100px">{{cart.book.name}}</a>
+                    <a [href]="['book/'+ cart.book.id]" class="title text-dark"
+                       style="margin-bottom: 5px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100px">{{cart.book.name}}</a>
                   </figcaption>
                 </figure>
               </td>
@@ -47,9 +48,10 @@
               <td class="text-right" style="text-align-last: center;" *ngIf="cart.quantity <= cart.book.quantity">
                 <a class="btn" (click)="deleteCart(cart.id)"><i class="fa fa-trash text-trash"></i></a>
               </td>
-              <td class="text-right text-danger"  style="text-align-last: center;" *ngIf="cart.quantity > cart.book.quantity">
+              <td class="text-right text-danger" style="text-align-last: center;"
+                  *ngIf="cart.quantity > cart.book.quantity">
                 <a class="btn" (click)="deleteCart(cart.id)"><i class="fa fa-trash text-trash"></i></a><br>
-                Hết hàng
+                <span translate>settings.outOfStock</span>
               </td>
             </tr>
             </tbody>
@@ -58,13 +60,12 @@
           <div class="card-body border-top">
             <a [href]="['checkout']">
               <button class="btn btn-success float-md-right">
-                Thanh toán
-                <i class="fa fa-chevron-right"></i>
+                <span translate>settings.pay</span>
+                <i class="fa fa-chevron-right pl-2"></i>
               </button>
             </a>
             <button [routerLink]="['']" class="btn btn-light">
-              <i class="fa fa-chevron-left"></i>
-              Tiếp tục mua hàng
+              <i class="fa fa-chevron-left pr-2"></i><span translate>settings.continueShopping</span>
             </button>
           </div>
         </div>
@@ -73,24 +74,24 @@
         <div class="card">
           <div class="card-body">
             <dl class="dlist-align">
-              <dt>Tổng tiền:</dt>
+              <dt translate>settings.totalMoney</dt>
               <dd class="text-right">{{total | currency: "VND"}}</dd>
             </dl>
             <dl class="dlist-align">
-              <dt>Phí vận chuyển:</dt>
+              <dt translate>settings.ship</dt>
               <dd class="text-right">{{priceShip | currency: "VND"}}</dd>
             </dl>
             <hr>
             <dl class="dlist-align" style="font-size: 25px">
-              <dt>Tổng:</dt>
+              <dt translate>settings.total</dt>
               <dd class="text-right text-danger">{{totalPrice | currency: "VND"}}</dd>
             </dl>
           </div>
         </div>
         <div class="pt-3">
-          <h5 class="font-weight-bold">Dịch vụ của chúng tôi</h5>
-          <p><i class="fa fa-truck mr-4"></i>Giao tận nhà trong 3 - 7 ngày làm việc.</p>
-          <p><i class="fa fa-truck mr-4"></i>Miễn phí giao hàng Toàn Quốc cho đơn hàng trên 300k.</p>
+          <h5 class="font-weight-bold" translate>settings.service</h5>
+          <p translate><i class="fa fa-truck mr-4"></i>settings.contentService1</p>
+          <p translate><i class="fa fa-truck mr-4"></i>settings.contentService2</p>
         </div>
       </aside>
     </div>

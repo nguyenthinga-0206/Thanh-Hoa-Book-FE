@@ -10,23 +10,23 @@
       <a class="user-profile " aria-haspopup="true" id="idCategory"
          data-toggle="dropdown" aria-expanded="false">
       <span data-toggle="tooltip" data-placement="bottom" style="font-family: FontAwesome; font-size: large">
-          Danh Mục
+          <p translate>settings.category</p>
         </span>
       </a>
       <div class="dropdown-menu dropdown-usermenu pull-right mr-6 menu-category" aria-labelledby="idCategory">
         <div class="list-group">
-          <a  type="button" class="list-group-item list-group-item-action"
-                  *ngFor="let category of categoryList" (click)="searchByCategory(category.id)">
+          <a type="button" class="list-group-item list-group-item-action"
+             *ngFor="let category of categoryList" (click)="searchByCategory(category.id)">
             {{category.name}}
           </a>
         </div>
       </div>
     </ul>
-
+    <span hidden translate #keyword>settings.keyword</span>
     <ul class="navbar-nav mr-auto mt-2 ml-auto mt-0">
       <div class="form-inline my-2 my-0 row" style="width: 500px">
-        <input class="form-control col-9 mr-2" type="search" placeholder="Tên sách muốn tìm" #searchName>
-        <button (click)="searchByName(searchName.value)"  class="btn btn-success-new my-2 my-0">Search</button>
+        <input class="form-control col-9 mr-2" type="search" [placeholder]="keyword.textContent" #searchName>
+        <button (click)="searchByName(searchName.value)" class="btn btn-success-new my-2 my-0" translate>settings.search</button>
       </div>
     </ul>
     <ul class="mt-3 mr-4" [hidden]="!isLoggedIn() ? true : false">
@@ -36,9 +36,15 @@
            matBadgeColor="warn"></i>
       </a>
     </ul>
+    <ul class="mt-3 mr-4" style="font-family: FontAwesome; color: white; font-size: 15px">
+      <select style="border: none; width: 100px; height: 20px" (click)="changeDefaultLanguage(language.value)" #language>
+        <option value="ta">Việt Nam</option>
+        <option value="jp">日本語</option>
+      </select>
+    </ul>
 
     <div *ngIf="isLoggedIn()" class=" mt-3">
-      <ul class="nav-item dropdown open" style="padding-left: 60px;">
+      <ul class="nav-item dropdown open">
         <a class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
            data-toggle="dropdown" aria-expanded="false">
           <img *ngIf="!user?.image" src="assets/images/avatar.jpg">
@@ -47,14 +53,14 @@
           {{authService.getUsername()}}
         </span>
         </a>
-        <div class="dropdown-menu dropdown-usermenu pull-right mr-6" aria-labelledby="navbarDropdown">
-          <button class="dropdown-item" [routerLink]="['profile']"> Thông tin cá nhân</button>
-          <button class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out pull-right"></i> Đăng xuất
+        <div class="dropdown-menu dropdown-usermenu pull-right mr-3" aria-labelledby="navbarDropdown">
+          <button class="dropdown-item" [routerLink]="['profile']"><p translate>settings.information</p></button>
+          <button class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out pull-right"></i><p translate>settings.logout</p>
           </button>
         </div>
       </ul>
     </div>
-    <button class="btn btn-success-new" *ngIf="!isLoggedIn()" [routerLink]="['/login']">Đăng nhập</button>
+    <button class="btn btn-success-new" *ngIf="!isLoggedIn()" [routerLink]="['/login']" translate>settings.login</button>
   </div>
 </nav>
 <div class="m-4">

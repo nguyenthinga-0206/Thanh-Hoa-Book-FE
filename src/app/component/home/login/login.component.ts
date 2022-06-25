@@ -4,7 +4,6 @@ import {HomeService} from "../../../service/home.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../service/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {MatDialog} from "@angular/material/dialog";
 import {LoginResponse} from "../../../dto/login/LoginResponse";
 
 @Component({
@@ -14,14 +13,14 @@ import {LoginResponse} from "../../../dto/login/LoginResponse";
 })
 export class LoginComponent implements OnInit {
 
-  errorUsername: string = "";
+  errorEmailPassword: Boolean = false;
+  errorLocked: Boolean = false;
   submitting: boolean = false;
 
   constructor(private homeService: HomeService,
               private router: Router,
               private authService: AuthService,
-              private matSnackBar: MatSnackBar,
-              private matDialog: MatDialog) {
+              private matSnackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -63,10 +62,12 @@ export class LoginComponent implements OnInit {
         (error) => {
           switch (error.status) {
             case 401:
-              this.errorUsername = "Tài khoản hoặc mật khẩu sai";
+              this.errorEmailPassword = true;
+              this.errorLocked = false;
               break;
             case 423:
-              this.errorUsername = "Tài khoản của bạn đã bị khóa";
+              this.errorEmailPassword = false;
+              this.errorLocked = true;
               break;
             default:
               this.matSnackBar.open("Hệ thống đang bảo trì vui lòng đăng nhập lại", "OK", {

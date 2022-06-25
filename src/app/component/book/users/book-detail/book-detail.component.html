@@ -20,22 +20,22 @@
         <main class="col-md-6">
           <article>
             <h3 class="title">{{book.name}}</h3>
-            <b>Mã sản phẩm: <i class="font-weight-light">{{book.code}}</i></b>
+            <b translate>settings.codeProduct<i class="font-weight-light"> {{book.code}}</i></b>
 
             <hr>
             <div class="row">
               <div class="mb-3 col-6">
-                <p *ngIf="book.authorList != null">Tác giả: <span
-                  *ngFor="let author of book.authorList">{{author.name}} </span><br></p>
-                <p>NXB: <span>{{book.producer.name}}</span></p>
-                <p>Kích thước: <span>{{book.lenght}} x {{book.width}} <span
-                  *ngIf="book.height != 0">x {{book.height}}</span> cm</span></p>
-                <p>Năm xuất bản: <span>{{book.yearPublishing}}</span></p>
+                <p *ngIf="book.authorList != null" translate>settings.author<span
+                  *ngFor="let author of book.authorList"> {{author.name}} </span><br></p>
+                <p translate>settings.producer<span> {{book.producer.name}}</span></p>
+                <p translate>settings.size<span> {{book.lenght}} x {{book.width}} <span
+                    *ngIf="book.height != null">x {{book.height}}</span> cm</span></p>
+                <p translate>settings.yearPublishing<span> {{book.yearPublishing}}</span></p>
               </div>
               <div class="mb-3" style="padding-left: 10px">
-                <p *ngIf="book.pageNumber !=0">Số trang: <span>{{book.pageNumber}}</span></p>
-                <p>Trọng lượng: <span>{{book.weight}} grams</span></p>
-                <p *ngIf="book.formCover != null">Hình thức bìa:
+                <p *ngIf="book.pageNumber !=null" translate>settings.pageNumber<span> {{book.pageNumber}}</span></p>
+                <p translate>settings.weight<span> {{book.weight}} grams</span></p>
+                <p *ngIf="book.formCover != null"><span class="font-weight-light" translate>settings.cover</span>
                   <span *ngIf="book.formCover == cover.SOFT">Bìa mềm</span>
                   <span *ngIf="book.formCover == cover.HARD">Bìa cứng</span>
                 </p>
@@ -47,8 +47,8 @@
             </div>
 
             <div class="mb-3" *ngIf="book.quantity > 0">
-              <p class="pl-3">Số lượng</p>
-              <p>Hàng trong kho: {{book.quantity}}</p>
+              <p class="pl-3" translate>settings.quantity<span class="pl-3 font-weight-light" translate>settings.inventory</span> {{book.quantity}}
+                )</p>
               <div class="buttons_added ml-3">
                 <button class="minus is-form" (click)="minusQuantity()"><i class="fa fa-minus"></i></button>
                 <input class="input-qty" type="number"
@@ -57,22 +57,24 @@
               </div>
             </div>
             <div class="mb-3" *ngIf="book.quantity == 0">
-              <p class="pl-3">Hết hàng</p>
+              <p class="pl-3" translate>settings.outOfStock</p>
             </div>
 
             <div class="mb-3">
-              <button [disabled]="book.quantity == 0" (click)="addCart(book.id)" class="btn btn-cart text-capitalize mr-4">
-                <i class="fa fa-shopping-cart mr-4"></i>Thêm vào giỏ hàng
+              <button [disabled]="book.quantity == 0" (click)="addCart(book.id)"
+                      class="btn btn-cart text-capitalize mr-4">
+                <i class="fa fa-shopping-cart mr-4"></i><span translate>settings.addCart</span>
               </button>
-              <a (click)="movecheckout(book, quantity)" >
-                <button class="btn btn-order mr-1 text-capitalize" [disabled]="book.quantity == 0">Mua ngay</button>
+              <a (click)="movecheckout(book, quantity)">
+                <button class="btn btn-order mr-1 text-capitalize" [disabled]="book.quantity == 0"><span translate>settings.buy</span>
+                </button>
               </a>
             </div>
 
             <div>
-              <h5 class="font-weight-bold">Dịch vụ của chúng tôi</h5>
-              <p><i class="fa fa-truck mr-4"></i>Giao tận nhà trong 3 - 7 ngày làm việc.</p>
-              <p><i class="fa fa-truck mr-4"></i>Miễn phí giao hàng Toàn Quốc cho đơn hàng trên 300k.</p>
+              <h5 class="font-weight-bold" translate>settings.service</h5>
+              <p translate><i class="fa fa-truck mr-4"></i>settings.contentService1</p>
+              <p translate><i class="fa fa-truck mr-4"></i>settings.contentService2</p>
             </div>
 
           </article>
@@ -83,19 +85,10 @@
 
   <article class="card mt-5">
     <div class="card-body">
-      <h3>Mô tả</h3>
+      <h3 translate>settings.description</h3>
       <hr>
       <div [innerText]="book.description">
       </div>
     </div>
   </article>
-
-  <!--  <article class="card mt-5">-->
-  <!--    <div class="card-body">-->
-  <!--      <h4 class="font-weight-bold text-center text-uppercase">sản phẩm gợi ý</h4>-->
-  <!--      <div class="row m-auto card-body">-->
-  <!--        <app-list-book></app-list-book>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </article>-->
 </div>

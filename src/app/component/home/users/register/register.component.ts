@@ -20,7 +20,7 @@ function checkpassword(c: AbstractControl) {
 export class RegisterComponent implements OnInit {
 
   registerRequest!: RegisterRequest;
-  error!: string;
+  error: Boolean = false;
   submitting: boolean = false;
 
   constructor(private homeService: HomeService,
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
         },
         error => {
           if (error.status == 400){
-            this.error = 'Email đã được đăng ký mời nhập Email khác!';
+            this.error = true;
           }
         });
     }

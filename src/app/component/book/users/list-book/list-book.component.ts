@@ -20,7 +20,7 @@ export class ListBookComponent implements OnInit {
   producerList!: Array<Producer>;
   p: number | any;
   cartRequest!: CartRequest;
-  searchError: string = '';
+  searchError: Boolean = false;
   search: string = '';
   order: string = 'price';
   reverse: boolean = false;
@@ -47,7 +47,7 @@ export class ListBookComponent implements OnInit {
           this.p = 1;
         },
         error => {
-          this.searchError = 'Không có kết quả tìm kiếm'
+          this.searchError = true
         }
       );
     } else if (categoryId != null) {
@@ -57,7 +57,7 @@ export class ListBookComponent implements OnInit {
           this.p = 1;
         },
         error => {
-          this.searchError = 'Không có kết quả tìm kiếm'
+          this.searchError = true
         }
       );
     } else {

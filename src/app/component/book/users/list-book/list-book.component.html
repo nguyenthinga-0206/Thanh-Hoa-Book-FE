@@ -1,16 +1,16 @@
 <div *ngIf="bookList == null" class="text-center">
   <img src="assets/images/homepage.jpg" width="200px">
-  <p style="font-size: 18px" *ngIf="searchError">{{searchError}}</p>
+  <p style="font-size: 18px" *ngIf="searchError" translate>settings.searchError</p>
 </div>
 
 <div *ngIf="bookList != null" class="container padding-y" style="margin-bottom: 20px; min-width: 1200px">
-  <h3 *ngIf="search">Kết quả tìm kiếm '<span style="font-size: 23px; color: #1ABB9C">{{search}}</span>'</h3>
+  <h3 *ngIf="search"><span translate>settings.resultSearch</span> '<span style="font-size: 23px; color: #1ABB9C">{{search}}</span>'</h3>
   <div class="row mt-2 pl-2">
-    <div class="form-group row col-2">
-      <label for="price" class="col-4 pt-1">Giá</label>
-      <mat-select class=" form-control col-8" id="price" placeholder="--Chọn--">
-        <mat-option (click)="setOrderLow('price')" value="low">Giá Thấp</mat-option>
-        <mat-option (click)="setOrderHigh('price')" value="high">Giá Cao</mat-option>
+    <div class="form-group row col-3">
+      <label for="price" class="col-4 pt-1" style="font-size: 18px" translate>settings.price</label>
+      <mat-select class=" form-control col-8" id="price" [placeholder]="choose.innerText">
+        <mat-option (click)="setOrderLow('price')" value="low"><span translate>settings.priceLow</span></mat-option>
+        <mat-option (click)="setOrderHigh('price')" value="high"><span translate>settings.priceHigh</span></mat-option>
       </mat-select>
     </div>
   </div>
@@ -32,7 +32,7 @@
               <span class="text-danger font-weight-bold">{{book.price | currency: 'VND'}}</span>
               <span *ngIf="book.quantity !=0" class="right"><i class="fa fa-shopping-cart" style="font-size: 15px"
                                      (click)="addCart(book.id)"></i></span>
-              <span *ngIf="book.quantity ==0" class="right">Hết hàng</span>
+              <span *ngIf="book.quantity ==0" class="right" translate>settings.outOfStock</span>
             </p>
           </mat-card-content>
         </mat-card>
@@ -41,8 +41,11 @@
   </div>
   <!--        Pagination-->
   <pagination-controls class="text-center text" (pageChange)="p = $event"
-                       previousLabel="Trước"
-                       nextLabel="Sau"
+                       [previousLabel]="before.innerText"
+                       [nextLabel]="after.innerText"
                        [autoHide]="true">
   </pagination-controls>
 </div>
+<span hidden translate #before>settings.previousLabel</span>
+<span hidden translate #after>settings.nextLabel</span>
+<span hidden translate #choose>settings.choose</span>

@@ -2,47 +2,50 @@
   <div class="container-login100">
     <div class="wrap-login100">
       <div class="login100-form-title" style="background-image: url(assets/images/bg_01.jpg);">
-					<span class="login100-form-title-1">
-						ĐĂNG NHẬP
+					<span class="login100-form-title-1 text-uppercase">
+            <p translate>settings.login</p>
 					</span>
       </div>
 
       <form class="login100-form" [formGroup]="formLogin" (ngSubmit)="login()">
         <div class="wrap-input100 m-b-26">
-          <span class="label-input100">Email</span>
+          <span class="label-input100" translate>settings.email</span>
           <input class="input100" type="text" formControlName="email" placeholder="your-email@gmail.com">
           <span class="focus-input100"></span>
         </div>
         <mat-error *ngIf="(formLogin.get('email')?.hasError('required') && formLogin.get('email')?.touched) ||
         (formLogin.get('email')?.untouched && submitting)">
-          Email không được để trống!
+          <p translate>settings.emailRequired</p>
         </mat-error>
         <mat-error *ngIf="formLogin.get('email')?.hasError('email') && formLogin.get('email')?.touched">
-          Email không đúng định dạng!
+          <p translate>settings.emailErr1</p>
         </mat-error>
 
         <div class="wrap-input100 m-b-18">
-          <span class="label-input100">Mật khẩu</span>
+          <span class="label-input100" translate>settings.password</span>
           <input class="input100" type="password" formControlName="password" placeholder="********">
           <span class="focus-input100"></span>
         </div>
         <mat-error *ngIf="(formLogin.get('password')?.hasError('required') && formLogin.get('password')?.touched) ||
         (formLogin.get('password')?.untouched && submitting)">
-          Mật khẩu không được để trống!
+          <p translate>settings.passwordRequired</p>
         </mat-error>
-        <mat-error *ngIf="errorUsername">
-          {{errorUsername}}
+        <mat-error *ngIf="errorEmailPassword">
+          <p translate>settings.errorEmailPassword</p>
+        </mat-error>
+        <mat-error *ngIf="errorLocked">
+          <p translate>settings.errorLocked</p>
         </mat-error>
 
         <div class="container-login100-form-btn">
           <button class="login100-form-btn" type="submit">
-            Đăng Nhập
+            <p translate>settings.login</p>
           </button>
         </div>
 
         <div class="container-login100-form-btn">
           <button class="register100-form-btn" [routerLink]="['/register']">
-            Đăng Ký
+            <p translate>settings.register</p>
           </button>
         </div>
       </form>
