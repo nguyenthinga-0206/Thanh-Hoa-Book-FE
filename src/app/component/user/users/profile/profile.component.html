@@ -14,27 +14,27 @@
         <div class="text-center mt-2">
           <button class="btn btn-secondary" (click)="checkStatus(false)">
             <i class="fa fa-edit mr-2"></i>
-            Sửa thông tin
+            <span translate>settings.editInformation</span>
           </button>
         </div>
 
         <div class="card mt-4">
           <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action active" data-toggle="list" href="#profile">
-              Thông tin cá nhân
+              <span translate>settings.information</span>
             </a>
             <a class="list-group-item list-group-item-action" data-toggle="list" href="#change-password">
-              Đổi mật khẩu
+              <span translate>settings.changePassword</span>
             </a>
             <a class="list-group-item list-group-item-action" *ngIf="!isAdmin()" data-toggle="list"
-               href="#history-orders">Đơn mua</a>
+               href="#history-orders" translate>settings.orderHistory</a>
           </div>
         </div>
       </div>
       <div class="col-9 mt-2">
         <div class="tab-content">
           <div class="tab-pane fade active show" id="profile">
-            <h3 class="text-uppercase text-center font-weight-bold">Thông tin cá nhân</h3>
+            <h3 class="text-uppercase text-center font-weight-bold" translate>settings.information</h3>
             <div class="mt-4">
               <div class="card">
                 <div class="card-body">
@@ -42,7 +42,7 @@
                     <div class="row">
                       <div class="col-8">
                         <div class="form-group row">
-                          <label for="fullName" class="col-4 col-form-label font-weight-bold">Họ và tên</label>
+                          <label for="fullName" class="col-4 col-form-label font-weight-bold" translate>settings.name</label>
                           <div class="col-8">
                             <p [hidden]="!is_edit">{{profile?.fullName}}</p>
                             <input [hidden]="is_edit" type="text" class="form-control" formControlName="fullName"
@@ -50,7 +50,7 @@
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="email" class="col-4 col-form-label font-weight-bold">Email</label>
+                          <label for="email" class="col-4 col-form-label font-weight-bold" translate>settings.email</label>
                           <div class="col-8">
                             <p [hidden]="!is_edit">{{profile?.email}}</p>
                             <input [hidden]="is_edit" type="text" class="form-control" formControlName="email"
@@ -59,7 +59,7 @@
                         </div>
                         <div formGroupName="account">
                           <div class="form-group row">
-                            <label for="username" class="col-4 col-form-label font-weight-bold">Tên tài khoản</label>
+                            <label for="username" class="col-4 col-form-label font-weight-bold" translate>settings.username</label>
                             <div class="col-8">
                               <p [hidden]="!is_edit">{{profile?.account?.username}}</p>
                               <input [hidden]="is_edit" type="text" class="form-control" formControlName="username"
@@ -68,18 +68,18 @@
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="gender" class="col-4 col-form-label font-weight-bold">Giới tính</label>
+                          <label for="gender" class="col-4 col-form-label font-weight-bold" translate>settings.gender</label>
                           <div class="col-8">
                             <p [hidden]="!is_edit">{{profile?.gender}}</p>
                             <select [hidden]="is_edit" formControlName="gender" class="form-control" id="gender">
-                              <option class="form-check-input" value="MALE">Nam
-                              <option class="form-check-input" value="FEMALE">Nữ
-                              <option class="form-check-input" value="OTHER">Khác
+                              <option class="form-check-input" value="MALE" translate>settings.male
+                              <option class="form-check-input" value="FEMALE" translate>settings.female
+                              <option class="form-check-input" value="OTHER" translate>settings.other
                             </select>
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="birthday" class="col-4 col-form-label font-weight-bold">Ngày sinh</label>
+                          <label for="birthday" class="col-4 col-form-label font-weight-bold" translate>settings.birthday</label>
                           <div class="col-8">
                             <p [hidden]="!is_edit">{{profile?.birthday}}</p>
                             <input [hidden]="is_edit" type="date" class="form-control" formControlName="birthday"
@@ -87,8 +87,8 @@
                           </div>
                         </div>
                         <div class="text-center mt-3" [hidden]="is_edit">
-                          <button type="submit" class="btn btn-order w-25">Lưu</button>
-                          <a (click)="checkStatus(true)" class="btn btn-secondary w-25 text-light">Thoát</a>
+                          <button type="submit" class="btn btn-order w-25" translate>settings.save</button>
+                          <a (click)="checkStatus(true)" class="btn btn-secondary w-25 text-light" translate>settings.exit</a>
                         </div>
                       </div>
                       <div class="col-4 mr-0">
@@ -115,23 +115,23 @@
           </div>
 
           <div class="tab-pane fade" id="change-password">
-            <h3 class="text-uppercase text-center font-weight-bold">Đổi mật khẩu</h3>
+            <h3 class="text-uppercase text-center font-weight-bold" translate>settings.changePassword</h3>
             <app-change-password></app-change-password>
           </div>
 
           <div class="tab-pane fade" id="history-orders">
-            <h3 class="text-uppercase text-center font-weight-bold">Lịch sử đơn hàng</h3>
+            <h3 class="text-uppercase text-center font-weight-bold" translate>settings.orderHistory</h3>
             <mat-tab-group color="warn">
-              <mat-tab label="Chờ xác nhận">
+              <mat-tab [label]="pending.innerText">
                 <app-history-orders [statusInput]="'PENDING'"></app-history-orders>
               </mat-tab>
-              <mat-tab label="Chờ lấy hàng">
+              <mat-tab [label]="waiting.innerText">
                 <app-history-orders [statusInput]="'WAITING'"></app-history-orders>
               </mat-tab>
-              <mat-tab label="Đang giao">
+              <mat-tab [label]="delivery.innerText">
                 <app-history-orders [statusInput]="'DELIVERY'"></app-history-orders>
               </mat-tab>
-              <mat-tab label="Đã giao">
+              <mat-tab [label]="delivered.innerText">
                 <app-history-orders [statusInput]="'DELIVERED'"></app-history-orders>
               </mat-tab>
             </mat-tab-group>
@@ -141,3 +141,7 @@
     </div>
   </div>
 </div>
+<span hidden #pending translate>settings.pending</span>
+<span hidden #waiting translate>settings.waiting</span>
+<span hidden #delivery translate>settings.delivery</span>
+<span hidden #delivered translate>settings.delivered</span>

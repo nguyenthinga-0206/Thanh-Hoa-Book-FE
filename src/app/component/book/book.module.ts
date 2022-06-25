@@ -24,9 +24,16 @@ import {environment} from "../../../environments/environment";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {MatCardModule} from "@angular/material/card";
 import {BookDetailComponent} from './users/book-detail/book-detail.component';
-import { DetailBookComponent } from './management/detail-book/detail-book.component';
+import {DetailBookComponent} from './management/detail-book/detail-book.component';
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {OrderModule} from "ngx-order-pipe";
+import {HttpClient} from "@angular/common/http";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+
+export function rootLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -58,7 +65,14 @@ import {OrderModule} from "ngx-order-pipe";
     MatProgressSpinnerModule,
     MatCardModule,
     Ng2SearchPipeModule,
-    OrderModule
+    OrderModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: rootLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ]
 })
 export class BookModule {

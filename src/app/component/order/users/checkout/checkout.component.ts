@@ -56,9 +56,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkouForm = new FormGroup({
-    fullName: new FormControl('', [Validators.required, Validators.maxLength(45)]),
+    fullName: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required, Validators.pattern("^[0][0-9]{9}$")]),
-    address: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+    address: new FormControl('', [Validators.required]),
     ship: new FormControl(''),
     detailsList: new FormGroup({})
   });

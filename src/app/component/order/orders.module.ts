@@ -20,7 +20,13 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {OrderModule} from "ngx-order-pipe";
 import {StatisticComponent} from './management/statistic/statistic.component';
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {HttpClient} from "@angular/common/http";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 
+export function rootLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -49,7 +55,14 @@ import {StatisticComponent} from './management/statistic/statistic.component';
     MatTabsModule,
     Ng2SearchPipeModule,
     OrderModule,
-    FormsModule
+    FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: rootLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ]
 })
 export class OrdersModule {

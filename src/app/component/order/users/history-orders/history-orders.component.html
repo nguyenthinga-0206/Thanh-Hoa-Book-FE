@@ -1,11 +1,12 @@
 <div *ngIf="orderList==null" class="text-center">
   <img src="assets/images/don_hang.png">
-  <h5>Chưa có đơn hàng</h5>
+  <h5 translate>settings.noOrder</h5>
 </div>
 <div class="card mt-2" *ngFor="let order of orderList">
-  <div class="card-header">
-    <b>Ngày lên đơn:<span
-      class="ml-4 font-weight-lighter">{{order.orders.timeCreateFlag | date: "HH:mm:ss  dd-MM-yyyy"}}</span></b>
+  <div class="card-header" style="display: flex;justify-content: space-between">
+    <b translate>settings.orderDate<span
+      class="ml-4 font-weight-lighter"> {{order.orders.timeCreateFlag | date: "HH:mm:ss  dd-MM-yyyy"}}</span></b>
+    <b translate>settings.orderCode<span class="ml-4 font-weight-lighter"> #{{order.orders.code}}</span></b>
   </div>
   <div class="card-body row mr-0 ml-0 pt-3" *ngFor="let detail of order.orders.orderDetailsList">
     <img class="col-2" src="{{detail.book.imageList[0].path}}" height="60px"/>
@@ -17,8 +18,8 @@
   </div>
   <hr>
   <div class="mr-0 text-danger">
-    <p class="price-order">Phí ship: {{order.orders.ship | currency: "VND"}}</p>
-    <p class="price-order">Tiền hàng: {{order.totalPrice | currency: "VND"}}</p>
-    <p class="font-weight-bold order-history-total">Tổng tiền: {{order.totalPrice + order.orders.ship | currency: "VND"}}</p>
+    <p class="price-order" translate>settings.ship<span>  {{order.orders.ship | currency: "VND"}}</span></p>
+    <p class="price-order" translate>settings.money<span>  {{order.totalPrice | currency: "VND"}}</span></p>
+    <p class="font-weight-bold order-history-total" translate>settings.total<span>:  {{order.totalPrice + order.orders.ship | currency: "VND"}}</span></p>
   </div>
 </div>
