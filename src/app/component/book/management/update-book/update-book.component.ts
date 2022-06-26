@@ -5,7 +5,7 @@ import {Category} from "../../../../model/book/Category";
 import {BookService} from "../../../../service/book.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CreateCategoryComponent} from "../create-category/create-category.component";
 import {CreateAuthorComponent} from "../create-author/create-author.component";
 import {CreateProducerComponent} from "../create-producer/create-producer.component";
@@ -13,7 +13,14 @@ import {MatOptionSelectionChange} from "@angular/material/core";
 import {ImageDTO} from "../../../../dto/book/ImageDTO";
 import {finalize} from "rxjs/operators";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
-import {log} from "util";
+
+function checkYear(c: AbstractControl) {
+  const v = c.value;
+  const year = new Date().getFullYear().toString();
+  return (v <= year) ? null : {
+    yearnotmatch: true
+  };
+}
 
 @Component({
   selector: 'app-update-book',
@@ -43,7 +50,7 @@ export class UpdateBookComponent implements OnInit {
     id: new FormControl(),
     name: new FormControl('', [Validators.required]),
     code: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,20}$")]),
-    yearPublishing: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}$")]),
+    yearPublishing: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}$"), checkYear]),
     quantity: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][0-9]{0,6})$")]),
     weight: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
     width: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),

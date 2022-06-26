@@ -17,6 +17,7 @@ export class CreateManagementComponent implements OnInit {
   url: string = "";
   error!: string;
   submitting: boolean = false;
+  maxDay = new Date().toISOString().slice(0, 10);
 
   constructor(private userService: UsersService,
               private dialogRef: MatDialogRef<CreateManagementComponent>,

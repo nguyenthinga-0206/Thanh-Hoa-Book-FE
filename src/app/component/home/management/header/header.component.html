@@ -5,7 +5,13 @@
         <a id="menu_toggle" (click)="drawer.toggle()"><i class="fa fa-bars"></i></a>
       </div>
       <nav class="nav navbar-nav">
-        <ul class=" navbar-right">
+        <ul class=" navbar-right heard-flex">
+          <li class="nav-item" style="color: white; font-size: 15px" hidden>
+            <select style="border: none; width: 100px; height: 20px" (click)="changeDefaultLanguage(language.value)" #language>
+              <option value="ta">Việt Nam</option>
+              <option value="jp">日本語</option>
+            </select>
+          </li>
           <li class="nav-item dropdown open" style="padding-left: 15px;">
             <a href="#" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown"
                data-toggle="dropdown" aria-expanded="false">

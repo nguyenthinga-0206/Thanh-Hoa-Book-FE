@@ -15,6 +15,7 @@ export class UpdateManagementComponent implements OnInit {
 
   selectedFile: File | any;
   url: string = "";
+  maxDay = new Date().toISOString().slice(0, 10);
 
   constructor(private userService: UsersService,
               private dialogRef: MatDialogRef<UpdateManagementComponent>,

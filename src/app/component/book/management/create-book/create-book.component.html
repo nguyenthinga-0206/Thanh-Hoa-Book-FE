@@ -84,6 +84,10 @@
           *ngIf="formCreateBook.get('yearPublishing')?.hasError('pattern') && formCreateBook.get('yearPublishing')?.touched">
           Năm xuất bản không đúng định dạng!
         </mat-error>
+        <mat-error
+          *ngIf="formCreateBook.hasError('yearnotmatch', ['yearPublishing']) && formCreateBook.get('yearPublishing')?.touched">
+          Năm xuất bản phải nhỏ hơn hoặc bằng năm hiện tại!
+        </mat-error>
       </div>
     </div>
     <div class="row ">
