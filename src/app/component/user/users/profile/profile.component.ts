@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   is_edit: boolean = true;
   selectedFile: File | any;
   url?: string = '';
+  maxDay = new Date().toISOString().slice(0, 10);
   background = (this.isAdmin() || this.isManagement()) ? '#2A3F54' : '#1ABB9C';
 
   constructor(public authService: AuthService,

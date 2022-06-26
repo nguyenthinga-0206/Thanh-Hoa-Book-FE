@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {BookService} from "../../../../service/book.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Producer} from "../../../../model/book/Producer";
 import {Author} from "../../../../model/book/Author";
 import {Category} from "../../../../model/book/Category";
@@ -13,6 +13,14 @@ import {finalize} from "rxjs/operators";
 import {MatOptionSelectionChange} from "@angular/material/core";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {ImageDTO} from "../../../../dto/book/ImageDTO";
+
+function checkYear(c: AbstractControl) {
+  const v = c.value;
+  const year = new Date().getFullYear().toString();
+  return (v <= year) ? null : {
+    yearnotmatch: true
+  };
+}
 
 @Component({
   selector: 'app-create-book',
@@ -30,7 +38,6 @@ export class CreateBookComponent implements OnInit {
   selectedFile!: Array<File> | any[];
   imageList: ImageDTO[] = [];
   submitting: boolean = false;
-
 
   constructor(private bookService: BookService,
               private dialog: MatDialog,
@@ -54,7 +61,7 @@ export class CreateBookComponent implements OnInit {
   formCreateBook = new FormGroup({
     name: new FormControl('', [Validators.required]),
     code: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{1,20}$")]),
-    yearPublishing: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}$")]),
+    yearPublishing: new FormControl('', [Validators.required, Validators.pattern("^[0-9]{4}$"), checkYear]),
     quantity: new FormControl('', [Validators.required, Validators.pattern("^(?!^0$)([1-9][0-9]{0,6})$")]),
     weight: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),
     width: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,6})|([0])\.[0-9]{2}$")]),

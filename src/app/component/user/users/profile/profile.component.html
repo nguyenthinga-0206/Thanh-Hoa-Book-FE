@@ -82,7 +82,7 @@
                           <label for="birthday" class="col-4 col-form-label font-weight-bold" translate>settings.birthday</label>
                           <div class="col-8">
                             <p [hidden]="!is_edit">{{profile?.birthday}}</p>
-                            <input [hidden]="is_edit" type="date" class="form-control" formControlName="birthday"
+                            <input [hidden]="is_edit" type="date" [max]="maxDay" class="form-control" formControlName="birthday"
                                    id="birthday">
                           </div>
                         </div>
