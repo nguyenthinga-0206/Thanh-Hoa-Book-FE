@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {UsersService} from "../../../../service/users.service";
 import {stringify} from "querystring";
 import {User} from "../../../../model/user/User";
+import {TranslatesService} from "../../../../service/translates.service";
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ import {User} from "../../../../model/user/User";
 export class HeaderComponent implements OnInit {
 
   constructor(public authService: AuthService,
-              private userService: UsersService) {
+              private userService: UsersService,
+              private translatesService: TranslatesService) {
   }
 
   email: string = '' + this.authService.getEmail();
@@ -32,6 +34,10 @@ export class HeaderComponent implements OnInit {
 
   isAdmin() {
     return this.authService.getRole() == "ROLE_ADMIN";
+  }
+
+  changeDefaultLanguage(value: string) {
+    this.translatesService.changeLanguage(value);
   }
 
 }
