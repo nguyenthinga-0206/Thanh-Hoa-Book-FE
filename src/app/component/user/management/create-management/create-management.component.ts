@@ -48,7 +48,6 @@ export class CreateManagementComponent implements OnInit {
       this.userService.createManagement(this.formCreateManagement.value).subscribe(data => {
           this.formCreateManagement.reset();
           this.snackBar.open("Thêm mới thành công", "Đóng", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 3000
           });
         },

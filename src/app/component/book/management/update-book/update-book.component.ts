@@ -109,7 +109,6 @@ export class UpdateBookComponent implements OnInit {
       this.bookService.editBook(this.formUpdateBook.value).subscribe(
         (data) => {
           this.snackBar.open("Cập nhật thành công", "Đóng", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 3000
           });
         },

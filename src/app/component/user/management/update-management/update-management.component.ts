@@ -61,7 +61,6 @@ export class UpdateManagementComponent implements OnInit {
     if (!this.formUpdateManagement.invalid) {
       this.userService.updateManagement(this.formUpdateManagement.value).subscribe(() => {
           this.snackBar.open("Cập nhật thành công", "Đóng", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 3000
           });
         },

@@ -87,7 +87,6 @@ export class CreateBookComponent implements OnInit {
       this.bookService.createBook(this.formCreateBook.value).subscribe(
         (data) => {
           this.snackBar.open("Thêm mới thành công", "Đóng", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 3000
           });
         },
