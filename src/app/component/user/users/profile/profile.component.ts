@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
   selectedFile: File | any;
   url?: string = '';
   maxDay = new Date().toISOString().slice(0, 10);
+  viewProfile: Boolean = false;
   background = (this.isAdmin() || this.isManagement()) ? '#2A3F54' : '#1ABB9C';
 
   constructor(public authService: AuthService,
@@ -93,6 +94,10 @@ export class ProfileComponent implements OnInit {
 
   checkStatus(event: boolean) {
     this.is_edit = event;
+  }
+
+  editViewProfile(event: boolean){
+    this.viewProfile = event;
   }
 
   isAdmin() {

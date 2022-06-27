@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="text-center mt-2">
-          <button class="btn btn-secondary" (click)="checkStatus(false)">
+          <button [hidden]="viewProfile" class="btn btn-secondary" (click)="checkStatus(false)">
             <i class="fa fa-edit mr-2"></i>
             <span translate>settings.editInformation</span>
           </button>
@@ -20,14 +20,18 @@
 
         <div class="card mt-4">
           <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#profile">
+            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#profile"
+               (click)="editViewProfile(false)">
               <span translate>settings.information</span>
             </a>
-            <a class="list-group-item list-group-item-action" data-toggle="list" href="#change-password">
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="#change-password"
+               (click)="editViewProfile(true)">
               <span translate>settings.changePassword</span>
             </a>
             <a class="list-group-item list-group-item-action" *ngIf="!isAdmin()" data-toggle="list"
-               href="#history-orders" translate>settings.orderHistory</a>
+               href="#history-orders" (click)="editViewProfile(true)">
+              <span translate>settings.orderHistory</span>
+            </a>
           </div>
         </div>
       </div>
@@ -42,15 +46,18 @@
                     <div class="row">
                       <div class="col-8">
                         <div class="form-group row">
-                          <label for="fullName" class="col-4 col-form-label font-weight-bold" translate>settings.name</label>
+                          <label for="fullName" class="col-4 col-form-label font-weight-bold"
+                                 translate>settings.name</label>
                           <div class="col-8">
                             <p [hidden]="!is_edit">{{profile?.fullName}}</p>
-                            <input [hidden]="is_edit" type="text" class="form-control" formControlName="fullName"
+                            <input [hidden]="is_edit" type="text" class="form-control" placeholder="Nguyen Thi A"
+                                   formControlName="fullName"
                                    id="fullName">
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="email" class="col-4 col-form-label font-weight-bold" translate>settings.email</label>
+                          <label for="email" class="col-4 col-form-label font-weight-bold"
+                                 translate>settings.email</label>
                           <div class="col-8">
                             <p [hidden]="!is_edit">{{profile?.email}}</p>
                             <input [hidden]="is_edit" type="text" class="form-control" formControlName="email"
@@ -68,21 +75,30 @@
                           </div>
                         </div>
                         <div class="form-group row">
-                          <label for="gender" class="col-4 col-form-label font-weight-bold" translate>settings.gender</label>
+                          <label for="gender" class="col-4 col-form-label font-weight-bold"
+                                 translate>settings.gender</label>
                           <div class="col-8">
                             <p [hidden]="!is_edit">{{profile?.gender}}</p>
-                            <select [hidden]="is_edit" formControlName="gender" class="form-control" id="gender">
-                              <option class="form-check-input" value="MALE" translate>settings.male
-                              <option class="form-check-input" value="FEMALE" translate>settings.female
-                              <option class="form-check-input" value="OTHER" translate>settings.other
-                            </select>
+                            <mat-select [hidden]="is_edit" formControlName="gender" [placeholder]="choose.innerText"
+                                        class="form-control" id="gender">
+                              <mat-option value="MALE">
+                                <sapn translate>settings.male</sapn>
+                              </mat-option>
+                              <mat-option value="FEMALE">
+                                <sapn translate>settings.female</sapn>
+                              </mat-option>
+                              <mat-option value="OTHER">
+                                <sapn translate>settings.other</sapn>
+                              </mat-option>
+                            </mat-select>
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="birthday" class="col-4 col-form-label font-weight-bold" translate>settings.birthday</label>
                           <div class="col-8">
                             <p [hidden]="!is_edit">{{profile?.birthday}}</p>
-                            <input [hidden]="is_edit" type="date" [max]="maxDay" class="form-control" formControlName="birthday"
+                            <input [hidden]="is_edit" type="date" [max]="maxDay" class="form-control"
+                                   formControlName="birthday"
                                    id="birthday">
                           </div>
                         </div>
@@ -145,3 +161,4 @@
 <span hidden #waiting translate>settings.waiting</span>
 <span hidden #delivery translate>settings.delivery</span>
 <span hidden #delivered translate>settings.delivered</span>
+<span hidden #choose translate>settings.choose</span>

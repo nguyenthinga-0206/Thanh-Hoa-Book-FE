@@ -22,6 +22,7 @@ import {DeleteManagementComponent} from './management/delete-management/delete-m
 import {HttpClient} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {MatSelectModule} from "@angular/material/select";
 
 export function rootLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -37,28 +38,29 @@ export function rootLoaderFactory(http: HttpClient) {
     UserDetailComponent,
     DeleteManagementComponent,
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    MatDialogModule,
-    NgxPaginationModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatTabsModule,
-    MatListModule,
-    OrdersModule,
-    MatInputModule,
-    Ng2SearchPipeModule,
-    OrderModule,
-    FormsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: rootLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-  ]
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        MatDialogModule,
+        NgxPaginationModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatTabsModule,
+        MatListModule,
+        OrdersModule,
+        MatInputModule,
+        Ng2SearchPipeModule,
+        OrderModule,
+        FormsModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: rootLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
+        MatSelectModule,
+    ]
 })
 export class UserModule {
 }
