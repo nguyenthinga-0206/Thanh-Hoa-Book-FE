@@ -73,6 +73,7 @@ export class CheckoutComponent implements OnInit {
             this.ordersService.deleteCartById(this.cartList[i].id).subscribe();
           }
           this.snackBar.open("Đơn hàng đã được thêm thành công.", "Đóng", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 3000
           });
           this.router.navigate(['']);
