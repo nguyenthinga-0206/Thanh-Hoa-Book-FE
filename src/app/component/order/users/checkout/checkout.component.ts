@@ -64,8 +64,9 @@ export class CheckoutComponent implements OnInit {
   });
 
   order() {
-    this.submitting = true;
-    if (!this.checkouForm.invalid) {
+    if (this.checkouForm.invalid) {
+      this.submitting = true;
+    } else {
       this.checkouForm.value.ship = this.priceShip;
       this.checkouForm.value.detailsList = this.cartList;
       this.ordersService.createOrder(this.checkouForm.value).subscribe(data => {

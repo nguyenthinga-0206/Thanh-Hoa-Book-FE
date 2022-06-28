@@ -8,11 +8,12 @@
         <aside class="col-md-6">
           <article class="gallery-wrap">
             <div class="card img-big-wrap">
-              <a> <img src="{{book.imageList[0].path}}"></a>
+              <a *ngIf="book.imageList.length == 0"> <img src="" alt="image"></a>
+              <a *ngIf="book.imageList.length != 0"> <img src="{{book.imageList[0].path}}" alt="image"></a>
             </div>
-            <div class="thumbs-wrap">
+            <div class="thumbs-wrap" *ngIf="book.imageList.length != 0">
               <a class="item-thumb" *ngFor="let image of book.imageList">
-                <img src="{{image.path}}">
+                <img src="{{image.path}}" alt="image">
               </a>
             </div>
           </article>

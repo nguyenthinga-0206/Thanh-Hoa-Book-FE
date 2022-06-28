@@ -17,7 +17,6 @@ import {AuthService} from "../../../../service/auth.service";
 export class BookDetailComponent implements OnInit {
 
   book!: Book;
-  bookList!: Array<Book>;
   cover = ECover;
   quantity: number = 1;
   cartRequest!: CartRequest;
@@ -34,9 +33,6 @@ export class BookDetailComponent implements OnInit {
     this.bookService.getBookById(this.activatedRoute.snapshot.params["id"]).subscribe(data => {
       this.book = data;
     });
-    this.bookService.getAll().subscribe(data => {
-      this.bookList = data;
-    })
   }
 
   minusQuantity() {

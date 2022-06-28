@@ -26,8 +26,9 @@ export class CreateAuthorComponent implements OnInit {
   });
 
   addAuthor() {
-    this.submitting = true;
-    if (!this.formAddAuthor.invalid) {
+    if (this.formAddAuthor.invalid) {
+      this.submitting = true;
+    } else {
       this.bookService.createAuthor(this.formAddAuthor.value).subscribe(data => {
         this.dialogRef.close();
         this.snackBar.open("Thêm thành công !!!", "OK", {

@@ -26,8 +26,9 @@ export class CreateCategoryComponent implements OnInit {
   });
 
   addCategory() {
-    this.submitting = true;
-    if (!this.formAddCategory.invalid) {
+    if (this.formAddCategory.invalid) {
+      this.submitting = true;
+    } else {
       this.bookService.createCategory(this.formAddCategory.value).subscribe(data => {
         this.dialogRef.close();
         this.snackBar.open("Thêm thành công !!!", "OK", {

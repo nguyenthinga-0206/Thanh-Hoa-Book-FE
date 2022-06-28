@@ -53,8 +53,10 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-    this.submitting = true;
-    if (!this.formLogin.invalid) {
+    if (this.formLogin.invalid) {
+      this.submitting = true;
+    }
+    else {
       this.homeService.login(this.formLogin.value).subscribe(
         (loginResponse) => {
           this.setLoginComplete(loginResponse)

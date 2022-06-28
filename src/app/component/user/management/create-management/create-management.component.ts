@@ -42,9 +42,10 @@ export class CreateManagementComponent implements OnInit {
   });
 
   createManagement() {
-    this.submitting = true;
     this.formCreateManagement.value.image = this.url;
-    if (!this.formCreateManagement.invalid) {
+    if (this.formCreateManagement.invalid) {
+      this.submitting = true;
+    } else {
       this.userService.createManagement(this.formCreateManagement.value).subscribe(data => {
           this.formCreateManagement.reset();
           this.snackBar.open("Thêm mới thành công", "Đóng", {

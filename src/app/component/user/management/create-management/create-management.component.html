@@ -23,8 +23,8 @@
           <option class="form-check-input" value="ROLE_ADMIN">Quản lý
         </select>
         <mat-error
-          *ngIf="(formCreateManagement.get('role')?.hasError('required') && formCreateManagement.get('role')?.touched) ||
-          (formCreateManagement.get('role')?.untouched && submitting)">
+          *ngIf="(formCreateManagement.get('account.role')?.hasError('required') && formCreateManagement.get('account.role')?.touched) ||
+          (formCreateManagement.get('account.role')?.untouched && submitting)">
           Quyền hạn không được để trống!
         </mat-error>
       </div>
@@ -75,6 +75,10 @@
       <div class="form-group col-md-6">
         <label>Ngày sinh</label>
         <input type="date"  [max]="maxDay" class="form-control" formControlName="birthday">
+        <mat-error
+          *ngIf="formCreateManagement.get('birthday')?.hasError('required') && formCreateManagement.get('birthday')?.touched">
+          Ngày sinh không được để trống!
+        </mat-error>
       </div>
       <div class="form-group col-md-6">
         <label>Giới tính</label>

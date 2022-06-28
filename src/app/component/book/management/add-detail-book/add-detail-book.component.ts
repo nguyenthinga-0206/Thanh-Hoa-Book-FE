@@ -32,10 +32,10 @@ export class AddDetailBookComponent implements OnInit {
   });
 
   addBook() {
-    this.submitting = true;
     this.formAddBook.value.id = this.book.id;
-    if (!this.formAddBook.invalid) {
-      console.log(this.formAddBook.value);
+    if (this.formAddBook.invalid) {
+      this.submitting = true;
+    } else {
       this.bookService.addBookById(this.formAddBook.value).subscribe(() => {
         this.dialogRef.close();
         this.snackBar.open("Thêm thành công !!!", "OK", {
