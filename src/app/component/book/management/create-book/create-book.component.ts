@@ -81,9 +81,10 @@ export class CreateBookComponent implements OnInit {
   });
 
   createBook() {
-    this.submitting = true;
     this.formCreateBook.value.imageList = this.imageList;
-    if (!this.formCreateBook.invalid) {
+    if (this.formCreateBook.invalid) {
+      this.submitting = true;
+    } else {
       this.bookService.createBook(this.formCreateBook.value).subscribe(
         (data) => {
           this.snackBar.open("Thêm mới thành công", "Đóng", {
@@ -93,8 +94,6 @@ export class CreateBookComponent implements OnInit {
       );
       this.ngOnInit();
       this.dialogRef.close();
-    } else {
-
     }
   }
 

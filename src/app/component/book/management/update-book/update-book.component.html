@@ -4,7 +4,7 @@
   <div mat-dialog-content>
     <div class="form-group row" style="padding: 0px 10px">
       <label>Tên sách</label>
-      <input type="text" class="form-control" formControlName="name" maxlength="45" placeholder="Nhập tên sách">
+      <input type="text" class="form-control" formControlName="name" maxlength="200" placeholder="Nhập tên sách">
       <mat-error
         *ngIf="(formUpdateBook.get('name')?.hasError('required') && formUpdateBook.get('name')?.touched)">
         Tên sách không được để trống!

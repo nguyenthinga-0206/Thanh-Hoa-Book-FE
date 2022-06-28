@@ -41,8 +41,9 @@ export class RegisterComponent implements OnInit {
   });
 
   register() {
-    this.submitting = true;
-    if (!this.formRegister.invalid) {
+    if (this.formRegister.invalid) {
+      this.submitting = true;
+    } else {
       this.registerRequest = {
         username: this.formRegister.value.username,
         password: this.formRegister.value.passwordGroup.password,
@@ -53,10 +54,11 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         error => {
-          if (error.status == 400){
+          if (error.status == 400) {
             this.error = true;
           }
-        });
+        }
+      );
     }
   }
 }
