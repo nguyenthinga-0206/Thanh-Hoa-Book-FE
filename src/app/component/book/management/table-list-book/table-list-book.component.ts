@@ -7,7 +7,6 @@ import {DeleteBookComponent} from "../delete-book/delete-book.component";
 import {AddDetailBookComponent} from "../add-detail-book/add-detail-book.component";
 import {UpdateBookComponent} from "../update-book/update-book.component";
 import {DetailBookComponent} from "../detail-book/detail-book.component";
-import {OrderPipe} from "ngx-order-pipe";
 
 @Component({
   selector: 'app-table-list-book',
@@ -58,7 +57,6 @@ export class TableListBookComponent implements OnInit {
           height: '300px',
           data: data
         });
-
         dialogRef.afterClosed().subscribe(() => {
           this.ngOnInit();
         });
@@ -66,18 +64,15 @@ export class TableListBookComponent implements OnInit {
     )
   }
 
-  openDialogEdit(id: number) {
-    this.bookService.getBookById(id).subscribe(data => {
-        const dialogRef = this.dialog.open(UpdateBookComponent, {
-          width: '700px',
-          height: '800px',
-          data: data
-        });
-        dialogRef.afterClosed().subscribe(() => {
-          this.ngOnInit();
-        });
-      }
-    )
+  openDialogEdit(book: Book) {
+    const dialogRef = this.dialog.open(UpdateBookComponent, {
+      width: '700px',
+      height: '800px',
+      data: book
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
   openDialogDetail(book: Book) {
@@ -86,7 +81,6 @@ export class TableListBookComponent implements OnInit {
       height: '500px',
       data: book
     });
-
     dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });
@@ -98,7 +92,6 @@ export class TableListBookComponent implements OnInit {
       height: '350px',
       data: book
     });
-
     dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });
