@@ -33,7 +33,6 @@ export class UpdateBookComponent implements OnInit {
   producerList!: Array<Producer>;
   authorList!: Array<Author>;
   categoryList!: Array<Category>;
-  categorys!: Array<Category>;
   selectedFile!: Array<File> | any[];
   imageList: ImageDTO[] = [];
 
@@ -98,8 +97,13 @@ export class UpdateBookComponent implements OnInit {
     this.formUpdateBook.controls.authorList.setValue(this.data.authorList);
     this.formUpdateBook.controls.categoryList.setValue(this.data.categoryList);
     this.formUpdateBook.value.imageList = this.data.imageList;
-    this.imageList = this.data.imageList;
-    this.categorys = this.data.imageList;
+
+    for(let index of this.data.imageList){
+      this.imageList.push({
+        name :index.name,
+        path:index.path
+      })
+    }
   }
 
   updateBook() {
