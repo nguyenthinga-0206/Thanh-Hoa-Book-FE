@@ -13,6 +13,7 @@ import {MatOptionSelectionChange} from "@angular/material/core";
 import {ImageDTO} from "../../../../dto/book/ImageDTO";
 import {finalize} from "rxjs/operators";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {log} from "util";
 
 function checkYear(c: AbstractControl) {
   const v = c.value;
@@ -31,10 +32,8 @@ export class UpdateBookComponent implements OnInit {
 
   producerList!: Array<Producer>;
   authorList!: Array<Author>;
-  authorListError: Boolean = false;
   categoryList!: Array<Category>;
   categorys!: Array<Category>;
-  categoryListError: Boolean = false;
   selectedFile!: Array<File> | any[];
   imageList: ImageDTO[] = [];
 
@@ -61,11 +60,11 @@ export class UpdateBookComponent implements OnInit {
     formCover: new FormControl(null),
     price: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,12})|([0])\.[0-9]{2}$")]),
     imageList: new FormArray([]),
-    authorList: new FormControl(),
+    authorList: new FormControl('', [Validators.required]),
     producer: new FormGroup({
       id: new FormControl()
     }, [Validators.required]),
-    categoryList: new FormControl(),
+    categoryList: new FormControl('', [Validators.required]),
     description: new FormControl(),
   });
 
@@ -166,19 +165,12 @@ export class UpdateBookComponent implements OnInit {
   }
 
   onCheckboxChangeAuthor(event: MatOptionSelectionChange, author: Author) {
-    const authorList = (this.formUpdateBook.controls.authorList as FormArray);
+    const temp = (this.formUpdateBook.controls.authorList as FormArray);
+    const authorList = temp.value;
     if (event.source.selected) {
-      {
-        authorList.push(new FormControl(author));
-      }
-      this.authorListError = authorList.value.length > 0 ? false : true;
     } else {
-      {
-        const index = authorList.controls
-          .findIndex(x => x.value === author);
-        authorList.removeAt(index);
-      }
-      this.authorListError = authorList.value.length == 0 ? true : false;
+      const index = authorList.findIndex((x: { value: Author }) => x.value === author);
+      authorList.splice(index, 1);
     }
   }
 
@@ -186,12 +178,9 @@ export class UpdateBookComponent implements OnInit {
     const temp = (this.formUpdateBook.controls.categoryList as FormArray);
     const categoryList = temp.value;
     if (event.source.selected) {
-        categoryList.push(category);
-      this.categoryListError = categoryList.length > 0 ? false : true;
     } else {
-        const index = categoryList.findIndex((x: { value: Category; }) => x.value === category);
-        categoryList.removeAt(index);
-      this.categoryListError = categoryList.length == 0 ? true : false;
+      const index = categoryList.findIndex((x: { value: Category; }) => x.value === category);
+      categoryList.splice(index, 1);
     }
   }
 

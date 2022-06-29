@@ -142,24 +142,23 @@
     <div class="row">
       <div class="form-group col-md-4">
         <label>Thể loại <i (click)="openDialogAddCategory()" class="fa fa-plus btn-outline-secondary"></i></label>
-        <mat-select id="categoryList" class="form-control" placeholder="--Chọn--" multiple required>
+        <mat-select formControlName="categoryList" id="categoryList" class="form-control" placeholder="--Chọn--" multiple required>
           <mat-option *ngFor="let category of categoryList" value="{{category.id}}"
-                      formArrayName="categoryList"
                       (onSelectionChange)="onCheckboxChangeCategory($event,category)">{{category.name}}</mat-option>
         </mat-select>
         <mat-error
-          *ngIf="categoryListError">
+          *ngIf="formCreateBook.get('categoryList')?.hasError('required') && formCreateBook.get('categoryList')?.touched">
           Thể loại không được để trống!
         </mat-error>
       </div>
       <div class="form-group col-md-4">
         <label>Tác giả <i (click)="openDialogAddAuthor()" class="fa fa-plus btn-outline-secondary"></i></label>
-        <mat-select class="form-control" placeholder="--Chọn--" multiple>
-          <mat-option *ngFor="let author of authorList" value="{{author.id}}" formArrayName="authorList"
+        <mat-select formControlName="authorList" class="form-control" placeholder="--Chọn--" multiple>
+          <mat-option *ngFor="let author of authorList" value="{{author.id}}"
                       (onSelectionChange)="onCheckboxChangeAuthor($event,author)">{{author.name}}</mat-option>
         </mat-select>
         <mat-error
-          *ngIf="authorListError">
+          *ngIf="formCreateBook.get('authorList')?.hasError('required') && formCreateBook.get('authorList')?.touched">
           Tác giả không được để trống!
         </mat-error>
       </div>

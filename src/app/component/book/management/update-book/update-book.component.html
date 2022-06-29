@@ -141,7 +141,7 @@
                       (onSelectionChange)="onCheckboxChangeCategory($event,category)">{{category.name}}</mat-option>
         </mat-select>
         <mat-error
-          *ngIf="categoryListError">
+          *ngIf="formUpdateBook.get('categoryList')?.hasError('required') && formUpdateBook.get('categoryList')?.touched">
           Thể loại không được để trống!
         </mat-error>
       </div>
@@ -153,7 +153,7 @@
                       (onSelectionChange)="onCheckboxChangeAuthor($event,author)">{{author.name}}</mat-option>
         </mat-select>
         <mat-error
-          *ngIf="authorListError">
+          *ngIf="formUpdateBook.get('authorList')?.hasError('required') && formUpdateBook.get('authorList')?.touched">
           Tác giả không được để trống!
         </mat-error>
       </div>

@@ -32,9 +32,7 @@ export class CreateBookComponent implements OnInit {
 
   producerList!: Array<Producer>;
   authorList!: Array<Author>;
-  authorListError: Boolean = false;
   categoryList!: Array<Category>;
-  categoryListError: Boolean = false;
   selectedFile!: Array<File> | any[];
   imageList: ImageDTO[] = [];
   submitting: boolean = false;
@@ -72,11 +70,11 @@ export class CreateBookComponent implements OnInit {
     formCover: new FormControl(null),
     price: new FormControl('', [Validators.required, Validators.pattern("^(?!^0\.00$)([1-9][0-9]{0,12})|([0])\.[0-9]{2}$")]),
     imageList: new FormArray([]),
-    authorList: new FormArray([]),
+    authorList: new FormControl('', [Validators.required]),
     producer: new FormGroup({
       id: new FormControl()
     }, [Validators.required]),
-    categoryList: new FormArray([], [Validators.required]),
+    categoryList: new FormControl('', [Validators.required]),
     description: new FormControl()
   });
 
@@ -145,36 +143,22 @@ export class CreateBookComponent implements OnInit {
   }
 
   onCheckboxChangeAuthor(event: MatOptionSelectionChange, author: Author) {
-    const authorList = (this.formCreateBook.controls.authorList as FormArray);
+    const temp = (this.formCreateBook.controls.authorList as FormArray);
+    const authorList = temp.value;
     if (event.source.selected) {
-      {
-        authorList.push(new FormControl(author));
-      }
-      this.authorListError = authorList.value.length > 0 ? false : true;
     } else {
-      {
-        const index = authorList.controls
-          .findIndex(x => x.value === author);
-        authorList.removeAt(index);
-      }
-      this.authorListError = authorList.value.length == 0 ? true : false;
+      const index = authorList.findIndex((x: { value: Author }) => x.value === author);
+      authorList.splice(index, 1);
     }
   }
 
   onCheckboxChangeCategory(event: MatOptionSelectionChange, category: Category) {
-    const categoryList = (this.formCreateBook.controls.categoryList as FormArray);
+    const temp = (this.formCreateBook.controls.categoryList as FormArray);
+    const categoryList = temp.value;
     if (event.source.selected) {
-      {
-        categoryList.push(new FormControl(category));
-      }
-      this.categoryListError = categoryList.value.length > 0 ? false : true;
     } else {
-      {
-        const index = categoryList.controls
-          .findIndex(x => x.value === category);
-        categoryList.removeAt(index);
-      }
-      this.categoryListError = categoryList.value.length == 0 ? true : false;
+      const index = categoryList.findIndex((x: { value: Category; }) => x.value === category);
+      categoryList.splice(index, 1);
     }
   }
 
