@@ -22,14 +22,11 @@ export class OrderDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.order = this.data;
-    this.orderService.getOrderDetailsByOrderId(this.order.id).subscribe(data => {
-      this.orderDetailList = data;
-      this.count = this.orderDetailList.length;
-      for (let detail of this.orderDetailList) {
-        this.totalPrice += detail.quantity * detail.book.price;
-      }
-      console.log(this.totalPrice)
-    })
+    this.orderDetailList = this.data.orderDetailsList;
+    this.count = this.orderDetailList.length;
+    for (let detail of this.orderDetailList) {
+      this.totalPrice += detail.quantity * detail.book.price;
+    }
   }
 
 }
