@@ -13,7 +13,7 @@ import {OrderStatusComponent} from "../order-status/order-status.component";
 })
 export class TableListOrderComponent implements OnInit {
 
-  oderList!: Array<Orders>;
+  oderList: Orders[] = [];
   statusEnum = EStatus;
   p: number | any;
   searchText: any;
@@ -45,24 +45,19 @@ export class TableListOrderComponent implements OnInit {
       height: '300px',
       data: order
     });
-
     dialogRef.afterClosed().subscribe(() => {
       this.ngOnInit();
     });
   }
 
-  openDialogDetail(id: number) {
-    this.ordersService.getById(id).subscribe(data => {
-        const dialogRef = this.dialog.open(OrderDetailsComponent, {
-          width: '600px',
-          height: '800px',
-          data: data
-        });
-
-        dialogRef.afterClosed().subscribe(() => {
-          this.ngOnInit();
-        });
-      }
-    )
+  openDialogDetail(order: Orders) {
+    const dialogRef = this.dialog.open(OrderDetailsComponent, {
+      width: '600px',
+      height: '800px',
+      data: order
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 }
