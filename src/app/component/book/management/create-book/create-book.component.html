@@ -154,7 +154,7 @@
       <div class="form-group col-md-4">
         <label>Tác giả <i (click)="openDialogAddAuthor()" class="fa fa-plus btn-outline-secondary"></i></label>
         <mat-select formControlName="authorList" class="form-control" placeholder="--Chọn--" multiple>
-          <mat-option *ngFor="let author of authorList" value="{{author.id}}"
+          <mat-option *ngFor="let author of authorList" [value]="author"
                       (onSelectionChange)="onCheckboxChangeAuthor($event,author)">{{author.name}}</mat-option>
         </mat-select>
         <mat-error
@@ -165,7 +165,7 @@
       <div class="form-group col-md-4" formGroupName="producer">
         <label>Nhà xuất bản <i (click)="openDialogAddProducer()" class="fa fa-plus btn-outline-secondary"></i></label>
         <mat-select class="form-control" placeholder="--Chọn--" formControlName="id" required>
-          <mat-option *ngFor="let producer of producerList" value="{{producer.id}}">{{producer.name}}</mat-option>
+          <mat-option *ngFor="let producer of producerList" [value]="producer">{{producer.name}}</mat-option>
         </mat-select>
         <mat-error
           *ngIf="formCreateBook.get('producer')?.hasError('required') && formCreateBook.get('producer')?.touched">
