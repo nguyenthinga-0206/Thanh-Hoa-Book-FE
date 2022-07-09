@@ -23,6 +23,7 @@ import {StatisticComponent} from './management/statistic/statistic.component';
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {HttpClient} from "@angular/common/http";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import { StatisticRevenueComponent } from './management/statistic-revenue/statistic-revenue.component';
 
 export function rootLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -36,7 +37,9 @@ export function rootLoaderFactory(http: HttpClient) {
     CartComponent,
     CheckoutComponent,
     HistoryOrdersComponent,
-    StatisticComponent
+    StatisticComponent,
+    StatisticRevenueComponent,
+    StatisticRevenueComponent,
   ],
   exports: [
     HistoryOrdersComponent
