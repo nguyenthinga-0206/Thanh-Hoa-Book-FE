@@ -6,8 +6,6 @@ import {Cart} from "../../../../model/order/Cart";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BookService} from "../../../../service/book.service";
-import {CartDTO} from "../../../../dto/order/CartDTO";
-import {CartCheckout} from "../../../../dto/order/CartCheckout";
 
 @Component({
   selector: 'app-checkout',

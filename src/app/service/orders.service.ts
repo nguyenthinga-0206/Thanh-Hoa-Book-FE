@@ -9,7 +9,6 @@ import {CartDTO} from "../dto/order/CartDTO";
 import {AuthService} from "./auth.service";
 import {OrdersRequest} from "../dto/order/ordersRequest";
 import {OrderResponse} from "../dto/order/OrderResponse";
-import {TopBookResponse} from "../dto/order/TopBookResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -40,10 +39,6 @@ export class OrdersService {
 
   getById(id: number): Observable<Orders> {
     return this.httpClient.get<Orders>(this.URL_ORDERS + "/" + id);
-  }
-
-  getTopBook(): Observable<Array<TopBookResponse>> {
-    return this.httpClient.get<Array<TopBookResponse>>(this.URL_ORDERS + "/statistic-top");
   }
 
   addCart(cartRequest: CartRequest): Observable<CartDTO> {

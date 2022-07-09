@@ -5,6 +5,7 @@ import {AuthGuard} from "../guard/auth.guard";
 import {CartComponent} from "../component/order/users/cart/cart.component";
 import {CheckoutComponent} from "../component/order/users/checkout/checkout.component";
 import {StatisticComponent} from "../component/order/management/statistic/statistic.component";
+import {StatisticRevenueComponent} from "../component/order/management/statistic-revenue/statistic-revenue.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,12 @@ const routes: Routes = [
   {
     path: "management/statistic",
     component: StatisticComponent,
+    canActivate: [AuthGuard],
+    data: {role: ['ROLE_ADMIN']}
+  },
+  {
+    path: "management/statistic-revenue",
+    component: StatisticRevenueComponent,
     canActivate: [AuthGuard],
     data: {role: ['ROLE_ADMIN']}
   }

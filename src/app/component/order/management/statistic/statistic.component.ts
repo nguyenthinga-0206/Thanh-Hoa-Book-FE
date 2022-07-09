@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {OrdersService} from "../../../../service/orders.service";
-import {TopBookResponse} from "../../../../dto/order/TopBookResponse";
+import {TopBookResponse} from "../../../../dto/statistic/TopBookResponse";
+import {StatisticService} from "../../../../service/statistic.service";
 
 @Component({
   selector: 'app-statistic-revenue',
@@ -11,11 +11,11 @@ export class StatisticComponent implements OnInit {
 
   topBook: TopBookResponse[] = [];
 
-  constructor(private ordersService: OrdersService) {
+  constructor(private statisticService: StatisticService) {
   }
 
   ngOnInit(): void {
-    this.ordersService.getTopBook().subscribe(data => {
+    this.statisticService.getTopBook().subscribe(data => {
       this.topBook = data;
     })
   }
