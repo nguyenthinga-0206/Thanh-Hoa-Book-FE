@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-3">
+    <div class="list-group list-group-flush  mt-5">
+      <a class="list-group-item list-group-item-action active" data-toggle="list" href="#by-month">
+        <span>Theo tháng</span>
+      </a>
+      <a class="list-group-item list-group-item-action" data-toggle="list" href="#by-quaterly">
+        <span>Theo quý</span>
+      </a>
+      <a class="list-group-item list-group-item-action" data-toggle="list" href="#by-year">
+        <span>Theo năm</span>
+      </a>
+    </div>
+  </div>
+  <div class="col-9 mt-2">
+    <div class="tab-content">
+      <div class="tab-pane fade active show" id="by-month">
+        <h3 class="text-center">Doanh thu theo tháng</h3>
+        <div class="form-group row ml-2">
+          <label class="mt-2 mr-3">Năm</label>
+          <select class="form-control w-25" #year (change)="getByMonth(year.value)">
+            <option *ngFor="let year of yearList">{{year}}</option>
+          </select>
+        </div>
+        <table class="table table-striped table-bordered">
+          <thead>
+          <tr class="text-center">
+            <th>Tháng</th>
+            <th>Tổng tiền thu được</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let statistic of statisticByMonth">
+            <td class="text-right">{{statistic.milestone}}</td>
+            <td class="text-right">{{statistic.total | currency: "VND"}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-pane fade" id="by-quaterly">
+        <h3 class="text-center">Doanh thu theo quý</h3>
+        <div class="form-group row">
+          <label class="mt-2 mr-3">Năm</label>
+          <select class="form-control w-25" #year (change)="getByQuaterly(year.value)">
+            <option *ngFor="let year of yearList">{{year}}</option>
+          </select>
+        </div>
+        <table class="table table-striped table-bordered">
+          <thead>
+          <tr class="text-center">
+            <th>Quý</th>
+            <th>Tổng tiền thu được</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let statistic of statisticByQuaterly">
+            <td class="text-right">{{statistic.milestone}}</td>
+            <td class="text-right">{{statistic.total | currency: "VND"}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-pane fade" id="by-year">
+        <h3 class="text-center">Doanh thu theo năm</h3>
+        <table class="table table-striped table-bordered">
+          <thead>
+          <tr class="text-center">
+            <th>Năm</th>
+            <th>Tổng tiền thu được</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let statistic of statisticByYear">
+            <td class="text-right">{{statistic.milestone}}</td>
+            <td class="text-right">{{statistic.total | currency: "VND"}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
